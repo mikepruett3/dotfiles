@@ -1,0 +1,55 @@
+# i3blocks config file
+
+# Global properties
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# Blocks
+[arch-update]
+label=
+command=$SCRIPT_DIR/arch-update/arch-update.py -a -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
+markup=pango
+interval=3600
+
+[volume]
+command=$SCRIPT_DIR/volume/volume
+label=
+instance=Master
+interval=1
+signal=10
+markup=pango
+
+[iface]
+label=`
+color=#5fff5f
+interval=30
+separator=true
+
+[bandwidth]
+label=
+command=$SCRIPT_DIR/bandwidth2/bandwidth2 -w 307200:30720 -c 512000:51200
+interval=persist
+markup=pango
+
+[load_average]
+label=
+interval=1
+
+[battery2]
+command=$SCRIPT_DIR/battery2/battery2
+markup=pango
+interval=5
+
+[time]
+command=date '+%Y-%m-%d %I:%M:%S'
+interval=1
+
+[mediaplayer]
+interval=2
+signal=10
+
+[temperature]
+label=
+interval=1
+markup=pango
