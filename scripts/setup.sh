@@ -57,6 +57,6 @@ Link_Files "$HOME/.xinitrc" "$DOTFILES/.xinitrc"
 Link_Files "$HOME/.inputrc" "$DOTFILES/.inputrc"
 Link_Files "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
 #Link_Dirs "$HOME/.config/i3" "$DOTFILES/.config/i3"
-Link_Dirs "$HOME/.weechat/" "$DOTFILES/.weechat/"
+Link_Dirs "$HOME/.weechat" "$DOTFILES/.weechat"
 
 
