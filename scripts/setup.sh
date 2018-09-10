@@ -38,5 +38,5 @@ if [ ! -h "$1" ]; then
 fi
 }
 
-Link_Files "$DOTFILES/.Xresources" "$HOME/"
+Link_Files "$HOME/.Xresources" "$DOTFILES/.Xresources"
 
