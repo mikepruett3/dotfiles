@@ -2,15 +2,47 @@
 
 # Global properties
 command=/usr/lib/i3blocks/$BLOCK_NAME
+#command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
 # Blocks
+[mediaplayer]
+interval=2
+signal=10
+
 [arch-update]
-label=
-command=$SCRIPT_DIR/arch-update/arch-update.py -a -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
+#label=
+#command=$SCRIPT_DIR/arch-update/arch-update.py -a -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
+command=$BLOCKLETS_DIR/arch-update.py -a -b "#5fff5f" -u "#FF0000" -w "^linux.*" "^pacman.*"
 markup=pango
 interval=3600
+
+#[iface]
+#label=
+#color=#5fff5f
+#interval=30
+#separator=true
+
+[bandwidth2]
+label=
+command=$SCRIPT_DIR/bandwidth2/bandwidth2 -b -w 307200:30720 -c 512000:51200
+interval=persist
+markup=pango
+
+[load_average]
+label=
+interval=1
+
+[temperature]
+label=
+interval=1
+markup=pango
+
+[battery2]
+command=$SCRIPT_DIR/battery2/battery2
+markup=pango
+interval=5
 
 [volume]
 command=$SCRIPT_DIR/volume/volume
@@ -20,36 +52,19 @@ interval=1
 signal=10
 markup=pango
 
-[iface]
-label=`
-color=#5fff5f
-interval=30
-separator=true
+#[time]
+#label=
+#command=date '+%Y-%m-%d %I:%M:%S'
+#interval=1
 
-[bandwidth]
-label=
-command=$SCRIPT_DIR/bandwidth2/bandwidth2 -w 307200:30720 -c 512000:51200
-interval=persist
-markup=pango
+# Date
+[my-date]
+#command=$BLOCKLETS_DIR/date.sh
+command=echo " $(date '+%a %d, %b %Y')"
+interval=60
 
-[load_average]
-label=
+# Time
+[my-time]
+#command=$BLOCKLETS_DIR/time.sh
+command=echo " $(date '+%I:%M:%S')"
 interval=1
-
-[battery2]
-command=$SCRIPT_DIR/battery2/battery2
-markup=pango
-interval=5
-
-[time]
-command=date '+%Y-%m-%d %I:%M:%S'
-interval=1
-
-[mediaplayer]
-interval=2
-signal=10
-
-[temperature]
-label=
-interval=1
-markup=pango

@@ -1,0 +1,32 @@
+# General Tools
+pacman -S acpi lsb-release sudo networkmanager
+pacman -S vim unzip ranger
+pacman -S udisks2
+
+# X-Windows Stuff
+pacman -S xorg-server
+pacman -S xorg-xinit xorg-fonts xorg-xwininfo xorg-xprop xorg-xbacklight
+pacman -S xorg-xfontsel lxappearance gtk2fontsel arandr gnome-keyring
+
+# X-Windows Drivers
+pacman -S xf86-video-intel
+
+# i3 Window Manager
+pacman -S i3-wm i3blocks i3lock network-manager-applet rofi compton
+yaourt -S betterlockscreen
+
+# Terminal
+pacman -S rxvt-unicode bash-completion
+yaourt -S system-san-francisco-font-git urxvt-resize-font-git ttf-font-awesome-4
+
+# Audio Stuff
+pacman -S alsa-tools alsa-utils playerctl
+yaourt -S volumeicon gpmdp
+
+# Video Stuff
+yaourt -S gnome-twitch gnome-twitch-player-backend-gstreamer-cairo
+yaourt -S vivaldi-ffmpeg-codecs
+
+# Update All Installed
+pacman -Syu
+

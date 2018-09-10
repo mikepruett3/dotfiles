@@ -38,6 +38,7 @@ hide_edge_borders both
 set $mod Mod1
 set $mod4 Mod4
 set $myfont "System San Francisco Display"
+#set $myfont "mono"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -46,7 +47,7 @@ set $myfont "System San Francisco Display"
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:$myfont 10
+font pango:$myfont 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -71,9 +72,15 @@ bindsym $mod+Shift+q kill
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec \
-rofi -theme base16-nord \
--show run -lines 3 -eh 2 -width 100 -padding 800 \
--opacity "85" -font $myfont\ 18
+rofi \
+-show run \
+-lines 3 \
+-eh 2 \
+-width 50 \
+-padding 800 \
+-theme base16-nord \
+-opacity "85" \
+-font $myfont\ 13
 
 # change focus
 bindsym $mod+j focus left
@@ -100,21 +107,21 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod4+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod4+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod4+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod4+s layout stacking
+bindsym $mod4+w layout tabbed
+bindsym $mod4+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod4+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -127,16 +134,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Terminal"
+set $ws1 "1: Terminal "
 set $ws2 "2"
-set $ws3 "3: Browser"
+set $ws3 "3: Browser "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10: Music"
+set $ws10 "10: Music "
 
 # Class Assignments
 assign [class="Vivaldi-stable"] $ws3
@@ -213,8 +220,8 @@ exec --no-startup-id betterlockscreen -u ~/Wallpapers/Mechanical_Keyboards
 
 # Start i3bar to display a workspace bar
 bar {
-        status_command SCRIPT_DIR=~/.blocklets i3blocks
-        font pango:$myfont 6
+        status_command SCRIPT_DIR=$HOME/.blocklets BLOCKLETS_DIR=$HOME/.config/i3blocks/blocklets i3blocks
+        font pango:$myfont 8
 
 }
 
@@ -228,28 +235,28 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Media Player Controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod4+space exec playerctl play
-bindsym $mod4+p exec playerctl pause
+bindsym $mod4+p exec playerctl play-pause
 bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
+# Visual Tools
+#exec --no-startup-id compton -f
+exec --no-startup-id compton
+
 #Applets
-exec --no-startup-id volumeicon start
+#exec --no-startup-id volumeicon start
 exec --no-startup-id nm-applet start
+exec --no-startup-id owncloud
 
 # Wallpaper
-exec feh --recursive --randomize --bg-scale ~/Wallpapers/*
-
-# Visual Tools
-exec_always compton -f
+exec_always feh --recursive --randomize --bg-scale ~/Wallpapers/*
 
 # Startup Applications
 #exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal'
 exec i3-sensible-terminal
 exec vivaldi-stable
-
 
