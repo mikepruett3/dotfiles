@@ -29,7 +29,7 @@ fi
 
 # Function to Link Files
 function Link_Files () {
-    # Check to see if the Symlink exists already
+    # Check to see if the symlink exists already
     if [ ! -h "$1" ]; then
         rm -f "$1"
         ln -s "$2" "$1"
@@ -39,8 +39,13 @@ function Link_Files () {
 # Function to Link Directories
 function Link_Dirs () {
     # Check to see if the Symlink exists already
-    if [ ! -d "$1" ]; then
+    if [ -d "$1" ]; then
         rm -rf "$1"
+    fi
+
+    # Check to see if the symlink exists already
+    if [ ! -h "$1" ]; then
+        rm -f "$1"
         ln -s "$2" "$1"
     fi
 }
