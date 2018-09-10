@@ -8,12 +8,12 @@ fi
 
 # Check if $HOME/.dotfiles exists, then export $DOTFILES
 if [ -d $HOME/.dotfiles ]; then
-    export $DOTFILES=$HOME/.dotfiles
+    export DOTFILES=$HOME/.dotfiles
 fi
 
 # Check if $HOME/dotfiles exists, then export $DOTFILES
 if [ -d $HOME/dotfiles ]; then
-    export $DOTFILES=$HOME/dotfiles
+    export DOTFILES=$HOME/dotfiles
 fi
 
 # Check for empty $DOTFILES vairable
