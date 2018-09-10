@@ -27,6 +27,8 @@ if [ -z $DOTFILES ]; then
     exit 1
 fi
 
+echo $DOTFILES
+
 # Function to Link files
 function Link_Files () {
     # Check to see if the Link Exists already
