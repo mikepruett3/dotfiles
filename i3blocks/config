@@ -18,15 +18,10 @@ command=$BLOCKLETS_DIR/arch-update.py -a -b "#5fff5f" -u "#FF0000" -w "^linux.*"
 markup=pango
 interval=3600
 
-#[iface]
-#label=
-#color=#5fff5f
-#interval=30
-#separator=true
-
 [bandwidth2]
 label=
-command=$SCRIPT_DIR/bandwidth2/bandwidth2 -b -w 307200:30720 -c 512000:51200
+#command=$SCRIPT_DIR/bandwidth2/bandwidth2 -b -w 307200:30720 -c 512000:51200
+command=$BLOCKLETS_DIR/bandwidth2 -b -w 307200:30720 -c 512000:51200
 interval=persist
 markup=pango
 
