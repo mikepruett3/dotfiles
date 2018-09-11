@@ -12,7 +12,7 @@ pacman -S xorg-xfontsel lxappearance gtk2fontsel arandr gnome-keyring
 pacman -S xf86-video-intel
 
 # i3 Window Manager
-pacman -S i3-wm i3blocks i3lock network-manager-applet rofi compton
+pacman -S i3-wm i3blocks i3lock network-manager-applet rofi compton dunst
 yaourt -S betterlockscreen
 
 # Terminal

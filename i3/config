@@ -246,6 +246,7 @@ bindsym $mod4+Left exec playerctl previous
 # Visual Tools
 #exec --no-startup-id compton -f
 exec --no-startup-id compton
+exec --no-startup-id dunst
 
 #Applets
 #exec --no-startup-id volumeicon start

@@ -61,5 +61,5 @@ Link_Dirs "$HOME/.config/i3blocks" "$DOTFILES/i3blocks"
 Link_Dirs "$HOME/.weechat" "$DOTFILES/.weechat"
 Link_Dirs "$HOME/Icons" "$DOTFILES/Icons"
 Link_Dirs "$HOME/Wallpapers" "$DOTFILES/Wallpapers"
-
+Link_Dirs "$HOME/.config/dunst" "$DOTFILES/dunst"
 
