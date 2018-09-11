@@ -66,5 +66,5 @@ interval=60
 # Time
 [my-time]
 #command=$BLOCKLETS_DIR/time.sh
-command=echo " $(date '+%I:%M:%S')"
+command=echo " $(date '+%_I:%M:%S')"
 interval=1
