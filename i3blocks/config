@@ -21,7 +21,13 @@ interval=3600
 [bandwidth2]
 label=
 #command=$SCRIPT_DIR/bandwidth2/bandwidth2 -b -w 307200:30720 -c 512000:51200
-command=$BLOCKLETS_DIR/bandwidth2 -b -w 307200:30720 -c 512000:51200
+#command=$BLOCKLETS_DIR/bandwidth2 -b -w 307200:30720 -c 512000:51200
+USE_BITS=0
+USE_BYES=1
+WARN_RX=307200
+WARN_TX=30720
+CRIT_RX=512000
+CRIT_TX=51200
 interval=persist
 markup=pango
 
@@ -35,13 +41,11 @@ interval=1
 markup=pango
 
 [battery2]
-#command=$SCRIPT_DIR/battery2/battery2
 interval=1
 markup=pango
 
 [volume]
 label=
-#command=$SCRIPT_DIR/volume/volume
 instance=Master
 interval=1
 signal=10
@@ -49,10 +53,10 @@ markup=pango
 
 [Date]
 label= 
-#command=echo " $(date '+%a %d, %b %Y')"
 command=echo "$(date '+%a %d, %b %Y')"
 interval=60
 
 [Time]
-command=echo " $(date '+%_I:%M:%S')"
+label=
+command=echo "$(date '+%_I:%M:%S')"
 interval=1
