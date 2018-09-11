@@ -2,7 +2,7 @@
 
 # Global properties
 #command=/usr/lib/i3blocks/$BLOCK_NAME
-command=$BLOCKLETS_DIR/$BLOCK_NAME
+command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -14,20 +14,13 @@ signal=10
 [arch-update]
 #label=
 #command=$SCRIPT_DIR/arch-update/arch-update.py -a -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
-command=$BLOCKLETS_DIR/arch-update -a -b "#5fff5f" -u "#FF0000" -w "^linux.*" "^pacman.*"
+command=$SCRIPT_DIR/arch-update -a -b "#5fff5f" -u "#FF0000" -w "^linux.*" "^pacman.*"
 markup=pango
 interval=3600
 
 [bandwidth2]
 label=
-#command=$SCRIPT_DIR/bandwidth2/bandwidth2 -b -w 307200:30720 -c 512000:51200
-#command=$BLOCKLETS_DIR/bandwidth2 -b -w 307200:30720 -c 512000:51200
-USE_BITS=0
-USE_BYES=1
-WARN_RX=307200
-WARN_TX=30720
-CRIT_RX=512000
-CRIT_TX=51200
+command=$SCRIPT_DIR/bandwidth2 -b -w 307200:30720 -c 512000:51200
 interval=persist
 markup=pango
 
