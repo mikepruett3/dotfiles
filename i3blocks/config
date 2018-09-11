@@ -1,8 +1,8 @@
 # i3blocks config file
 
 # Global properties
-command=/usr/lib/i3blocks/$BLOCK_NAME
-#command=$SCRIPT_DIR/$BLOCK_NAME
+#command=/usr/lib/i3blocks/$BLOCK_NAME
+command=$BLOCKLETS_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -14,7 +14,7 @@ signal=10
 [arch-update]
 #label=
 #command=$SCRIPT_DIR/arch-update/arch-update.py -a -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
-command=$BLOCKLETS_DIR/arch-update.py -a -b "#5fff5f" -u "#FF0000" -w "^linux.*" "^pacman.*"
+command=$BLOCKLETS_DIR/arch-update -a -b "#5fff5f" -u "#FF0000" -w "^linux.*" "^pacman.*"
 markup=pango
 interval=3600
 
@@ -35,31 +35,24 @@ interval=1
 markup=pango
 
 [battery2]
-command=$SCRIPT_DIR/battery2/battery2
+#command=$SCRIPT_DIR/battery2/battery2
+interval=1
 markup=pango
-interval=5
 
 [volume]
-command=$SCRIPT_DIR/volume/volume
 label=
+#command=$SCRIPT_DIR/volume/volume
 instance=Master
 interval=1
 signal=10
 markup=pango
 
-#[time]
-#label=
-#command=date '+%Y-%m-%d %I:%M:%S'
-#interval=1
-
-# Date
-[my-date]
-#command=$BLOCKLETS_DIR/date.sh
-command=echo " $(date '+%a %d, %b %Y')"
+[Date]
+label= 
+#command=echo " $(date '+%a %d, %b %Y')"
+command=echo "$(date '+%a %d, %b %Y')"
 interval=60
 
-# Time
-[my-time]
-#command=$BLOCKLETS_DIR/time.sh
+[Time]
 command=echo " $(date '+%_I:%M:%S')"
 interval=1
