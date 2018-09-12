@@ -11,8 +11,9 @@ XTerm*termName: xterm-256color
 !URxvt.font: xft:monospace:size=7
 !URxvt.font:               xft:SFNS Display:size=15
 !URxvt.font:               xft:"SFNS Display Bold":size 25
-URxvt.font: xft:DEC\ Terminal:style=Regular:size=13
+URxvt.font: xft:"DEC Terminal":style=Regular:size=13
 !URxvt.font: xft:monospace:size=6
+URxvt.letterspace: 1
 
 
 URxvt.scrollBar:          false
