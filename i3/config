@@ -156,6 +156,9 @@ for_window [instance="drop-ranger"] move scratchpad
 for_window [instance="drop-ranger"] border pixel 5
 exec --no-startup-id st -n "drop-ranger" -e ranger
 
+# Borderless Urxvt
+for_window [class="URxvt"] border pixel 0
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2

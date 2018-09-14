@@ -6,7 +6,7 @@ URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12
 URxvt.letterSpace: -3
 Xft.rgba: none
 Xft.hintstyle: hintfull
-
+URxvt.borderLess: true
 URxvt.scrollBar: false
 
 urxvt.perl-ext-common: resize-font
