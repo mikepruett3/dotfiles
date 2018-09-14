@@ -1,9 +1,11 @@
 XTerm*termName: xterm-256color
 
-!URxvt.font: xft:monospace:size=7
-URxvt.font: "xft:SFNS Display:style=Regular:pixelsize=14"
-!URxvt.font: "xft:DEC Terminal:style=Regular:minspace=True:pixelsize=14"
-URxvt.letterspace: -4
+!URxvt*font: xft:monospace:size=7
+URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12
+!URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
+URxvt.letterSpace: -3
+Xft.rgba: none
+Xft.hintstyle: hintfull
 
 URxvt.scrollBar: false
 
