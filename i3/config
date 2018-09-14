@@ -154,7 +154,7 @@ for_window [instance="drop-ranger"] floating enabled
 for_window [instance="drop-ranger"] resize set 625 400
 for_window [instance="drop-ranger"] move scratchpad
 for_window [instance="drop-ranger"] border pixel 5
-exec --no-startup-id i3-sensible-terminal -n drop-ranger -e ranger
+exec --no-startup-id st -n "drop-ranger" -e ranger
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
