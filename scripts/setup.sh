@@ -51,8 +51,8 @@ function Link_Dirs () {
 }
 
 # Create Symlinks for all my dotfiles!
-Link_Files "$HOME/.Xresources" "$DOTFILES/.Xresources"
-Link_Files "$HOME/.Xdefaults" "$DOTFILES/.Xresources"
+Link_Files "$HOME/.Xresources" "$DOTFILES/.Xdefaults"
+Link_Files "$HOME/.Xdefaults" "$DOTFILES/.Xdefaults"
 Link_Files "$HOME/.xinitrc" "$DOTFILES/.xinitrc"
 Link_Files "$HOME/.inputrc" "$DOTFILES/.inputrc"
 Link_Files "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
