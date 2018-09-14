@@ -1,25 +1,13 @@
 XTerm*termName: xterm-256color
 
-!XTerm*renderFont: true
-!XTerm*faceName: "SFNS Display"(s)
-!XTerm*faceSize: 10
-
-!UXTerm*renderFont: true
-!UXTerm*faceName: SFNS Display Bold
-!UXTerm*faceSize: 9
-
 !URxvt.font: xft:monospace:size=7
-!URxvt.font:               xft:SFNS Display:size=15
-!URxvt.font:               xft:"SFNS Display Bold":size 25
-URxvt.font: xft:"DEC Terminal":style=Regular:size=10
-!URxvt.font: xft:monospace:size=6
-URxvt.letterspace: 1
-
+URxvt.font: "xft:SFNS Display:style=Regular:minspace=True:pixelsize=14"
+!URxvt.font: "xft:DEC Terminal:style=Regular:minspace=True:pixelsize=14"
+URxvt.letterspace: -4
 
 URxvt.scrollBar:          false
 
 urxvt.perl-ext-common:    resize-font
-
 URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-equal:      resize-font:bigger
 URxvt.keysym.C-plus:     resize-font:reset
