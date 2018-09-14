@@ -150,11 +150,11 @@ assign [class="Vivaldi-stable"] $ws3
 assign [class="Google Play Music Desktop Player"] $ws10
 
 # Ranger Scratchpad
-# for_window [instance="drop-ranger"] floating enabled
-# for_window [instance="drop-ranger"] resize set 625 400
-# for_window [instance="drop-ranger"] move scratchpad
-# for_window [instance="drop-ranger"] border pixel 5
-# exec --no-startup-id st -n "drop-ranger" -e ranger
+for_window [instance="drop-ranger"] floating enabled
+for_window [instance="drop-ranger"] resize set 625 400
+for_window [instance="drop-ranger"] move scratchpad
+for_window [instance="drop-ranger"] border pixel 5
+exec --no-startup-id st -n "drop-ranger" -e ranger
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -251,7 +251,7 @@ bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
 # Scratchpad Keys
-# bindsym $mod4+r [instance="drop-ranger"] scratchpad show; [instance="drop-ranger"] move position center
+bindsym $mod4+r [instance="drop-ranger"] scratchpad show; [instance="drop-ranger"] move position center
 
 # Visual Tools
 #exec --no-startup-id compton -f
