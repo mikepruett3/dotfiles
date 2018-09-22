@@ -163,7 +163,9 @@ exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
 for_window [instance="ranger"] floating enabled
 for_window [instance="ranger"] resize set 1200 720
 for_window [instance="ranger"] border pixel 5
+for_window [instance="ranger"] move position center
 exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
+bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
 
 # Borderless Urxvt
 for_window [class="URxvt"] border pixel 0
@@ -179,9 +181,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
-# Custom workspace switch binds
-bindsym $mod4+r workspace $ws2
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
