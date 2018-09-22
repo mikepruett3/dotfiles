@@ -159,7 +159,8 @@ bindsym $mod+m exec --no-startup-id i3-sensible-terminal -n "ncmpcpp" -e ncmpcpp
 ## Discord ##
 for_window [class="discord"] floating enabled
 for_window [class="discord"] resize set 1200 720
-for_window [class="discord"] move position center
+for_window [class="discord"] move scratchpad
+bindsym $mod+Shift+d [class="discord"] scratchpad show; [class="discord"] move position center
 
 # Borderless Terminals
 for_window [class="URxvt"] border pixel 0
