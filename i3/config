@@ -151,13 +151,15 @@ assign [class="Google Play Music Desktop Player"] $ws10
 
 # Instance Assignments
 assign [instance="ranger"] $ws2
+assign [instance="ncmpcpp"] $ws10
 
 # Mopidy Scratchpad
 for_window [instance="mopidy"] floating enabled
 for_window [instance="mopidy"] resize set 625 400
 for_window [instance="mopidy"] move scratchpad
 for_window [instance="mopidy"] border pixel 5
-exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
+bindsym $mod4+m [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
+bindsym $mod4+M exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
 
 # Ranger Window
 for_window [instance="ranger"] floating enabled
@@ -166,6 +168,13 @@ for_window [instance="ranger"] border pixel 5
 for_window [instance="ranger"] move position center
 exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
 bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
+
+# Ncmpcpp Window
+for_window [instance="ncmpcpp"] floating enabled
+for_window [instance="ncmpcpp"] resize set 1200 720
+for_window [instance="ncmpcpp"] border pixel 5
+for_window [instance="ncmpcpp"] move position center
+bindsym $mod4+N exec --no-startup-id i3-sensible-terminal -name "ncmpcpp" -e ncmpcpp
 
 # Borderless Urxvt
 for_window [class="URxvt"] border pixel 0
@@ -234,11 +243,6 @@ bindsym $mod4+l exec betterlockscreen --lock dimblur
 # where Pictures/Wallpapers is the directory you would want to get random wallpapers from
 exec --no-startup-id betterlockscreen -u ~/Wallpapers/Mechanical_Keyboards
 
-# add this only if you want to use same random image as desktop background too
-# it might not work as it takes few seconds for images to be cached,
-# try adding delay of 5 seconds if thats the case
-#exec --no-startup-id betterlockscreen -w dimblur
-
 # Start i3bar to display a workspace bar
 bar {
         status_command SCRIPT_DIR=$HOME/.config/i3blocks/blocklets i3blocks
@@ -264,16 +268,11 @@ bindsym $mod4+p exec playerctl play-pause
 bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
-# Scratchpad Keys
-bindsym $mod4+m [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
-
 # Visual Tools
-#exec --no-startup-id compton -f
 exec --no-startup-id compton
 exec --no-startup-id dunst
 
 #Applets
-#exec --no-startup-id volumeicon start
 exec --no-startup-id nm-applet start
 exec --no-startup-id owncloud
 
@@ -281,7 +280,5 @@ exec --no-startup-id owncloud
 exec_always feh --recursive --randomize --bg-scale ~/Wallpapers/*
 
 # Startup Applications
-#exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal'
 exec i3-sensible-terminal
-# exec vivaldi-stable
 
