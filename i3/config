@@ -149,12 +149,12 @@ set $ws10 "10: "
 assign [class="Vivaldi-stable"] $ws3
 assign [class="Google Play Music Desktop Player"] $ws10
 
-# Ranger Scratchpad
-for_window [instance="drop-ranger"] floating enabled
-for_window [instance="drop-ranger"] resize set 625 400
-for_window [instance="drop-ranger"] move scratchpad
-for_window [instance="drop-ranger"] border pixel 5
-exec --no-startup-id st -n "drop-ranger" -e ranger
+# Mopidy Scratchpad
+for_window [instance="mopidy"] floating enabled
+for_window [instance="mopidy"] resize set 625 400
+for_window [instance="mopidy"] move scratchpad
+for_window [instance="mopidy"] border pixel 5
+exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
 
 # Borderless Urxvt
 for_window [class="URxvt"] border pixel 0
@@ -254,7 +254,7 @@ bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
 # Scratchpad Keys
-bindsym $mod4+r [instance="drop-ranger"] scratchpad show; [instance="drop-ranger"] move position center
+bindsym $mod4+r [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
 
 # Visual Tools
 #exec --no-startup-id compton -f
