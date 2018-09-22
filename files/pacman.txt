@@ -20,8 +20,8 @@ pacman -S rxvt-unicode bash-completion
 yaourt -S system-san-francisco-font-git urxvt-resize-font-git ttf-font-awesome-4
 
 # Audio Stuff
-pacman -S alsa-tools alsa-utils playerctl
-yaourt -S volumeicon gpmdp
+pacman -S alsa-tools alsa-utils playerctl pulseaudio pulseaudio-alsa
+yaourt -S gpmdp pmcli-git
 
 # Video Stuff
 yaourt -S gnome-twitch gnome-twitch-player-backend-gstreamer-cairo
