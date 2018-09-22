@@ -165,15 +165,15 @@ for_window [instance="ranger"] floating enabled
 for_window [instance="ranger"] resize set 1200 720
 for_window [instance="ranger"] border pixel 5
 for_window [instance="ranger"] move position center
-exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
-bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
+exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
+bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
 
 # Ncmpcpp Window
 for_window [instance="ncmpcpp"] floating enabled
 for_window [instance="ncmpcpp"] resize set 1200 720
 for_window [instance="ncmpcpp"] border pixel 5
 for_window [instance="ncmpcpp"] move position center
-bindsym $mod+m exec --no-startup-id i3-sensible-terminal -name "ncmpcpp" -e ncmpcpp
+bindsym $mod+m exec --no-startup-id i3-sensible-terminal -n "ncmpcpp" -e ncmpcpp
 
 # Borderless Terminals
 for_window [class="URxvt"] border pixel 0
@@ -271,7 +271,7 @@ bindsym $mod4+Left exec playerctl previous
 # Background Apps
 exec --no-startup-id compton
 exec --no-startup-id dunst
-exec --no-startup-id i3-sensible-terminal -name "mopidy" -e sleep 15; mopidy
+exec --no-startup-id i3-sensible-terminal -n "mopidy" -e sleep 15; mopidy
 
 #Applets
 exec --no-startup-id nm-applet start
