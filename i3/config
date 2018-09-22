@@ -270,7 +270,7 @@ bindsym $mod4+Left exec playerctl previous
 # Background Apps
 exec --no-startup-id compton
 exec --no-startup-id dunst
-exec --no-startup-id i3-sensible-terminal -name "mopidy" -e "sleep 30; mopidy"
+exec --no-startup-id i3-sensible-terminal -name "mopidy" -e sleep 15; mopidy
 
 #Applets
 exec --no-startup-id nm-applet start
