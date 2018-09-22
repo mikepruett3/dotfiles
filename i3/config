@@ -159,7 +159,6 @@ for_window [instance="mopidy"] resize set 625 400
 for_window [instance="mopidy"] move scratchpad
 for_window [instance="mopidy"] border pixel 5
 bindsym $mod4+m [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
-bindsym $mod4+Shift+m exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
 
 # Ranger Window
 for_window [instance="ranger"] floating enabled
@@ -174,7 +173,7 @@ for_window [instance="ncmpcpp"] floating enabled
 for_window [instance="ncmpcpp"] resize set 1200 720
 for_window [instance="ncmpcpp"] border pixel 5
 for_window [instance="ncmpcpp"] move position center
-bindsym $mod+Shift+m exec --no-startup-id i3-sensible-terminal -name "ncmpcpp" -e ncmpcpp
+bindsym $mod+m exec --no-startup-id i3-sensible-terminal -name "ncmpcpp" -e ncmpcpp
 
 # Borderless Urxvt
 for_window [class="URxvt"] border pixel 0
@@ -268,9 +267,10 @@ bindsym $mod4+p exec playerctl play-pause
 bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
-# Visual Tools
+# Background Apps
 exec --no-startup-id compton
 exec --no-startup-id dunst
+exec --no-startup-id i3-sensible-terminal -name "mopidy" -e "sleep 30; mopidy"
 
 #Applets
 exec --no-startup-id nm-applet start
