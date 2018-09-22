@@ -168,7 +168,8 @@ bindsym $mod+Shift+d [class="discord"] scratchpad show; [class="discord"] move p
 ## MPV ##
 for_window [class="mpv"] floating enabled
 for_window [class="mpv"] resize set 1400 900
-for_window [class="mpv"] bordr pixel 0
+for_window [class="mpv"] move position center
+for_window [class="mpv"] border pixel 0
 
 # Borderless Terminals
 for_window [class="URxvt"] border pixel 0
