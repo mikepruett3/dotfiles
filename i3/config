@@ -149,12 +149,21 @@ set $ws10 "10: "
 assign [class="Vivaldi-stable"] $ws3
 assign [class="Google Play Music Desktop Player"] $ws10
 
+# Instance Assignments
+assign [instance="ranger"] $ws2
+
 # Mopidy Scratchpad
 for_window [instance="mopidy"] floating enabled
 for_window [instance="mopidy"] resize set 625 400
 for_window [instance="mopidy"] move scratchpad
 for_window [instance="mopidy"] border pixel 5
 exec --no-startup-id i3-sensible-terminal -name "mopidy" -e mopidy
+
+# Ranger Window
+for_window [instance="ranger"] floating enabled
+for_window [instance="ranger"] resize set 1200 720
+for_window [instance="ranger"] border pixel 5
+exec --no-startup-id i3-sensible-terminal -name "ranger" -e ranger
 
 # Borderless Urxvt
 for_window [class="URxvt"] border pixel 0
@@ -170,6 +179,9 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+
+# Custom workspace switch binds
+bindsym $mod4+r workspace $ws2
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -254,7 +266,7 @@ bindsym $mod4+Right exec playerctl next
 bindsym $mod4+Left exec playerctl previous
 
 # Scratchpad Keys
-bindsym $mod4+r [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
+bindsym $mod4+m [instance="mopidy"] scratchpad show; [instance="mopidy"] move position center
 
 # Visual Tools
 #exec --no-startup-id compton -f
@@ -273,5 +285,4 @@ exec_always feh --recursive --randomize --bg-scale ~/Wallpapers/*
 #exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal'
 exec i3-sensible-terminal
 # exec vivaldi-stable
-exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal -name ranger -e ranger'
 
