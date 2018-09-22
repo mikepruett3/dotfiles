@@ -47,8 +47,10 @@ font pango:$myfont 10
 floating_modifier $mod
 
 ## Default Binds ##
-bindsym $mod+Return exec i3-sensible-terminal       # Launch Default Terminal
-bindsym $mod+Shift+q kill                           # Kill Focused Window
+# Launch Default Terminal
+bindsym $mod+Return exec i3-sensible-terminal
+# Kill Focused Window
+bindsym $mod+Shift+q kill
 
 ## Rofi Config ##
 bindsym $mod+d exec \
