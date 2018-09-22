@@ -175,8 +175,9 @@ for_window [instance="ncmpcpp"] border pixel 5
 for_window [instance="ncmpcpp"] move position center
 bindsym $mod+m exec --no-startup-id i3-sensible-terminal -name "ncmpcpp" -e ncmpcpp
 
-# Borderless Urxvt
+# Borderless Terminals
 for_window [class="URxvt"] border pixel 0
+for_window [class="st-256color"] border pixel 0
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
