@@ -1,4 +1,4 @@
-export TERMINAL=urxvt
+export TERMINAL=st
 xrdb -merge $HOME/.Xdefaults
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
