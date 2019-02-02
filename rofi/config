@@ -1,0 +1,3 @@
+rofi.theme: ~/.config/rofi/base16-nord.rasi
+rofi.opacity: 85
+rofi.lines: 3
