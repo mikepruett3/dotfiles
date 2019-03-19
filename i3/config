@@ -123,13 +123,13 @@ set $ws9 "9"
 set $ws10 "10: "
 
 # Class Assignments
-assign [class="Vivaldi-stable"] $ws3
+#assign [class="Vivaldi-stable"] $ws3
 assign [class="Firefox"] $ws3
-assign [class="Google Play Music Desktop Player"] $ws10
+#assign [class="Google Play Music Desktop Player"] $ws10
 
 # Instance Assignments
 assign [instance="ranger"] $ws2
-assign [instance="ncmpcpp"] $ws10
+#assign [instance="ncmpcpp"] $ws10
 
 # Dropdown Scratchpad
 for_window [instance="dropdown"] floating enabled
@@ -148,11 +148,11 @@ bindsym $mod4+s [instance="dropdown"] scratchpad show; [instance="dropdown"] mov
 bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
 
 # Ncmpcpp Window
-for_window [instance="ncmpcpp"] floating enabled
-for_window [instance="ncmpcpp"] resize set 1200 720
-for_window [instance="ncmpcpp"] border pixel 5
-for_window [instance="ncmpcpp"] move position center
-bindsym $mod+m exec --no-startup-id i3-sensible-terminal -n "ncmpcpp" -e ncmpcpp
+#for_window [instance="ncmpcpp"] floating enabled
+#for_window [instance="ncmpcpp"] resize set 1200 720
+#for_window [instance="ncmpcpp"] border pixel 5
+#for_window [instance="ncmpcpp"] move position center
+#bindsym $mod+m exec --no-startup-id i3-sensible-terminal -n "ncmpcpp" -e ncmpcpp
 
 ## Discord ##
 for_window [class="discord"] floating enabled
@@ -170,7 +170,7 @@ bindsym $mod+Shift+d [class="discord"] scratchpad show; [class="discord"] move p
 ## Plexamp ##
 for_window [class="Plexamp"] floating enabled
 for_window [class="Plexamp"] move scratchpad
-#exec --no-startup-id plexamp
+exec --no-startup-id plexamp
 bindsym $mod+p [class="Plexamp"] scratchpad show; [class="Plexamp"] move position center
 
 # Borderless Terminals
@@ -276,7 +276,7 @@ bindsym $mod4+Left exec playerctl previous
 exec --no-startup-id compton
 exec --no-startup-id dunst
 exec --no-startup-id udiskie
-exec --no-startup-id sleep 15; mopidy
+#exec --no-startup-id sleep 15; mopidy
 
 #Applets
 #exec --no-startup-id nm-applet start
