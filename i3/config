@@ -159,7 +159,7 @@ for_window [class="discord"] floating enabled
 for_window [class="discord"] resize set 1400 900
 for_window [class="discord"] move scratchpad
 exec --no-startup-id discord
-bindsym $mod+Shift+d [class="discord"] scratchpad show; [class="discord"] move position center
+bindsym $mod4++d [class="discord"] scratchpad show; [class="discord"] move position center
 
 ## MPV ##
 for_window [class="mpv"] floating enabled
