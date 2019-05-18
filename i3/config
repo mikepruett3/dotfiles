@@ -140,12 +140,12 @@ assign [class="Firefox"] $ws3
 #bindsym $mod4+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 # Ranger Window
-for_window [name="ranger"] floating enabled
-for_window [instance="ranger"] resize set 1200 720
-for_window [instance="ranger"] border pixel 5
-for_window [instance="ranger"] move scratchpad
+for_window [title="ranger"] floating enabled
+for_window [title="ranger"] resize set 1200 720
+for_window [title="ranger"] border pixel 5
+for_window [title="ranger"] move scratchpad
 exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
-bindsym $mod4+r [instance="ranger"] scratchpad show; [instance="ranger"] move position center
+bindsym $mod4+r [title="ranger"] scratchpad show; [title="ranger"] move position center
 #bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
 
 # Ncmpcpp Window
