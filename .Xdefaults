@@ -5,11 +5,13 @@ XTerm*termName: xterm-256color
 !URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
 
 !URxvt*font: xft:terminus:style=Regular:minspace=true
+URxvt.font: xft:terminus:size=10:minspace=true:antialias=false, \
+            xft:Sans:size=10:minspace=true:antialias=false
 
-URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-URxvt*boldFont:  -xos4-rerminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
+!URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+!URxvt*boldFont:  -xos4-rerminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
+!URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
 
 URxvt.letterSpace: -3
 Xft.rgba: none
