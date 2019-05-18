@@ -132,12 +132,12 @@ assign [instance="ranger"] $ws2
 #assign [instance="ncmpcpp"] $ws10
 
 # Dropdown Scratchpad
-for_window [instance="dropdown"] floating enabled
-for_window [instance="dropdown"] resize set 625 400
-for_window [instance="dropdown"] move scratchpad
-for_window [instance="dropdown"] border pixel 5
-exec --no-startup-id i3-sensible-terminal -n "dropdown"
-bindsym $mod4+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+#for_window [instance="dropdown"] floating enabled
+#for_window [instance="dropdown"] resize set 625 400
+#for_window [instance="dropdown"] move scratchpad
+#for_window [instance="dropdown"] border pixel 5
+#exec --no-startup-id i3-sensible-terminal -n "dropdown"
+#bindsym $mod4+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 
 # Ranger Window
 #for_window [instance="ranger"] floating enabled
