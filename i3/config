@@ -170,7 +170,7 @@ for_window [class="mpv"] border pixel 0
 ## Plexamp ##
 for_window [class="Plexamp"] floating enabled
 for_window [class="Plexamp"] move scratchpad
-exec --no-startup-id plexamp
+exec --no-startup-id ~/Apps/plexamp
 bindsym $mod+p [class="Plexamp"] scratchpad show; [class="Plexamp"] move position center
 
 # Borderless Terminals
