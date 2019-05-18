@@ -144,8 +144,9 @@ for_window [instance="ranger"] floating enabled
 for_window [instance="ranger"] resize set 1200 720
 for_window [instance="ranger"] border pixel 5
 for_window [instance="ranger"] move position center
-#exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
-bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
+exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
+bindsym $mod4+r [instance="ranger"] scratchpad show; [instance="dropdown"] move position center
+#bindsym $mod4+r exec --no-startup-id i3-sensible-terminal -n "ranger" -e ranger
 
 # Ncmpcpp Window
 #for_window [instance="ncmpcpp"] floating enabled
@@ -159,7 +160,7 @@ for_window [class="discord"] floating enabled
 for_window [class="discord"] resize set 1400 900
 for_window [class="discord"] move scratchpad
 exec --no-startup-id discord
-bindsym $mod4++d [class="discord"] scratchpad show; [class="discord"] move position center
+bindsym $mod4+d [class="discord"] scratchpad show; [class="discord"] move position center
 
 ## MPV ##
 for_window [class="mpv"] floating enabled
