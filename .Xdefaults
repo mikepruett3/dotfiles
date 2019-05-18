@@ -13,4 +13,9 @@ URxvt.keysym.C-minus: resize-font:smaller
 URxvt.keysym.C-equal: resize-font:bigger
 URxvt.keysym.C-plus: resize-font:reset
 
+! Support for Solarized Colors
+! https://bbs.archlinux.org/viewtopic.php?id=164108
+
+URxvt.intensityStyles: false
+
 #include ".config/xcolors/Xresources.dark"
