@@ -1,13 +1,13 @@
 XTerm*termName: xterm-256color
 
 !URxvt*font: xft:monospace:size=7
-!URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12
+URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12
 !URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
 
-URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
+!URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+!URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
+!URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
 
 URxvt.letterSpace: -3
 Xft.rgba: none
@@ -19,4 +19,4 @@ URxvt.keysym.C-minus: resize-font:smaller
 URxvt.keysym.C-equal: resize-font:bigger
 URxvt.keysym.C-plus: resize-font:reset
 
-!#include "~/.config/xcolors/nord"
+
