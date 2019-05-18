@@ -1,0 +1,29 @@
+! Support for Solarized Colors
+! https://bbs.archlinux.org/viewtopic.php?id=164108
+
+URxvt.intensityStyles: false
+
+#define theme_color0                #073642
+#define theme_color1                #dc322f
+#define theme_color2                #859900
+#define theme_color3                #b58900
+#define theme_color4                #268bd2
+#define theme_color5                #d33682
+#define theme_color6                #2aa198
+#define theme_color7                #eee8d5
+#define theme_color8                #002b36
+#define theme_color9                #cb4b16
+#define theme_color10               #586e75
+#define theme_color11               #657b83
+#define theme_color12               #839496
+#define theme_color13               #6c71c4
+#define theme_color14               #93a1a1
+#define theme_color15               #fdf6e3
+
+#define theme_foreground            #839496
+#define theme_background            #002b36
+#define theme_cursor                #93a1a1
+#define theme_fade_color            #002b36
+
+#define theme_pointer_foreground    #93a1a1
+#define theme_pointer_background    #586e75
