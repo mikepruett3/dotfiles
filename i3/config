@@ -174,10 +174,10 @@ exec --no-startup-id ~/Apps/plexamp
 bindsym $mod+p [class="Plexamp"] scratchpad show; [class="Plexamp"] move position center
 
 # SpaceFM
-for_window [class="spacefm"] floating enabled
-for_window [class="spacefm"] resize set 1200 720
-for_window [class="spacefm"] move position center
-for_window [class="spacefm"] border pixel 0
+for_window [class="Spacefm"] floating enabled
+for_window [class="Spacefm"] resize set 1200 720
+for_window [class="Spacefm"] move position center
+for_window [class="Spacefm"] border pixel 0
 
 # Borderless Terminals
 for_window [class="URxvt"] border pixel 0
