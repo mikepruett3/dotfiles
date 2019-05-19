@@ -43,10 +43,8 @@ set $mod4 Mod4
 #set $myfont "System San Francisco Display"
 set_from_resource $font         font            "monospace"
 set_from_resource $fontsize     fontsize         10
-# set $myfont "Hack 9"
 
 ## Font ##
-#font pango:$myfont 10
 font pango:$font $fontsize
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -62,7 +60,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec \
 rofi \
 -show run \
--font $font\ 13
+-font $font\ $fontsize
 
 # change focus
 bindsym $mod+j focus left
@@ -255,7 +253,7 @@ exec --no-startup-id betterlockscreen -u ~/Wallpapers/Mechanical_Keyboards
 # Start i3bar to display a workspace bar
 bar {
         status_command SCRIPT_DIR=$HOME/.config/i3blocks/blocklets i3blocks
-        font pango:$font 10
+        font pango:$font $fontsize
 }
 
 ## Volume Controls ##
