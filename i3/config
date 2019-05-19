@@ -9,24 +9,24 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set_from_resource $black        theme_color0            #FF00FF
-set_from_resource $darkred      theme_color1            #FF00FF
-set_from_resource $darkgreen    theme_color2            #FF00FF
-set_from_resource $darkyellow   theme_color3            #FF00FF
-set_from_resource $darkblue     theme_color4            #FF00FF
-set_from_resource $darkmagenta  theme_color5            #FF00FF
-set_from_resource $darkcyan     theme_color6            #FF00FF
-set_from_resource $lightgrey    theme_color7            #FF00FF
-set_from_resource $darkgrey     theme_color8            #FF00FF
-set_from_resource $red          theme_color9            #FF00FF
-set_from_resource $green        theme_color10           #FF00FF
-set_from_resource $yellow       theme_color11           #FF00FF
-set_from_resource $blue         theme_color12           #FF00FF
-set_from_resource $magenta      theme_color13           #FF00FF
-set_from_resource $cyan         theme_color14           #FF00FF
-set_from_resource $white        theme_color15           #FF00FF
-set_from_resource $foreground   theme_foreground        #FF00FF
-set_from_resource $background   theme_background        #FF00FF
+set_from_resource $black        color0            #FF00FF
+set_from_resource $darkred      color1            #FF00FF
+set_from_resource $darkgreen    color2            #FF00FF
+set_from_resource $darkyellow   color3            #FF00FF
+set_from_resource $darkblue     color4            #FF00FF
+set_from_resource $darkmagenta  color5            #FF00FF
+set_from_resource $darkcyan     color6            #FF00FF
+set_from_resource $lightgrey    color7            #FF00FF
+set_from_resource $darkgrey     color8            #FF00FF
+set_from_resource $red          color9            #FF00FF
+set_from_resource $green        color10           #FF00FF
+set_from_resource $yellow       color11           #FF00FF
+set_from_resource $blue         color12           #FF00FF
+set_from_resource $magenta      color13           #FF00FF
+set_from_resource $cyan         color14           #FF00FF
+set_from_resource $white        color15           #FF00FF
+set_from_resource $foreground   foreground        #FF00FF
+set_from_resource $background   background        #FF00FF
 
 # set_from_resource $lighterbg  i3wm.lighterbg  $base02
 # set_from_resource $separator  i3wm.separator  $lighterbg
