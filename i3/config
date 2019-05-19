@@ -29,8 +29,8 @@ set_from_resource $foreground   foreground        #FF00FF
 set_from_resource $background   background        #FF00FF
 
 # class                 border          background      text            indicator       child_border
-client.focused          $black          $black          $darkgrey       $darkblue       $darkgrey
-client.unfocused        $black          $black          $darkgrey       $darkred        $darkgrey
+client.focused          $black          $background          $darkgrey       $darkblue       $darkgrey
+client.unfocused        $black          $foreground          $darkgrey       $darkred        $darkgrey
 
 #client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 #client.urgent           #2f343a #900000 #ffffff #900000   #900000
