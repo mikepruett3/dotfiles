@@ -5,6 +5,6 @@
 ! URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12:antialias=true
 ! URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
 
-URxvt*font: xft:theme_font:style=Regular:minspace=true:pixelsize=theme_font_size:antialias=true
+URxvt*font: xft:theme_font:size=theme_font_size:antialias=true
 
 URxvt.letterSpace: -3
