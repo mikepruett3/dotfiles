@@ -34,6 +34,12 @@ client.focused_inactive $darkgray $darkgray $yellow $magenta $darkgray
 client.unfocused        $darkgray $darkgray $yellow $magenta $darkgray
 client.urgent           $red $red $white $red $red
 
+client.focused          $darkyellow $darkyellow $black $darkyellow $darkyellow
+client.focused_inactive $foreground $black $foreground $foreground 
+client.unfocused        $black $black $foreground $black $black
+client.urgent           $red $red $black $red $red
+client.placeholder      $black $black $white $black $white
+
 #client.background       $background
 
 hide_edge_borders both
