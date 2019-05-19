@@ -13,8 +13,8 @@
 #define theme_color4                #458588
 #define theme_color5                #b16286
 #define theme_color6                #689d6a
-#define theme_color7                #eee8d5
-#define theme_color8                #a89984
+#define theme_color7                #a89984
+#define theme_color8                #928374
 #define theme_color9                #fb4934
 #define theme_color10               #b8bb26
 #define theme_color11               #fabd2f
