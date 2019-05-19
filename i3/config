@@ -41,8 +41,8 @@ hide_edge_borders both
 set $mod Mod1
 set $mod4 Mod4
 #set $myfont "System San Francisco Display"
-set_from_resource $font         theme_font              "Hack 9"
-set_from_resource $fontsize     theme_font_size         10
+set_from_resource $font         font            "Hack 9"
+set_from_resource $fontsize     fontsize         10
 # set $myfont "Hack 9"
 
 ## Font ##
