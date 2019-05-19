@@ -28,19 +28,11 @@ set_from_resource $white        color15           #FF00FF
 set_from_resource $foreground   foreground        #FF00FF
 set_from_resource $background   background        #FF00FF
 
-# green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $green $green $darkgray $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
-
-# blue gruvbox
-# class                 border|backgr|text|indicator|child_border
-client.focused          $darkblue $darkblue $darkgray $darkmagenta $darkgray
-client.focused_inactive $darkgray $darkgray $darkyellow $darkmagenta $darkgray
-client.unfocused        $darkgray $darkgray $darkyellow $darkmagenta $darkgray
-client.urgent           $darkred $darkred $white $darkred $darkred
+# class                 border | backgr | text | indicator | child_border
+client.focused          $blue $blue $darkgray $darkmagenta $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $magenta $darkgray
+client.unfocused        $darkgray $darkgray $yellow $magenta $darkgray
+client.urgent           $red $red $white $red $red
 
 #client.background       $background
 
