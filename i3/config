@@ -62,7 +62,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec \
 rofi \
 -show run \
--font $myfont\ 13
+-font $font\ 13
 
 # change focus
 bindsym $mod+j focus left
@@ -255,7 +255,7 @@ exec --no-startup-id betterlockscreen -u ~/Wallpapers/Mechanical_Keyboards
 # Start i3bar to display a workspace bar
 bar {
         status_command SCRIPT_DIR=$HOME/.config/i3blocks/blocklets i3blocks
-        font pango:$myfont 10
+        font pango:$font 10
 }
 
 ## Volume Controls ##
