@@ -60,7 +60,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec \
 rofi \
 -show run \
--font $font\ $fontsize
+-font $font\ 14
 
 # change focus
 bindsym $mod+j focus left
