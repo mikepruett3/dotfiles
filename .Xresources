@@ -1,9 +1,5 @@
 XTerm*termName: xterm-256color
 
-!URxvt*font: xft:monospace:size=7
-URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12:antialias=true
-!URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
-URxvt.letterSpace: -3
 Xft.rgba: none
 Xft.hintstyle: hintfull
 URxvt.scrollBar: false
@@ -13,5 +9,6 @@ URxvt.keysym.C-minus: resize-font:smaller
 URxvt.keysym.C-equal: resize-font:bigger
 URxvt.keysym.C-plus: resize-font:reset
 
+#include ".config/Xresources/font"
 #include ".config/Xresources/colors/gruvbox-dark"
 #include ".config/Xresources/colormap"

@@ -1,0 +1,10 @@
+#define     theme_font          Inconsolata
+#define     theme_font_size     14
+
+! URxvt*font: xft:monospace:size=7
+! URxvt*font: xft:SFNS Display:style=Regular:minspace=true:pixelsize=12:antialias=true
+! URxvt*font: xft:DEC Terminal:style=Regular:minspace=true:pixelsize=12
+
+URxvt*font: xft:theme_font:style=Regular:minspace=true:pixelsize=theme_font_size:antialias=true
+
+URxvt.letterSpace: -3

@@ -9,32 +9,31 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set_from_resource $black        color0            #FF00FF
-set_from_resource $darkred      color1            #FF00FF
-set_from_resource $darkgreen    color2            #FF00FF
-set_from_resource $darkyellow   color3            #FF00FF
-set_from_resource $darkblue     color4            #FF00FF
-set_from_resource $darkmagenta  color5            #FF00FF
-set_from_resource $darkcyan     color6            #FF00FF
-set_from_resource $lightgrey    color7            #FF00FF
-set_from_resource $darkgrey     color8            #FF00FF
-set_from_resource $red          color9            #FF00FF
-set_from_resource $green        color10           #FF00FF
-set_from_resource $yellow       color11           #FF00FF
-set_from_resource $blue         color12           #FF00FF
-set_from_resource $magenta      color13           #FF00FF
-set_from_resource $cyan         color14           #FF00FF
-set_from_resource $white        color15           #FF00FF
-set_from_resource $foreground   foreground        #FF00FF
-set_from_resource $background   background        #FF00FF
+# set_from_resource $black        color0            #FF00FF
+# set_from_resource $darkred      color1            #FF00FF
+# set_from_resource $darkgreen    color2            #FF00FF
+# set_from_resource $darkyellow   color3            #FF00FF
+# set_from_resource $darkblue     color4            #FF00FF
+# set_from_resource $darkmagenta  color5            #FF00FF
+# set_from_resource $darkcyan     color6            #FF00FF
+# set_from_resource $lightgrey    color7            #FF00FF
+# set_from_resource $darkgrey     color8            #FF00FF
+# set_from_resource $red          color9            #FF00FF
+# set_from_resource $green        color10           #FF00FF
+# set_from_resource $yellow       color11           #FF00FF
+# set_from_resource $blue         color12           #FF00FF
+# set_from_resource $magenta      color13           #FF00FF
+# set_from_resource $cyan         color14           #FF00FF
+# set_from_resource $white        color15           #FF00FF
+# set_from_resource $foreground   foreground        #FF00FF
+# set_from_resource $background   background        #FF00FF
 
 # class                 border | backgr | text | indicator | child_border
-#client.focused          $darkgreen $darkgreen $darkgray $darkmagenta $darkgreen
-#client.focused_inactive $green $green $lightgray $magenta $lightgray
+# client.focused          $darkgreen $darkgreen $darkgray $darkmagenta $darkgreen
+# client.focused_inactive $green $green $lightgray $magenta $lightgray
 # client.unfocused        $darkgray $darkgray $yellow $magenta $darkgray
 # client.urgent           $red $red $white $red $red
-
-#client.background       $background
+# client.background       $background
 
 hide_edge_borders both
 
@@ -42,10 +41,13 @@ hide_edge_borders both
 set $mod Mod1
 set $mod4 Mod4
 #set $myfont "System San Francisco Display"
-set $myfont "Hack 9"
+set_from_resource $font         theme_font              "Hack 9"
+set_from_resource $fontsize     theme_font_size         10
+# set $myfont "Hack 9"
 
 ## Font ##
-font pango:$myfont 10
+#font pango:$myfont 10
+font pango:$font $fontsize
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
