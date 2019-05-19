@@ -1,10 +1,10 @@
 #define     theme_font_1        Inconsolata
-#define     theme_font_2        SFNS\ Display
+#define     theme_font_2        DEC\ Terminal
 #define     theme_font_3        FontAwesome
 #define     theme_font_size     14
 
 URxvt*font: xft:theme_font_1:size=theme_font_size:antialias=true, \
-            xft:theme_font_2:style=Regular:minspace=true:pixelsize=theme_font_size:size=theme_font_size:antialias=true, \
+            xft:theme_font_2:size=theme_font_size:antialias=true, \
             xft:theme_font_3:size=theme_font_size:antialias=false, \
 
 URxvt.letterSpace: -3
