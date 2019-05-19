@@ -14,7 +14,7 @@ set_from_resource $darkred      theme_color1            #FF00FF
 set_from_resource $darkgreen    theme_color2            #FF00FF
 set_from_resource $darkyellow   theme_color3            #FF00FF
 set_from_resource $darkblue     theme_color4            #FF00FF
-set_from_resource dark$magenta  theme_color5            #FF00FF
+set_from_resource $darkmagenta  theme_color5            #FF00FF
 set_from_resource $darkcyan     theme_color6            #FF00FF
 set_from_resource $lightgrey    theme_color7            #FF00FF
 set_from_resource $darkgrey     theme_color8            #FF00FF
