@@ -29,8 +29,8 @@ set_from_resource $foreground   foreground        #FF00FF
 set_from_resource $background   background        #FF00FF
 
 # class                 border | backgr | text | indicator | child_border
-client.focused          $darkgreen $darkgreen $darkgray $darkmagenta $darkgray
-client.focused_inactive $green $green $darkgray $darkmagenta $darkgray
+client.focused          $green $green $lightgray $magenta $green
+client.focused_inactive $darkgreen $darkgreen $darkgray $darkmagenta $darkgray
 # client.unfocused        $darkgray $darkgray $yellow $magenta $darkgray
 # client.urgent           $red $red $white $red $red
 
