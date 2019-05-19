@@ -4,7 +4,7 @@
 #define     theme_font_size     14
 
 URxvt*font: xft:theme_font_1:size=theme_font_size:antialias=true, \
-            xft:theme_font_2:size=theme_font_size:antialias=true, \
+            xft:theme_font_2:size=theme_font_size:style=Regular:minspace=true:antialias=true, \
             xft:theme_font_3:size=theme_font_size:antialias=false, \
 
 URxvt.letterSpace: -3
