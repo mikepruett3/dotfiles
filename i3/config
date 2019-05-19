@@ -9,14 +9,14 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set_from_resource $base03   theme_color8     #FF00FF
-set_from_resource $base02   theme_color0     #FF00FF
-set_from_resource $base01   theme_color10    #FF00FF
-set_from_resource $base00   theme_color11    #FF00FF
-set_from_resource $base0    theme_color12    #FF00FF
-set_from_resource $base1    theme_color14    #FF00FF
-set_from_resource $base2    theme_color7     #FF00FF
-set_from_resource $base3    theme_color15    #FF00FF
+set_from_resource $base03 theme_color8 #FF00FF
+set_from_resource $base02 theme_color0 #FF00FF
+set_from_resource $base01 theme_color10 #FF00FF
+set_from_resource $base00 theme_color11 #FF00FF
+set_from_resource $base0 theme_color12 #FF00FF
+set_from_resource $base1 theme_color14 #FF00FF
+set_from_resource $base2 theme_color7 #FF00FF
+set_from_resource $base3 theme_color15 #FF00FF
 
 # set_from_resource $base03   i3wm.color8     #002b36
 # set_from_resource $base02   i3wm.color0     #073642
@@ -27,14 +27,14 @@ set_from_resource $base3    theme_color15    #FF00FF
 # set_from_resource $base2    i3wm.color7     #eee8d5
 # set_from_resource $base3    i3wm.color15    #fdf6e3
 
-set_from_resource $yellow   theme_color3     #FF00FF
-set_from_resource $orange   theme_color9     #FF00FF
-set_from_resource $red      theme_color1     #FF00FF
-set_from_resource $magenta  theme_color5     #FF00FF
-set_from_resource $violet   theme_color13    #FF00FF
-set_from_resource $blue     theme_color4     #FF00FF
-set_from_resource $cyan     theme_color6     #FF00FF
-set_from_resource $green    theme_color2     #FF00FF
+set_from_resource $yellow theme_color3 #FF00FF
+set_from_resource $orange theme_color9 #FF00FF
+set_from_resource $red theme_color1 #FF00FF
+set_from_resource $magenta theme_color5 #FF00FF
+set_from_resource $violet theme_color13 #FF00FF
+set_from_resource $blue theme_color4 #FF00FF
+set_from_resource $cyan theme_color6 #FF00FF
+set_from_resource $green theme_color2 #FF00FF
 
 # set_from_resource $yellow   i3wm.color3     #b58900
 # set_from_resource $orange   i3wm.color9     #cb4b16
