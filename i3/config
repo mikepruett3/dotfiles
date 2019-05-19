@@ -29,16 +29,10 @@ set_from_resource $foreground   foreground        #FF00FF
 set_from_resource $background   background        #FF00FF
 
 # class                 border | backgr | text | indicator | child_border
-# client.focused          $blue $blue $darkgray $darkmagenta $darkgray
-# client.focused_inactive $darkgray $darkgray $yellow $magenta $darkgray
+client.focused          $darkgreen $darkgreen $darkgray $darkmagenta $darkgray
+client.focused_inactive $green $green $darkgray $darkmagenta $darkgray
 # client.unfocused        $darkgray $darkgray $yellow $magenta $darkgray
 # client.urgent           $red $red $white $red $red
-
-client.focused          $darkyellow $darkyellow $black $darkyellow $darkyellow
-client.focused_inactive $foreground $black $foreground $foreground 
-client.unfocused        $black $black $foreground $black $black
-client.urgent           $red $red $black $red $red
-client.placeholder      $black $black $white $black $white
 
 #client.background       $background
 
