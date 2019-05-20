@@ -2,13 +2,24 @@ XTerm*termName: xterm-256color
 
 Xft.rgba: none
 Xft.hintstyle: hintfull
-URxvt.scrollBar: false
 
-urxvt.perl-ext-common: resize-font
+!! urxvt: display settings
+URxvt.depth: 32
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.cursorColor: magenta
+
+!! urxvt: extensions
+urxvt.perl-ext-common: default,resize-font
+
+!! urxvt: resize-font
 URxvt.keysym.C-minus: resize-font:smaller
 URxvt.keysym.C-equal: resize-font:bigger
 URxvt.keysym.C-plus: resize-font:reset
 
-#include ".config/Xresources/font"
+!! urxvt: fonts
+#include ".config/urxvt/font"
+
+!! colors
 #include ".config/Xresources/colors/gruvbox-dark"
 #include ".config/Xresources/colormap"
