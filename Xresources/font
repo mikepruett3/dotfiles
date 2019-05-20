@@ -1,10 +1,22 @@
-#define     theme_font_1        Inconsolata
-#define     theme_font_2        SFNS\ Display
-#define     theme_font_3        FontAwesome
-#define     theme_font_size     14
+#define     theme_font_1        UbuntuMono\ Nerd\ Font
+#define     theme_font_2        Inconsolata\ Nerd\ Font
+#define     theme_font_3        DejaVuSansMono\ Nerd\ Font
+#define     theme_font_4        DroidSansMono\ Nerd\ Font
+#define     theme_font_5        FuraMono\ Nerd\ Font
+#define     theme_font_6        RobotoMono\ Nerd\ Font
+#define     theme_font_7        Noto\ Sans\ Mono
+#define     theme_font_8        Monospace
+#define     theme_font_9        FontAwesome
+#define     theme_font_size     13
 
-URxvt*font: xft:theme_font_1:size=theme_font_size:antialias=true, \
-            xft:theme_font_2:style=Regular:pixelsize=theme_font_size:minspace=true:antialias=true, \
-            xft:theme_font_3:size=theme_font_size:antialias=false, \
+URxvt*font: xft:theme_font_1:size=theme_font_size, \
+            xft:theme_font_2:size=theme_font_size, \
+            xft:theme_font_3:size=theme_font_size, \
+            xft:theme_font_4:size=theme_font_size, \
+            xft:theme_font_5:size=theme_font_size, \
+            xft:theme_font_6:size=theme_font_size, \
+            xft:theme_font_7:size=theme_font_size, \
+            xft:theme_font_8:style=Medium:size=theme_font_size:antialias=false, \
+            xft:theme_font_9:size=theme_font_size:antialias=false, \
 
-URxvt.letterSpace: -3
+! URxvt.letterSpace: -3
