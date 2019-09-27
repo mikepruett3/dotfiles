@@ -72,4 +72,5 @@ fi
 #Link_Dirs "$HOME/.config/urxvt" "$DOTFILES/urxvt"
 
 # Use stow to create symlinks for the dotfiles
+echo $DOTFILES
 stow --restow --dir $DOTFILES i3
