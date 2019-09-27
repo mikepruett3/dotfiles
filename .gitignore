@@ -1,4 +1,11 @@
-.weechat/logs
-.weechat/xfer
-.weechat/weechat.log
-
+bash/.weechat/logs
+bash/.weechat/python
+bash/.weechat/perl
+bash/.weechat/ruby
+bash/.weechat/lua
+bash/.weechat/tcl
+bash/.weechat/guile
+bash/.weechat/javascript
+bash/.weechat/php
+bash/.weechat/xfer
+bash/.weechat/weechat.log
