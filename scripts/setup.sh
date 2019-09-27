@@ -73,4 +73,4 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 echo $DOTFILES
-stow --restow --dir $DOTFILES i3
+stow --restow --dir $DOTFILES/i3 i3
