@@ -73,4 +73,4 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
-stow -v --restow i33
+stow -v --restow i3
