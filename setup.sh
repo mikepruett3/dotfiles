@@ -73,4 +73,11 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
+stow -v --restow bash
+stow -v --restow Xresources
+stow -v --restow compton
+stow -v --restow dunst
 stow -v --restow i3
+stow -v --restow i3blocks
+stow -v --restow rofi
+stow -v --restow urxvt
