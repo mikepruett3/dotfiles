@@ -248,7 +248,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod4+l exec betterlockscreen --lock dimblur
 
 # where Pictures/Wallpapers is the directory you would want to get random wallpapers from
-exec --no-startup-id betterlockscreen -u ~/Wallpapers/Mechanical_Keyboards
+exec --no-startup-id betterlockscreen -u ~/wallpapers/keyboards
 
 # Start i3bar to display a workspace bar
 bar {
@@ -292,7 +292,7 @@ exec --no-startup-id udiskie
 #exec --no-startup-id owncloud
 
 # Wallpaper
-exec_always feh --recursive --randomize --bg-scale ~/Wallpapers/*
+exec_always feh --recursive --randomize --bg-scale ~/wallpapers/*
 
 # Startup Applications
 exec i3-sensible-terminal
