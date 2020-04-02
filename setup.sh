@@ -38,28 +38,28 @@ cd $DOTFILES
 stow -v --restow bash
 
 # restow urxvt config
-if ! [ -x "$(command -v urxvt)" ]; then
+if [ -x "$(command -v urxvt)" ]; then
     stow -v --restow urxvt
 fi
 
 # restow X-Windows configurations
-if ! [ -x "$(command -v i3)" ]; then
+if [ -x "$(command -v i3)" ]; then
     stow -v --restow Xresources
     stow -v --restow i3
     stow -v --restow i3blocks
 fi
 
 # restow compton config
-if ! [ -x "$(command -v compton)" ]; then
+if [ -x "$(command -v compton)" ]; then
     stow -v --restow compton
 fi
 
 # restow dunst config
-if ! [ -x "$(command -v dunst)" ]; then
+if [ -x "$(command -v dunst)" ]; then
     stow -v --restow dunst
 fi
 
 # restow rofi config
-if ! [ -x "$(command -v rofi)" ]; then
+if [ -x "$(command -v rofi)" ]; then
     stow -v --restow rofi
 fi
