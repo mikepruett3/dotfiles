@@ -1,3 +1,30 @@
 [user]
 	name = Mike Pruett
 	email = mikepruett3@gmail.com
+
+[core]
+  pager = less -F -X
+
+[color]
+  ui = always
+  branch = always
+  diff = always
+  interactive = always
+  status = always
+  grep = always
+  pager = true
+  decorate = always
+  showbranch = always
+
+[alias]
+  a = add
+  p = pull
+  pp = push
+  s = status -s
+  aa = add --all
+  cm = commit -m
+  l = log --relative-date --graph --abbrev-commit -10
+  ll = log --relative-date --graph --abbrev-commit
+
+[format]
+  pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
