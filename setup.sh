@@ -33,51 +33,33 @@ if [ -z $DOTFILES ]; then
     exit 1
 fi
 
-# Function to Link Files
-#function Link_Files () {
-#    # Check to see if the symlink exists already
-#    if [ ! -h "$1" ]; then
-#        rm -f "$1"
-#        ln -s "$2" "$1"
-#    fi
-#}
-
-# Function to Link Directories
-#function Link_Dirs () {
-#    # Check to see if the Symlink exists already
-#    if [ -d "$1" ]; then
-#        rm -rf "$1"
-#    fi
-#
-#    # Check to see if the symlink exists already
-#    if [ ! -h "$1" ]; then
-#        rm -f "$1"
-#        ln -s "$2" "$1"
-#    fi
-#}
-
-# Create Symlinks for all my dotfiles!
-#Link_Files "$HOME/.Xresources" "$DOTFILES/.Xresources"
-#Link_Files "$HOME/.xinitrc" "$DOTFILES/.xinitrc"
-#Link_Files "$HOME/.inputrc" "$DOTFILES/.inputrc"
-#Link_Files "$HOME/.gitconfig" "$DOTFILES/.gitconfig"
-#Link_Files "$HOME/.config/compton.conf" "$DOTFILES/compton.conf"
-#Link_Dirs "$HOME/.config/i3" "$DOTFILES/i3"
-#Link_Dirs "$HOME/.config/i3blocks" "$DOTFILES/i3blocks"
-#Link_Dirs "$HOME/.weechat" "$DOTFILES/.weechat"
-#Link_Dirs "$HOME/Icons" "$DOTFILES/Icons"
-#Link_Dirs "$HOME/Wallpapers" "$DOTFILES/Wallpapers"
-#Link_Dirs "$HOME/.config/dunst" "$DOTFILES/dunst"
-#Link_Dirs "$HOME/.config/Xresources" "$DOTFILES/Xresources"
-#Link_Dirs "$HOME/.config/urxvt" "$DOTFILES/urxvt"
-
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
 stow -v --restow bash
-stow -v --restow Xresources
-stow -v --restow compton
-stow -v --restow dunst
-stow -v --restow i3
-stow -v --restow i3blocks
-stow -v --restow rofi
-stow -v --restow urxvt
+
+# restow urxvt config
+if ! [ -x "$(command -v urxvt)" ]; then
+    stow -v --restow urxvt
+fi
+
+# restow X-Windows configurations
+if ! [ -x "$(command -v i3)" ]; then
+    stow -v --restow Xresources
+    stow -v --restow i3
+    stow -v --restow i3blocks
+fi
+
+# restow compton config
+if ! [ -x "$(command -v compton)" ]; then
+    stow -v --restow compton
+fi
+
+# restow dunst config
+if ! [ -x "$(command -v dunst)" ]; then
+    stow -v --restow dunst
+fi
+
+# restow rofi config
+if ! [ -x "$(command -v rofi)" ]; then
+    stow -v --restow rofi
+fi
