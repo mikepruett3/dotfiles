@@ -35,31 +35,31 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
-stow -v --restow bash
+stow -v --restow -t ~ bash
 
 # restow urxvt config
 if [ -x "$(command -v urxvt)" ]; then
-    stow -v --restow urxvt
+    stow -v --restow -t ~ urxvt
 fi
 
 # restow X-Windows configurations
 if [ -x "$(command -v i3)" ]; then
-    stow -v --restow Xresources
-    stow -v --restow i3
-    stow -v --restow i3blocks
+    stow -v --restow -t ~ Xresources
+    stow -v --restow -t ~ i3
+    stow -v --restow -t ~ i3blocks
 fi
 
 # restow compton config
 if [ -x "$(command -v compton)" ]; then
-    stow -v --restow compton
+    stow -v --restow -t ~ compton
 fi
 
 # restow dunst config
 if [ -x "$(command -v dunst)" ]; then
-    stow -v --restow dunst
+    stow -v --restow -t ~ dunst
 fi
 
 # restow rofi config
 if [ -x "$(command -v rofi)" ]; then
-    stow -v --restow rofi
+    stow -v --restow -t ~ rofi
 fi
