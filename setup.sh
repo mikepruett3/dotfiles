@@ -51,7 +51,6 @@ fi
 if [ -x "$(command -v i3)" ]; then
     stow -v --restow -t ~ Xresources
     stow -v --restow -t ~ i3
-    stow -v --restow -t ~ i3blocks
 fi
 
 # restow compton config
