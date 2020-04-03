@@ -37,6 +37,11 @@ fi
 cd $DOTFILES
 stow -v --restow -t ~ bash
 
+# restow git config
+if [ -x "$(command -v git)" ]; then
+    stow -v --restow -t ~ git
+fi
+
 # restow urxvt config
 if [ -x "$(command -v urxvt)" ]; then
     stow -v --restow -t ~ urxvt
@@ -62,4 +67,9 @@ fi
 # restow rofi config
 if [ -x "$(command -v rofi)" ]; then
     stow -v --restow -t ~ rofi
+fi
+
+# restow weechat config
+if [ -x "$(command -v weechat)" ]; then
+    stow -v --restow -t ~ weechat
 fi
