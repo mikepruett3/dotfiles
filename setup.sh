@@ -72,3 +72,8 @@ fi
 if [ -x "$(command -v weechat)" ]; then
     stow -v --restow -t ~ weechat
 fi
+
+# restow starship config
+if [ -x "$(command -v starship)" ]; then
+    stow -v --restow -t ~ starship
+fi
