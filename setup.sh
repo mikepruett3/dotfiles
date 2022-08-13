@@ -75,5 +75,5 @@ fi
 
 # restow starship config
 if [ -x "$(command -v starship)" ]; then
-    stow -v --restow starship
+    stow --restow starship
 fi
