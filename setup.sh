@@ -35,42 +35,42 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
-stow -v --restow -t ~ bash
+stow --restow bash
 
 # restow git config
 if [ -x "$(command -v git)" ]; then
-    stow -v --restow -t ~ git
+    stow --restow git
 fi
 
 # restow urxvt config
 if [ -x "$(command -v urxvt)" ]; then
-    stow -v --restow -t ~ urxvt
+    stow --restow urxvt
 fi
 
 # restow X-Windows configurations
 if [ -x "$(command -v i3)" ]; then
-    stow -v --restow -t ~ Xresources
-    stow -v --restow -t ~ i3
+    stow --restow Xresources
+    stow --restow i3
 fi
 
 # restow compton config
 if [ -x "$(command -v compton)" ]; then
-    stow -v --restow -t ~ compton
+    stow --restow compton
 fi
 
 # restow dunst config
 if [ -x "$(command -v dunst)" ]; then
-    stow -v --restow -t ~ dunst
+    stow --restow dunst
 fi
 
 # restow rofi config
 if [ -x "$(command -v rofi)" ]; then
-    stow -v --restow -t ~ rofi
+    stow --restow rofi
 fi
 
 # restow weechat config
 if [ -x "$(command -v weechat)" ]; then
-    stow -v --restow -t ~ weechat
+    stow --restow weechat
 fi
 
 # restow starship config
