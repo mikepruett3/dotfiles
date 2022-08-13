@@ -13,12 +13,14 @@ if ! [ -x "$(command -v stow)" ]; then
 fi
 
 # Check if $HOME/.dotfiles or $HOME/dotfiles exists, then export $DOTFILES
-DOTFILES_DIRS=(".dotfiles" "dotfiles")
-for DIR in "${DOTFILES_DIRS[@]}"; do
-    if [ -d $HOME/$DIR/ ]; then
-        export DOTFILES=$HOME/$DIR
-    fi
-done
+if [[ $(grep -c "DOTFILES" ~/.bashrc) -eq 0 ]]; then
+    DOTFILES_DIRS=(".dotfiles" "dotfiles")
+    for DIR in "${DOTFILES_DIRS[@]}"; do
+        if [ -d $HOME/$DIR/ ]; then
+            export DOTFILES=$HOME/$DIR
+        fi
+    done
+fi
 
 # Check for empty $DOTFILES vairable
 if [ -z $DOTFILES ]; then
