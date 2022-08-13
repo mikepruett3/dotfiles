@@ -37,15 +37,23 @@ fi
 cd $DOTFILES
 stow --restow bash
 
+COMMANDS=("git" "urxvt")
+# restow function
+for DIR in "${COMMANDS[@]}"; do
+    if [ -x "$(command -v $1)" ]; then
+        stow -v --restow $1
+    fi
+done
+
 # restow git config
-if [ -x "$(command -v git)" ]; then
-    stow --restow git
-fi
+#if [ -x "$(command -v git)" ]; then
+#    stow --restow git
+#fi
 
 # restow urxvt config
-if [ -x "$(command -v urxvt)" ]; then
-    stow --restow urxvt
-fi
+#if [ -x "$(command -v urxvt)" ]; then
+#    stow --restow urxvt
+#fi
 
 # restow X-Windows configurations
 if [ -x "$(command -v i3)" ]; then
