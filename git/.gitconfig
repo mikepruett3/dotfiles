@@ -2,6 +2,9 @@
 	name = Mike Pruett
 	email = mikepruett3@gmail.com
 
+[http]
+  sslvertify = false
+
 [core]
   pager = less -F -X
 
