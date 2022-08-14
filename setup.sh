@@ -39,9 +39,9 @@ stow --restow bash
 
 COMMANDS=("git" "urxvt")
 # restow function
-for DIR in "${COMMANDS[@]}"; do
-    if [ -x "$(command -v $1)" ]; then
-        stow -v --restow $1
+for COMMAND in "${COMMANDS[@]}"; do
+    if [ -x "$(command -v $COMMAND)" ]; then
+        stow -v --restow $COMMAND
     fi
 done
 
