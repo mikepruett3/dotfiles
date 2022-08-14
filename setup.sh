@@ -35,10 +35,7 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
-stow --restow bash
-
-COMMANDS=("git" "starship" "urxvt" "compton" "dunst" "rofi" "weechat")
-# restow function
+COMMANDS=("bash" "git" "starship" "urxvt" "compton" "dunst" "rofi" "weechat")
 for COMMAND in "${COMMANDS[@]}"; do
     if [ -x "$(command -v $COMMAND)" ]; then
         stow -v --restow $COMMAND
