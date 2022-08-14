@@ -37,7 +37,7 @@ fi
 cd $DOTFILES
 stow --restow bash
 
-COMMANDS=("git" "urxvt")
+COMMANDS=("git" "starship" "urxvt" "compton" "dunst" "rofi" "weechat")
 # restow function
 for COMMAND in "${COMMANDS[@]}"; do
     if [ -x "$(command -v $COMMAND)" ]; then
@@ -45,43 +45,8 @@ for COMMAND in "${COMMANDS[@]}"; do
     fi
 done
 
-# restow git config
-#if [ -x "$(command -v git)" ]; then
-#    stow --restow git
-#fi
-
-# restow urxvt config
-#if [ -x "$(command -v urxvt)" ]; then
-#    stow --restow urxvt
-#fi
-
 # restow X-Windows configurations
 if [ -x "$(command -v i3)" ]; then
     stow --restow Xresources
     stow --restow i3
-fi
-
-# restow compton config
-if [ -x "$(command -v compton)" ]; then
-    stow --restow compton
-fi
-
-# restow dunst config
-if [ -x "$(command -v dunst)" ]; then
-    stow --restow dunst
-fi
-
-# restow rofi config
-if [ -x "$(command -v rofi)" ]; then
-    stow --restow rofi
-fi
-
-# restow weechat config
-if [ -x "$(command -v weechat)" ]; then
-    stow --restow weechat
-fi
-
-# restow starship config
-if [ -x "$(command -v starship)" ]; then
-    stow --restow starship
 fi
