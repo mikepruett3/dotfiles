@@ -38,6 +38,7 @@ cd $DOTFILES
 COMMANDS=("bash" "git" "starship" "i3" "urxvt" "compton" "dunst" "rofi" "weechat")
 for COMMAND in "${COMMANDS[@]}"; do
     if [ -x "$(command -v $COMMAND)" ]; then
-        stow -v --restow $COMMAND
+        #stow -v --restow $COMMAND
+        stow --restow $COMMAND
     fi
 done
