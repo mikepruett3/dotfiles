@@ -35,15 +35,9 @@ fi
 
 # Use stow to create symlinks for the dotfiles
 cd $DOTFILES
-COMMANDS=("bash" "git" "starship" "urxvt" "compton" "dunst" "rofi" "weechat")
+COMMANDS=("bash" "git" "starship" "i3" "urxvt" "compton" "dunst" "rofi" "weechat")
 for COMMAND in "${COMMANDS[@]}"; do
     if [ -x "$(command -v $COMMAND)" ]; then
         stow -v --restow $COMMAND
     fi
 done
-
-# restow X-Windows configurations
-if [ -x "$(command -v i3)" ]; then
-    stow --restow Xresources
-    stow --restow i3
-fi
