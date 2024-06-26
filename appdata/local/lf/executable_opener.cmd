@@ -11,17 +11,17 @@ REM Grab the latest release of the file utility from here:
 REM   https://github.com/julian-r/file-windows
 REM and extract the three files to the _lfdir directory.
 SET _magicfile=%_lfdir%\magic.mgc
-SET _file=%_lfdir%\file.exe
+REM SET _file=file.exe
 
 REM Grab the latest release of the ansiart2utf8 utility from here:
 REM   https://github.com/BourgeoisBear/ansiart2utf8
 REM and extract the three files to the _lfdir\ansi directory.
-SET _ansiart2utf8=%_lfdir%\ansiart2utf8.exe
+REM SET _ansiart2utf8=ansiart2utf8.exe
 
 SET _ansicat=_lfdir%\Ansi-Cat.exe
 
 REM Collect the Mime Type of the file into a variable
-FOR /f "tokens=3 delims=:" %%A IN ('call "%_file%" -m "%_magicfile%" --mime-type "%_filename%"') DO (
+FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
     SET "mimetype=%%A"
 )
 
@@ -41,10 +41,10 @@ IF "%_extension%"==".m3u" mpv.com --no-video "%_filename%" & GOTO :END
 
 REM Image File(s) identification
 REM IF "%type%"=="image" exiftool.exe "%_filename%" & GOTO :EOF
-IF "%_extension%"==".ans" "%_ansiart2utf8%" "%_filename%" & PAUSE & GOTO :END
-IF "%_extension%"==".ANS" "%_ansiart2utf8%" "%_filename%" & PAUSE & GOTO :END
-IF "%_extension%"==".asc" "%_ansiart2utf8%" "%_filename%" & PAUSE & GOTO :END
-IF "%_extension%"==".ASC" "%_ansiart2utf8%" "%_filename%" & PAUSE & GOTO :END
+IF "%_extension%"==".ans" ansiart2utf8 "%_filename%" & PAUSE & GOTO :END
+IF "%_extension%"==".ANS" ansiart2utf8 "%_filename%" & PAUSE & GOTO :END
+IF "%_extension%"==".asc" ansiart2utf8 "%_filename%" & PAUSE & GOTO :END
+IF "%_extension%"==".ASC" ansiart2utf8 "%_filename%" & PAUSE & GOTO :END
 
 REM Document File(s) identification
 REM Grab the latest release of the glow app from here:
@@ -55,7 +55,7 @@ REM and extract chroma.exe, and place somewhere in your %PATH%
 REM IF "%subtype%"=="pdf" mutool draw -F txt "%_filename%" 1 & GOTO :END
 
 REM Text File(s) identification
-IF "%_extension%"==".diz" "%_ansiart2utf8%" "%_filename%" & GOTO :EOF
+IF "%_extension%"==".diz" ansiart2utf8 "%_filename%" & GOTO :EOF
 
 REM Grab the latest release of the glow app from here:
 REM   https://github.com/charmbracelet/glow

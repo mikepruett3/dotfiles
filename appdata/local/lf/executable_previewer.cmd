@@ -7,10 +7,10 @@ SET _filename=%~f1
 SET _extension=%~x1
 SET _lfdir=%LOCALAPPDATA%\lf
 SET _magicfile=%_lfdir%\magic.mgc
-SET _fileprg=%_lfdir%\file.exe
+REM SET _fileprg=file.exe
 
 REM Collect the Mime Type of the file into a variable
-FOR /f "tokens=3 delims=:" %%A IN ('call "%_fileprg%" -m "%_magicfile%" --mime-type "%_filename%"') DO (
+FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
     SET "mimetype=%%A"
 )
 
@@ -24,11 +24,11 @@ REM Remove spaces from Type variable
 SET type=%type: =%
 
 REM Media File(s) identification
-IF "%type%"=="video" mediainfo.exe "%_filename%" & GOTO :EOF
-IF "%type%"=="audio" mediainfo.exe "%_filename%" & GOTO :EOF
+IF "%type%"=="video" mediainfo "%_filename%" & GOTO :EOF
+IF "%type%"=="audio" mediainfo "%_filename%" & GOTO :EOF
 
 REM Image File(s) identification
-IF "%type%"=="image" mediainfo.exe "%_filename%" & GOTO :EOF
+IF "%type%"=="image" mediainfo "%_filename%" & GOTO :EOF
 
 REM Document File(s) identification
 IF "%subtype%"=="pdf" mutool draw -F txt "%_filename%" 1 & GOTO :EOF
