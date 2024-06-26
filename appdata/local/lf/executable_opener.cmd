@@ -10,7 +10,7 @@ SET _lfdir=%LOCALAPPDATA%\lf
 REM Grab the latest release of the file utility from here:
 REM   https://github.com/julian-r/file-windows
 REM and extract the three files to the _lfdir directory.
-SET _magicfile=%_lfdir%\magic.mgc
+REM SET _magicfile=%_lfdir%\magic.mgc
 REM SET _file=file.exe
 
 REM Grab the latest release of the ansiart2utf8 utility from here:
@@ -21,7 +21,8 @@ REM SET _ansiart2utf8=ansiart2utf8.exe
 SET _ansicat=_lfdir%\Ansi-Cat.exe
 
 REM Collect the Mime Type of the file into a variable
-FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
+REM FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
+FOR /f "tokens=3 delims=:" %%A IN ('call file --mime-type "%_filename%"') DO (
     SET "mimetype=%%A"
 )
 

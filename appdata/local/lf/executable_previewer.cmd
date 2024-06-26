@@ -6,11 +6,12 @@ REM Set Variables
 SET _filename=%~f1
 SET _extension=%~x1
 SET _lfdir=%LOCALAPPDATA%\lf
-SET _magicfile=%_lfdir%\magic.mgc
+REM SET _magicfile=%_lfdir%\magic.mgc
 REM SET _fileprg=file.exe
 
 REM Collect the Mime Type of the file into a variable
-FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
+REM FOR /f "tokens=3 delims=:" %%A IN ('call file -m "%_magicfile%" --mime-type "%_filename%"') DO (
+FOR /f "tokens=3 delims=:" %%A IN ('call file --mime-type "%_filename%"') DO (
     SET "mimetype=%%A"
 )
 
