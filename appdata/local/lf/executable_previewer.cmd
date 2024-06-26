@@ -47,7 +47,7 @@ IF "%subtype%"=="zip" 7z l "%_filename%" & GOTO :EOF
 IF "%subtype%"=="x-tar" 7z l "%_filename%" & GOTO :EOF
 IF "%subtype%"=="gzip" 7z l "%_filename%" & GOTO :EOF
 REM IF "%subtype%"=="octet-stream" 7z l "%_filename%" | less -R || GOTO :EOF
-IF "%subtype%"=="rar" 7z l "%_filename%" & GOTO :EOF
+IF "%subtype%"=="x-rar" 7z l "%_filename%" & GOTO :EOF
 
 REM Catch-all
 REM ECHO %type%/%subtype% & EXIT /B 1
