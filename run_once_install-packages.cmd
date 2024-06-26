@@ -2,6 +2,7 @@
 
 WHERE /Q "winget"
 IF ERRORLEVEL 0 (
+    START "Install Package - age" /WAIT "sudo" "winget install GoLang.Go"
     START "Install Package - bat" /WAIT "sudo" "winget install sharkdp.bat"
     START "Install Package - less" /WAIT "sudo" "winget install jftuga.less"
     START "Install Package - lf" /WAIT "sudo" "winget install gokcehan.lf"
