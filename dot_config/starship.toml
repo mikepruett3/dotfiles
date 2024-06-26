@@ -68,8 +68,8 @@ format = "via [ vagrant $version]($style) "
 [docker_context]
 format = "via [ $context](bold blue) "
 
-[helm]
-format = "via [ $version](bold purple) "
+#[helm]
+#format = "via [ $version](bold purple) "
 
 [python]
 symbol = " "
