@@ -8,7 +8,7 @@ set icons true                      # Show icons before each item in the list
 set hidden false                    # Show hidden files
 set cursorpreviewfmt "\033[7;2m"    # Use dimmed inverted text in panes that preview directories
 set ignorecase true                 # Ignore case in sorting and search patterns.
-set previewer ~/AppData/Local/lf/preview.cmd
+set previewer ~/AppData/Local/lf/previewer.cmd
 
 # Custom Functions
 cmd open $%LOCALAPPDATA%\lf\opener.cmd %fx%
