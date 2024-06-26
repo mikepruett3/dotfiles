@@ -16,9 +16,9 @@ SET _file=%_lfdir%\file.exe
 REM Grab the latest release of the ansiart2utf8 utility from here:
 REM   https://github.com/BourgeoisBear/ansiart2utf8
 REM and extract the three files to the _lfdir\ansi directory.
-SET _ansiart2utf8=%_lfdir%\ansi\ansiart2utf8.exe
+SET _ansiart2utf8=%_lfdir%\ansiart2utf8.exe
 
-SET _ansicat=_lfdir%\ansi\Ansi-Cat.exe
+SET _ansicat=_lfdir%\Ansi-Cat.exe
 
 REM Collect the Mime Type of the file into a variable
 FOR /f "tokens=3 delims=:" %%A IN ('call "%_file%" -m "%_magicfile%" --mime-type "%_filename%"') DO (
@@ -52,10 +52,10 @@ REM   https://www.mankier.com/1/mutool
 REM OR
 REM   winget install ArtifexSoftware.mutool
 REM and extract chroma.exe, and place somewhere in your %PATH%
-IF "%subtype%"=="pdf" mutool draw -F txt "%_filename%" 1 & GOTO :END
+REM IF "%subtype%"=="pdf" mutool draw -F txt "%_filename%" 1 & GOTO :END
 
 REM Text File(s) identification
-REM IF "%_extension%"==".diz" "%_ansiart2utf8%" "%_filename%" & GOTO :EOF
+IF "%_extension%"==".diz" "%_ansiart2utf8%" "%_filename%" & GOTO :EOF
 
 REM Grab the latest release of the glow app from here:
 REM   https://github.com/charmbracelet/glow
