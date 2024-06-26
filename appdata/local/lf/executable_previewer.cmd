@@ -40,6 +40,9 @@ IF "%subtype%"=="x-wine-extension-ini" bat "%_filename%" & GOTO :EOF
 IF "%subtype%"=="json" bat "%_filename%" & GOTO :EOF
 REM IF "%type%"=="text" less -R chroma "%_filename%" | less -R & GOTO :EOF
 IF "%_extension%"==".ANS" ansiart2utf8 "%_filename%" & GOTO :EOF
+IF "%_extension%"==".ans" ansiart2utf8 "%_filename%" & GOTO :EOF
+IF "%_extension%"==".ASC" ansiart2utf8 "%_filename%" & GOTO :EOF
+IF "%_extension%"==".asc" ansiart2utf8 "%_filename%" & GOTO :EOF
 IF "%type%"=="text" bat "%_filename%" & GOTO :EOF
 
 REM Archive File(s) identification
