@@ -5,7 +5,7 @@ REM SETLOCAL ENABLEDELAYEDEXPANSION
 REM Set Variables
 SET _filename=%~f1
 SET _extension=%~x1
-SET _lfdir=%LOCALAPPDATA%\lf
+REM SET _lfdir=%LOCALAPPDATA%\lf
 REM SET _magicfile=%_lfdir%\magic.mgc
 REM SET _fileprg=file.exe
 
@@ -44,10 +44,10 @@ IF "%type%"=="text" bat "%_filename%" & GOTO :EOF
 REM Archive File(s) identification
 REM IF "%subtype%"=="zip" 7z l "%_filename%" | less -R & GOTO :EOF
 IF "%subtype%"=="zip" 7z l "%_filename%" & GOTO :EOF
-IF "%subtype%"=="x-tar" 7z l "%_filename%" | less -R & GOTO :EOF
-IF "%subtype%"=="gzip" 7z l "%_filename%" | less -R & GOTO :EOF
+IF "%subtype%"=="x-tar" 7z l "%_filename%" & GOTO :EOF
+IF "%subtype%"=="gzip" 7z l "%_filename%" & GOTO :EOF
 REM IF "%subtype%"=="octet-stream" 7z l "%_filename%" | less -R || GOTO :EOF
-IF "%subtype%"=="rar" "%ProgramFiles%\WinRAR\rar.exe" lb "%_filename%" | less -R & GOTO :EOF
+IF "%subtype%"=="rar" 7z l "%_filename%" & GOTO :EOF
 
 REM Catch-all
 REM ECHO %type%/%subtype% & EXIT /B 1
