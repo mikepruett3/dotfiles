@@ -3,58 +3,68 @@
 WHERE /Q "winget"
 IF ERRORLEVEL 0 (
     WHERE /Q "go"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - GoLang" /WAIT "sudo" "winget install GoLang.Go"
+    IF ERRORLEVEL 1 (
+        START "Install Package - GoLang" /I /WAIT /B "sudo" "winget install GoLang.Go"
     )
 
     WHERE /Q "bat"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - bat" /WAIT "sudo" "winget install sharkdp.bat"
+    IF ERRORLEVEL 1 (
+        START "Install Package - bat" /I /WAIT /B "sudo" "winget install sharkdp.bat"
     )
 
     WHERE /Q "less"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - less" /WAIT "sudo" "winget install jftuga.less"
+    IF ERRORLEVEL 1 (
+        START "Install Package - less" /I /WAIT /B "sudo" "winget install jftuga.less"
     )
 
     WHERE /Q "lf"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - lf" /WAIT "sudo" "winget install gokcehan.lf"
+    IF ERRORLEVEL 1 (
+        START "Install Package - lf" /I /WAIT /B "sudo" "winget install gokcehan.lf"
     )
 
     WHERE /Q "eza"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - eza" /WAIT "sudo" "winget install eza-community.eza"
+    IF ERRORLEVEL 1 (
+        START "Install Package - eza" /I /WAIT /B "sudo" "winget install eza-community.eza"
     )
 
     WHERE /Q "glow"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - glow" /WAIT "sudo" "winget install charmbracelet.glow"
+    IF ERRORLEVEL 1 (
+        START "Install Package - glow" /I /WAIT /B "sudo" "winget install charmbracelet.glow"
     )
 
-    REM START "Install Package - age" /WAIT "sudo" "winget install FiloSottile.age"
+    WHERE /Q "age"
+    IF ERRORLEVEL 1 (
+        START "Install Package - age" /I /WAIT /B "sudo" "winget install FiloSottile.age"
+    )
 )
 
 WHERE /Q "scoop"
 IF ERRORLEVEL 0 (
     WHERE /Q "file"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - file" /WAIT "sudo" "scoop install file"
+    IF ERRORLEVEL 1 (
+        START "Install Package - file" /I /WAIT /B "sudo" "scoop install file"
     )
 
     WHERE /Q "mpv"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - mpv" /WAIT "sudo" "scoop install mpv"
+    IF ERRORLEVEL 1 (
+        START "Install Package - mpv" /I /WAIT /B "sudo" "scoop install mpv"
+    )
+
+    WHERE /Q "chroma"
+    IF ERRORLEVEL 1 (
+        START "Install Package - chroma" /I /WAIT /B "sudo" "scoop install chroma"
     )
 )
 
 WHERE /Q "go"
 IF ERRORLEVEL 0 (
     WHERE /Q "ansiart2utf8"
-    IF NOT ERRORLEVEL 0 (
-        START "Install Package - ansiart2utf8" /WAIT "go" "install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
+    IF ERRORLEVEL 1 (
+        START "Install Package - ansiart2utf8" /I /WAIT /B "sudo" "go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
 
-    REM START "Install Package - fil" /WAIT "go" "install github.com/joeky888/fil@latest"
-    REM START "Install Package - chroma" /WAIT "go" "install github.com/alecthomas/chroma@latest"
+    REM WHERE /Q "fli"
+    REM IF ERRORLEVEL 1 (
+    REM     START "Install Package - fil" /I /WAIT /B "sudo" "go install github.com/joeky888/fil@latest"
+    REM )
 )
