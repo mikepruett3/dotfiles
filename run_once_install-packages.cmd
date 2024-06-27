@@ -2,6 +2,11 @@
 
 WHERE /Q "winget"
 IF ERRORLEVEL 0 (
+    WHERE /Q "starship"
+    IF ERRORLEVEL 1 (
+        START "Install Package - Starship Prompt" /I /WAIT /B "sudo" "winget install Starship.Starship"
+    )
+
     WHERE /Q "go"
     IF ERRORLEVEL 1 (
         START "Install Package - GoLang" /I /WAIT /B "sudo" "winget install GoLang.Go"
