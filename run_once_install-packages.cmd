@@ -62,7 +62,7 @@ IF ERRORLEVEL 0 (
 
     WHERE /Q "mpv"
     IF ERRORLEVEL 1 (
-        START "Install Package - mpv" /I /WAIT /B "cmd.exe" "scoop winget install mpv.net"
+        START "Install Package - mpv" /I /WAIT /B "sudo" "scoop install mpv"
     )
 
     WHERE /Q "chroma"
