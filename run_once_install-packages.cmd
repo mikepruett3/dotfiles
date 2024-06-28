@@ -37,6 +37,11 @@ IF ERRORLEVEL 0 (
         START "Install Package - glow" /I /WAIT /B "sudo" "winget install charmbracelet.glow"
     )
 
+    WHERE /Q "mpv"
+    IF ERRORLEVEL 1 (
+        START "Install Package - mpv" /I /WAIT /B "sudo" "winget install mpv.net"
+    )
+
     WHERE /Q "mediainfo"
     IF ERRORLEVEL 1 (
         START "Install Package - mediainfo" /I /WAIT /B "sudo" "winget install MediaArea.MediaInfo"
@@ -58,11 +63,6 @@ IF ERRORLEVEL 0 (
     WHERE /Q "file"
     IF ERRORLEVEL 1 (
         START "Install Package - file" /I /WAIT /B "sudo" "scoop install file"
-    )
-
-    WHERE /Q "mpv"
-    IF ERRORLEVEL 1 (
-        START "Install Package - mpv" /I /WAIT /B "sudo" "scoop install mpv"
     )
 
     WHERE /Q "chroma"
