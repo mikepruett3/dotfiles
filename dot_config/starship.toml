@@ -26,7 +26,7 @@ disabled = false
 style_user = "white bold"
 style_root = "black bold"
 format = "[$user]($style) "
-disabled = true  # disable in powershell
+disabled = false  # disable in powershell
 show_always = false
 
 [directory]
