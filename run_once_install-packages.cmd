@@ -37,6 +37,16 @@ IF ERRORLEVEL 0 (
         START "Install Package - glow" /I /WAIT /B "sudo" "winget install charmbracelet.glow"
     )
 
+    WHERE /Q "mediainfo"
+    IF ERRORLEVEL 1 (
+        START "Install Package - mediainfo" /I /WAIT /B "sudo" "winget install MediaArea.MediaInfo"
+    )
+
+    WHERE /Q "mutool"
+    IF ERRORLEVEL 1 (
+        START "Install Package - mutool" /I /WAIT /B "sudo" "winget install ArtifexSoftware.mutool"
+    )
+
     WHERE /Q "age"
     IF ERRORLEVEL 1 (
         START "Install Package - age" /I /WAIT /B "sudo" "winget install FiloSottile.age"
