@@ -32,13 +32,13 @@ show_always = false
 [directory]
 truncation_length = 3
 truncation_symbol = "…/"
-home_symbol = " ~"
+home_symbol = "󰋞 ~"
 read_only_style = "197"
 read_only = "  "
 format = " at [$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
-symbol = " "
+symbol = "󰊢 "
 format = "on [$symbol$branch]($style) "
 truncation_length = 4
 truncation_symbol = "…/"
@@ -53,10 +53,10 @@ untracked = " "
 ahead = "⇡${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
-stashed = " "
+stashed = "󰏗 "
 modified = " "
 staged = '[++\($count\)](green)'
-renamed = "襁 "
+renamed = "󰖷 "
 deleted = " "
 
 [terraform]
@@ -68,23 +68,23 @@ format = "via [ vagrant $version]($style) "
 [docker_context]
 format = "via [ $context](bold blue) "
 
-#[helm]
-#format = "via [ $version](bold purple) "
+[helm]
+format = "via [ $version](bold purple) "
 
 [python]
-symbol = " "
+symbol = "󰌠 "
 python_binary = "python3"
 
 [nodejs]
-format = "via [ $version](bold green) "
+format = "via [󰎙 $version](bold green) "
 disabled = true
 
 [ruby]
 format = "via [ $version]($style) "
 
-#[kubernetes]
-#format = 'on [ $context\($namespace\)](bold purple) '
-#disabled = false
-#[kubernetes.context_aliases]
-#"clcreative-k8s-staging" = "cl-k8s-staging"
-#"clcreative-k8s-production" = "cl-k8s-prod"
+[kubernetes]
+format = 'on [ $context\($namespace\)](bold purple) '
+disabled = false
+[kubernetes.context_aliases]
+"clcreative-k8s-staging" = "cl-k8s-staging"
+"clcreative-k8s-production" = "cl-k8s-prod"
