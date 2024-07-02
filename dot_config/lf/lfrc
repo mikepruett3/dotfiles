@@ -1,0 +1,78 @@
+# Shell Configurations
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+
+# Look and Feel
+set scrolloff 10                    # leave some space at the top and the bottom of the screen
+set drawbox true                    # Draw boxes around panes with box drawing characters
+set icons true                      # Show icons before each item in the list
+set hidden false                    # Show hidden files
+set cursorpreviewfmt "\033[7;2m"    # Use dimmed inverted text in panes that preview directories
+set ignorecase true                 # Ignore case in sorting and search patterns.
+set previewer ~/.config/lf/previewer.sh
+
+# Custom Functions
+cmd mimetype ${{
+    file --mime-type "$f"
+}}
+
+cmd mkdir ${{
+    printf "Directory Name: "
+    read ans
+    mkdir $ans
+}}
+
+cmd mkfile ${{
+    printf "File Name: "
+    read ans
+    $EDITOR $ans
+}}
+
+cmd unarchive ${{
+    case $f in                                                                                                                  *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar -xjvf "$f";;
+        *.tar.gz|*.tgz) tar -xzvf "$f";;
+        *.tar.xz|*.txz) tar -xJvf "$f";;
+        *.zip) unzip "$f";;
+        *.rar) unrar x "$f";;
+        *.7z) 7z x "$f";;
+        *) echo "Unsupported format" ;;
+    esac
+}}
+
+cmd zipdir ${{
+    zip -r ${PWD##*/}.zip .
+}}
+
+# Command to edit lf Config file
+cmd edit-config ${{
+    $EDITOR ~/.config/lf/lfrc
+    lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
+}}
+
+# Basic Functions Shortcuts
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map y copy
+map <enter> open
+map R reload
+map au unarchive
+map bF mkfile
+map bD mkdir
+
+# Function Key Shortcuts
+map <f-5> reload
+#map <f-12> mimetype
+
+# Directory Shortcuts
+map gD cd ~/Downloads
+map gh cd ~/
+
+# Config Files
+map C edit-config
