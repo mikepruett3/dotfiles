@@ -10,7 +10,7 @@ case "$MIME" in
     #    ;;
     # .7z
     *application/x-7z-compressed*)
-        7z l "$1"
+        7zz l "$1"
         ;;
     # .tar .tar.Z
     *application/x-tar*)
@@ -32,7 +32,7 @@ case "$MIME" in
         dpkg-deb --info "$1"
         ;;
     *application/x-cd-image*)
-        7z l "$1"
+        7zz l "$1"
         ;;
     *text/markdown*)
         glow -s dark "$1"
