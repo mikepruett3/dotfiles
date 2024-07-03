@@ -48,12 +48,15 @@ case "$MIME" in
         ;;
     *application/octet-stream*)
         EXT="${1: -4}"
-        echo $EXT
         EXT="${EXT,,}"
-        echo $EXT
-        if [ "$EXT" == ".ans" ]; then
-            ansiart2utf8 "$1"
-        fi
+        case "$EXT" in
+            .ans)
+                ansiart2utf8 "$1"
+                ;;
+            *)
+                echo "unknown format"
+                ;;
+        esac
         ;;
     *)
         echo "unknown format"
