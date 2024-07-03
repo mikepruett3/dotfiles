@@ -1,3 +1,6 @@
+{{ if eq .chezmoi.os "linux" -}}
+# -*-mode:sh-*- vim:ft=shell-script
+
 #!/usr/bin/env bash
 
 # .bootstrap/setup.yml hash: {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
@@ -5,3 +8,4 @@
 if command -v ansible-playbook &> /dev/null; then
     ansible-playbook {{ joinPath .chezmoi.sourceDir "dot_bootstrap/setup.yaml" | quote }} --ask-become-pass
 fi
+{{- end }}
