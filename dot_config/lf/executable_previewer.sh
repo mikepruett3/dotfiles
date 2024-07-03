@@ -53,8 +53,11 @@ case "$MIME" in
             .ans)
                 ansiart2utf8 "$1"
                 ;;
+            .asc)
+                ansiart2utf8 "$1"
+                ;;
             *)
-                echo "unknown format"
+                echo "unknown binary format"
                 ;;
         esac
         ;;
