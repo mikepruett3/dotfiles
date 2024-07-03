@@ -35,7 +35,7 @@ truncation_symbol = "…/"
 home_symbol = "󰋞 ~"
 read_only_style = "197"
 read_only = "  "
-format = " at [$path]($style)[$read_only]($read_only_style) "
+format = "at [$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 symbol = "󰊢 "
@@ -77,14 +77,9 @@ python_binary = "python3"
 
 [nodejs]
 format = "via [󰎙 $version](bold green) "
-disabled = true
 
 [ruby]
 format = "via [ $version]($style) "
 
 [kubernetes]
 format = 'on [ $context\($namespace\)](bold purple) '
-disabled = false
-[kubernetes.context_aliases]
-"clcreative-k8s-staging" = "cl-k8s-staging"
-"clcreative-k8s-production" = "cl-k8s-prod"
