@@ -28,6 +28,20 @@
       when:
          - ansible_facts['pkg_mgr'] == 'dnf'
 
+    - name: "Download Charm.sh Keyring"
+      ansible.builtin.get_url:
+        url: https://repo.charm.sh/apt/gpg.key
+        dest: /etc/apt/keyrings/charm.asc
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Add the Charm.sh Repository"
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/charm.asc] https://repo.charm.sh/apt/ * *"
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
     - name: "Install packages (apt)"
       ansible.builtin.apt:
         name:
@@ -40,6 +54,7 @@
           - unrar
           - unzip
           - mediainfo
+          - glow
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
