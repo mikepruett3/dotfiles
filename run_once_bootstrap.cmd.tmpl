@@ -1,3 +1,16 @@
+{{ if eq .chezmoi.os "windows" -}}
+:: -*-mode:cmd-*- vim:ft=cmd
+
+:: ~/.local/share/chezmoi/run_once_bootstrap.cmd
+:: ============================================================================
+:: Runs after `chezmoi apply` to relocate PowerShell's configuration files.
+::
+:: This batch file copies the configuration files to their proper destinations
+:: on Windows. Chezmoi will skip this script on other operating systems.
+:: See https://www.chezmoi.io/docs/how-to/
+::
+:: {{- /* This file supports Go's text/template language. */}}
+
 @ECHO OFF
 
 WHERE /Q "winget"
@@ -83,3 +96,5 @@ IF ERRORLEVEL 0 (
     REM     START "Install Package - fil" /I /WAIT /B "sudo" "go install github.com/joeky888/fil@latest"
     REM )
 )
+
+{{- end }}
