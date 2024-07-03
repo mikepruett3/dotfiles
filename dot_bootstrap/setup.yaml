@@ -25,6 +25,7 @@
           - unzip
           - mediainfo
           - glow
+          - poppler-utils
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'dnf'
@@ -56,6 +57,7 @@
           - unzip
           - mediainfo
           - glow
+          - poppler-utils
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
