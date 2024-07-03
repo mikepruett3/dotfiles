@@ -46,6 +46,11 @@ case "$MIME" in
         #batcat $CATOPTS "$1"
         batcat "$1"
         ;;
+    *application/octet-stream*)
+        if [ "${1: -4,,}" == ".ans" ]; then
+            ansiart2utf8 "$1"
+        fi
+        ;;
     *)
         echo "unknown format"
         ;;
