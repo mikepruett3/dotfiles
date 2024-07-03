@@ -40,12 +40,6 @@ case "$MIME" in
     *image/*)
         mediainfo "$1"
         ;;
-    # any plain text file that doesn't have a specific handler
-    *text/plain*)
-        # return false to always repaint, in case terminal size changes
-        #batcat $CATOPTS "$1"
-        batcat "$1"
-        ;;
     *application/octet-stream*)
         EXT="${1: -4}"
         EXT="${EXT,,}"
@@ -60,6 +54,12 @@ case "$MIME" in
                 echo "unknown binary format"
                 ;;
         esac
+        ;;
+    # any plain text file that doesn't have a specific handler
+    *text/plain*)
+        # return false to always repaint, in case terminal size changes
+        #batcat $CATOPTS "$1"
+        batcat "$1"
         ;;
     *)
         echo "unknown format"
