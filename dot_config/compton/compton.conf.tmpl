@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "linux" -}}
+# Opacity
+#menu-opacity = 0.8;
+#inactive-opacity = 0.8;
+#active-opacity = 0.8;
+#frame-opacity = 0.7;
+opacity-rule = [ "80:class_g = 'URxvt'", "80:class_g = 'Rofi'", "80:class_g = 'st-256color'" ];
+
+# Fading
+fading = true;
+{{- end }}
