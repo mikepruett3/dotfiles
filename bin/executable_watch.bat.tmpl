@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "windows" -}}
+:: -*-mode:bat-*- vim:ft=bat
+
+@ECHO OFF
+:loop
+  cls
+  %*
+  timeout /t 5 > NUL
+goto loop
+
+{{- end }}

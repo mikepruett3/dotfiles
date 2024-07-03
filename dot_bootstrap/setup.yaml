@@ -1,0 +1,69 @@
+---
+- name: Local Machine Bootstrap
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+  #vars:
+  #  flyctl_version: "0.1.130"
+
+  tasks:
+    #- name: "Get the Running User"
+    #  ansible.builtin.set_fact:
+    #    remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+    - name: "Install packages (dnf)"
+      ansible.builtin.dnf:
+        name:
+          - git
+          - htop
+          - vim
+          - fzf
+          - bat
+          - 7zip
+          - unrar
+          - unzip
+          - mediainfo
+          - glow
+          - poppler-utils
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'dnf'
+
+    - name: "Download Charm.sh Keyring"
+      ansible.builtin.get_url:
+        url: https://repo.charm.sh/apt/gpg.key
+        dest: /etc/apt/keyrings/charm.asc
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Add the Charm.sh Repository"
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/charm.asc] https://repo.charm.sh/apt/ * *"
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Install packages (apt)"
+      ansible.builtin.apt:
+        name:
+          - git
+          - htop
+          - vim
+          - fzf
+          - bat
+          - 7zip
+          - unrar
+          - unzip
+          - mediainfo
+          - glow
+          - poppler-utils
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Install go packages"
+      ansible.builtin.shell:
+        cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
+      environment:
+        GOBIN: "/usr/local/bin"
