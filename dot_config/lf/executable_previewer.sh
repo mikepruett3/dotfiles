@@ -47,7 +47,11 @@ case "$MIME" in
         batcat "$1"
         ;;
     *application/octet-stream*)
-        if [ "${1: -4,,}" == ".ans" ]; then
+        EXT="${1: -4}"
+        echo $EXT
+        EXT="${EXT,,}"
+        echo $EXT
+        if [ "$EXT" == ".ans" ]; then
             ansiart2utf8 "$1"
         fi
         ;;
