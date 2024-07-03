@@ -63,3 +63,5 @@
     - name: "Install go packages"
       ansible.builtin.shell:
         cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
+      environment:
+        GOBIN: "/usr/local/bin"
