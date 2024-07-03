@@ -20,6 +20,10 @@
           - vim
           - fzf
           - bat
+          - 7zip
+          - unrar
+          - unzip
+          - mediainfo
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'dnf'
@@ -32,6 +36,10 @@
           - vim
           - fzf
           - bat
+          - 7zip
+          - unrar
+          - unzip
+          - mediainfo
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
