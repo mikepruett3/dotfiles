@@ -31,7 +31,7 @@
           - htop
           - vim
           - fzf
-          - batcat
+          - bat
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
