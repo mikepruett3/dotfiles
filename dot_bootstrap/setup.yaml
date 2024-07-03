@@ -61,5 +61,5 @@
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install go packages"
-      ansbile.builtin.shell:
+      ansible.builtin.shell:
         cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
