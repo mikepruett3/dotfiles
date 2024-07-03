@@ -1,6 +1,3 @@
-{{ if eq .chezmoi.os "windows" -}}
-:: -*-mode:bat-*- vim:ft=bat
-
 @ECHO OFF
 
 WHERE /Q "winget"
@@ -86,5 +83,3 @@ IF ERRORLEVEL 0 (
     REM     START "Install Package - fil" /I /WAIT /B "sudo" "go install github.com/joeky888/fil@latest"
     REM )
 )
-
-{{- end }}
