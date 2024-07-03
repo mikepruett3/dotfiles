@@ -5,9 +5,9 @@ MIME=$(mimetype --all --brief "$1")
 
 case "$MIME" in
     # .pdf
-    #*application/pdf*)
-    #    pdftotext "$1" -
-    #    ;;
+    *application/pdf*)
+        pdftotext "$1" -
+        ;;
     # .7z
     *application/x-7z-compressed*)
         7zz l "$1"
