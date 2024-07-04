@@ -49,7 +49,7 @@ IF ERRORLEVEL 0 (
 
     WHERE /Q "fzf"
     IF ERRORLEVEL 1 (
-        START "Install Package - fzf" /I /WAIT /B "sudo" "winget install junegunn.fzf"
+        START "Install Package - fzf " /I /WAIT /B "sudo" "winget install junegunn.fzf"
     )
 
     WHERE /Q "age"
