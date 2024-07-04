@@ -3,5 +3,5 @@
 
 REM %USERPROFILE%\.bootstrap\setup.bat hash: {{ include "dot_bootstrap/setup.bat" | sha256sum }}
 
-START "BootStrapping System" /I %USERPROFILE%\.bootstrap\setup.bat
+START "BootStrapping System" %USERPROFILE%\.bootstrap\setup.bat
 {{- end }}
