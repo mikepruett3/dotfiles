@@ -113,4 +113,4 @@ IF ERRORLEVEL 0 (
     )
 )
 
-EXIT /b
+EXIT
