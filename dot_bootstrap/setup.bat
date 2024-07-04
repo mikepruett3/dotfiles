@@ -112,3 +112,5 @@ IF ERRORLEVEL 0 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
 )
+
+EXIT
