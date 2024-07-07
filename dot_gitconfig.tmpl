@@ -1,3 +1,5 @@
 [user]
+    name =  {{ .name | quote }}
     email = {{ .email | quote }}
-    username =  {{ .name | quote }}
+
+{{ end -}}
