@@ -99,7 +99,7 @@ IF ERRORLEVEL 0 (
 
     WHERE /Q "nvim"
     IF ERRORLEVEL 1 (
-        CALL :winget "Neovim.Neovim"
+        CALL :winget "Neovim.Neovim "
         CALL :npm "neovim"
     )
 
