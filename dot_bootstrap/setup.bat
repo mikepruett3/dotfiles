@@ -107,6 +107,8 @@ IF ERRORLEVEL 0 (
     IF ERRORLEVEL 1 (
         CALL :winget "FiloSottile.age"
     )
+
+    RefreshEnv.cmd
 )
 
 WHERE /Q "scoop"
@@ -125,6 +127,8 @@ IF ERRORLEVEL 0 (
     IF ERRORLEVEL 1 (
         CALL :scoop "chroma"
     )
+
+    RefreshEnv.cmd
 )
 
 WHERE /Q "go"
@@ -133,6 +137,8 @@ IF ERRORLEVEL 0 (
     IF ERRORLEVEL 1 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
+
+    RefreshEnv.cmd
 )
 
 EXIT /B
