@@ -23,8 +23,14 @@ GOTO :IsElevated
 
 :go
 ECHO.
-ECHO Installing Package - %~1
-START "Install Package - %~1" /I /WAIT /B go.exe install %~1
+ECHO Installing Go Package - %~1
+START "Install Go Package - %~1" /I /WAIT /B go.exe install %~1
+GOTO :IsElevated
+
+:npm
+ECHO.
+ECHO Installing NPM Package - %~1
+START "Install NPM Package - %~1" /I /WAIT /B npm install -g %~1
 GOTO :IsElevated
 
 :IsElevated
@@ -89,6 +95,12 @@ IF ERRORLEVEL 0 (
     WHERE /Q "rg"
     IF ERRORLEVEL 1 (
         CALL :winget "BurntSushi.ripgrep.MSVC"
+    )
+
+    WHERE /Q "nvim"
+    IF ERRORLEVEL 1 (
+        CALL :winget "Neovim.Neovim"
+        CALL :npm "neovim"
     )
 
     WHERE /Q "age"
