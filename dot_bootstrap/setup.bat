@@ -81,6 +81,11 @@ IF ERRORLEVEL 0 (
         CALL :winget "junegunn.fzf"
     )
 
+    WHERE /Q "ripgrep"
+    IF ERRORLEVEL 1 (
+        CALL :winget "BurntSushi.ripgrep.MSVC"
+    )
+
     WHERE /Q "age"
     IF ERRORLEVEL 1 (
         CALL :winget "FiloSottile.age"
