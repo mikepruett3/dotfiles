@@ -41,6 +41,11 @@ IF ERRORLEVEL 0 (
         CALL :winget "GoLang.Go"
     )
 
+    WHERE /Q "npm"
+    IF ERRORLEVEL 1 (
+        CALL :winget "OpenJS.NodeJS.LTS"
+    )
+
     WHERE /Q "bat"
     IF ERRORLEVEL 1 (
         CALL :winget "sharkdp.bat"
@@ -118,4 +123,4 @@ IF ERRORLEVEL 0 (
     )
 )
 
-EXIT /b
+EXIT /B
