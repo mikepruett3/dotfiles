@@ -81,7 +81,7 @@ IF ERRORLEVEL 0 (
         CALL :winget "junegunn.fzf"
     )
 
-    WHERE /Q "ripgrep"
+    WHERE /Q "rg"
     IF ERRORLEVEL 1 (
         CALL :winget "BurntSushi.ripgrep.MSVC"
     )
