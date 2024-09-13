@@ -63,7 +63,8 @@
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install golang"
-      ansible.builtin.include_role: fubarhouse.golang
+      ansible.builtin.include_role:
+        name: fubarhouse.golang
 
     - name: "Install go packages"
       ansible.builtin.shell:
