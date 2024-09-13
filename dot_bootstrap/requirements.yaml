@@ -1,0 +1,4 @@
+---
+roles:
+  # From Ansible Galaxy
+  - src: fubarhouse.golang
