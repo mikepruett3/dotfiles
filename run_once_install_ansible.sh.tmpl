@@ -8,7 +8,7 @@ case "${OS}" in
             sudo dnf install -y ansible
         elif [ -f /etc/lsb-release ]; then
             sudo apt-get update
-	    sudo apt-get install -y ansible
+	        sudo apt-get install -y ansible
         else
             echo "Unsupported Linux distribution"
             exit 1
@@ -23,7 +23,7 @@ case "${OS}" in
         ;;
 esac
 
-ansible-playbook ~/.bootstrap/setup.yaml --ask-become-pass
+ansible-playbook -v ~/.bootstrap/setup.yaml --ask-become-pass
 
 echo "Ansible installation complete."
 {{- end }}
