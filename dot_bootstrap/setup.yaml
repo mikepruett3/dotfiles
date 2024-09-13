@@ -64,7 +64,7 @@
 
     - name: "Install Ansible Galaxy requirements"
       ansible.builtin.command:
-        cmd: ansible-galaxy install -r requirements.yaml
+        cmd: ansible-galaxy install -r requirements.yaml --roles-path ~/.ansible/roles
 
     - name: "Install golang"
       ansible.builtin.include_role:
