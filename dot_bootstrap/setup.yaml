@@ -58,23 +58,24 @@
           - mediainfo
           - glow
           - poppler-utils
+          - golang
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
-    - name: Create a directory if it does not exist
-      ansible.builtin.file:
-        path: roles
-        state: directory
+    #- name: Create a directory if it does not exist
+    #  ansible.builtin.file:
+    #    path: roles
+    #    state: directory
 
-    - name: "Install Ansible Galaxy requirements"
-      ansible.builtin.command:
-        #cmd: ansible-galaxy install -r requirements.yaml --roles-path ~/.ansible/roles
-        cmd: ansible-galaxy install -r requirements.yaml
+    #- name: "Install Ansible Galaxy requirements"
+    #  ansible.builtin.command:
+    #    #cmd: ansible-galaxy install -r requirements.yaml --roles-path ~/.ansible/roles
+    #    cmd: ansible-galaxy install -r requirements.yaml
 
-    - name: "Install golang"
-      ansible.builtin.include_role:
-        name: fubarhouse.golang
+    #- name: "Install golang"
+    #  ansible.builtin.include_role:
+    #    name: fubarhouse.golang
 
     - name: "Install go packages"
       ansible.builtin.shell:
