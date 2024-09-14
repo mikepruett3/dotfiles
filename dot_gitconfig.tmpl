@@ -1,6 +1,19 @@
-[include]
-    # Include credential settings
-    path = .gitconfig_credentials
+[user]
+    name =  "Mike Pruett"
+    email = "mikepruett3@gmail.com"
 
-    # Include user settings
-    path = .gitconfig_user
+# Windows Credential Manager
+{{ if eq .chezmoi.os "windows" -}}
+[credential]
+	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+{{- end }}
+
+[credential "https://git.torafuma.com"]
+	username = "mikepruett3@gmail.com"
+	provider = generic
+
+[http "https://git.torafuma.com"]
+	sslVerify = false
+
+[http "https://refresh_token.git.torafuma.com"]
+	sslVerify = false
