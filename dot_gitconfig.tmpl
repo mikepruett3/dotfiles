@@ -1,6 +1,6 @@
 [user]
-    name =  "Mike Pruett"
-    email = "mikepruett3@gmail.com"
+    name =  {{ .name | quote }}
+    email = {{ .email | quote }}
 
 {{ if eq .chezmoi.os "windows" -}}
 # Windows Credential Manager
