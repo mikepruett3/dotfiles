@@ -2,8 +2,8 @@
     name =  "Mike Pruett"
     email = "mikepruett3@gmail.com"
 
-# Windows Credential Manager
 {{ if eq .chezmoi.os "windows" -}}
+# Windows Credential Manager
 [credential]
 	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 {{- end }}
