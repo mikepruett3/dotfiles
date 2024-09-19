@@ -79,8 +79,7 @@
 
     - name: "Run the kurzit executable"
       ansible.builtin.shell:
-        cmd: kurzit
-        chdir: /home/{{ remote_regular_user }}/.kurzit/
+        cmd: /home/{{ remote_regular_user }}/.kurzit/kurzit
 
     #- name: "Install golang"
     #  ansible.builtin.include_role:
