@@ -12,8 +12,17 @@
 	username = "mikepruett3@gmail.com"
 	provider = generic
 
+[credential "http://fw1-p-tfs02.faps.net:8080"]
+	provider = generic
+
+[credential "http://fw1-p-tfs02:8080"]
+	provider = generic
+
 [http "https://git.torafuma.com"]
 	sslVerify = false
 
 [http "https://refresh_token.git.torafuma.com"]
 	sslVerify = false
+
+[safe]
+    directory = *
