@@ -65,6 +65,16 @@
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
+    - name: "Checkout kurzit from Github"
+      ansible.builtin.git:
+        repo: https://github.com/mikepruett3/kurzit.git
+        dest: ~/.kurzit
+
+    - name: "Make kurzit executable"
+      ansible.builtin.file:
+        path: ~/.kurzit/kurzit
+        mode: '0750'
+
     #- name: "Install golang"
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
