@@ -80,7 +80,6 @@
         group: '{{ remote_regular_user }}'
         mode: '0750'
 
-    - name:
     #- name: "Install golang"
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
