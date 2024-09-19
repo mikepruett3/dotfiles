@@ -68,6 +68,7 @@
     - name: "Install golang"
       ansible.builtin.include_role:
         name: fubarhouse.golang
+      become: true
 
     - name: "Install go packages"
       ansible.builtin.shell:
