@@ -9,9 +9,12 @@
   #  flyctl_version: "0.1.130"
 
   tasks:
-    #- name: "Get the Running User"
-    #  ansible.builtin.set_fact:
-    #    remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+    - name: "Get the Running User"
+      ansible.builtin.set_fact:
+        remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+    - debug:
+        var: remote_regular_user
 
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
