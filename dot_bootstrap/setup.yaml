@@ -13,9 +13,6 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
-    - debug:
-        var: remote_regular_user
-
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
         name:
@@ -79,6 +76,11 @@
         owner: '{{ remote_regular_user }}'
         group: '{{ remote_regular_user }}'
         mode: '0750'
+
+    - name: "Run the kurzit executable"
+      ansible.builtin.shell:
+        cmd: kurzit
+        chdir: /home/{{ remote_regular_user }}/.kurzit/
 
     #- name: "Install golang"
     #  ansible.builtin.include_role:
