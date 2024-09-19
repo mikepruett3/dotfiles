@@ -76,8 +76,11 @@
     - name: "Make kurzit executable"
       ansible.builtin.file:
         path: /home/{{ remote_regular_user }}/.kurzit/kurzit
+        user: '{{ remote_regular_user }}'
+        group: '{{ remote_regular_user }}'
         mode: '0750'
 
+    - name:
     #- name: "Install golang"
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
