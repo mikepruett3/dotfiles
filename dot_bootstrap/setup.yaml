@@ -71,11 +71,11 @@
     - name: "Checkout kurzit from Github"
       ansible.builtin.git:
         repo: https://github.com/mikepruett3/kurzit.git
-        dest: ~/.kurzit
+        dest: /home/{{ remote_regular_user }}/.kurzit
 
     - name: "Make kurzit executable"
       ansible.builtin.file:
-        path: ~/.kurzit/kurzit
+        path: /home/{{ remote_regular_user }}/.kurzit/kurzit
         mode: '0750'
 
     #- name: "Install golang"
