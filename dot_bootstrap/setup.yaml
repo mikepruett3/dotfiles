@@ -65,14 +65,35 @@
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
-    - name: "Checkout kurzit from Github"
+    - name: "Install packages (brew)"
+      ansible.builtin.apt:
+        name:
+          #- git
+          - htop
+          - vim
+          #- fzf
+          - bat
+          - 7zip
+          - unrar
+          - unzip
+          - mediainfo
+          - glow
+          - poppler-utils
+          - golang-go
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'brew'
+
+    - name: "Checkout kurzit from Github (Linux)"
       ansible.builtin.git:
         repo: https://github.com/mikepruett3/kurzit.git
         dest: /home/{{ remote_regular_user }}/.kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] != "Darwin"
 
-    - name: "Make kurzit executable"
+    - name: "Make kurzit executable (Linux)"
       ansible.builtin.file:
         path: /home/{{ remote_regular_user }}/.kurzit/kurzit
         owner: '{{ remote_regular_user }}'
@@ -80,12 +101,44 @@
         mode: '0750'
       become: yes
       become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] != "Darwin"
 
-    - name: "Run the kurzit executable"
+    - name: "Run the kurzit executable (Linux)"
       ansible.builtin.shell:
         cmd: /home/{{ remote_regular_user }}/.kurzit/kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] != "Darwin"
+
+    - name: "Checkout kurzit from Github (Darwin)"
+      ansible.builtin.git:
+        repo: https://github.com/mikepruett3/kurzit.git
+        dest: /Users/{{ remote_regular_user }}/.kurzit
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] == "Darwin"
+
+    - name: "Make kurzit executable (Darwin)"
+      ansible.builtin.file:
+        path: /User/{{ remote_regular_user }}/.kurzit/kurzit
+        owner: '{{ remote_regular_user }}'
+        group: '{{ remote_regular_user }}'
+        mode: '0750'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] == "Darwin"
+
+    - name: "Run the kurzit executable (Darwin)"
+      ansible.builtin.shell:
+        cmd: /User/{{ remote_regular_user }}/.kurzit/kurzit
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] == "Darwin"
 
     #- name: "Install golang"
     #  ansible.builtin.include_role:
