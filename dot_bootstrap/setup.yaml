@@ -133,13 +133,13 @@
       when:
         - ansible_facts['os_family'] == "Darwin"
 
-    - name: "Run the kurzit executable (Darwin)"
-      ansible.builtin.shell:
-        cmd: /Users/{{ remote_regular_user }}/.kurzit/kurzit
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] == "Darwin"
+    #- name: "Run the kurzit executable (Darwin)"
+    #  ansible.builtin.shell:
+    #    cmd: /Users/{{ remote_regular_user }}/.kurzit/kurzit
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - ansible_facts['os_family'] == "Darwin"
 
     #- name: "Install golang"
     #  ansible.builtin.include_role:
