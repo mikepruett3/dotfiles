@@ -81,6 +81,8 @@
           - poppler-utils
           - golang-go
         state: present
+      become: yes
+      become_user: '{{ remote_regular_user }}'
       when:
          - ansible_facts['pkg_mgr'] == 'homebrew'
 
