@@ -66,7 +66,7 @@
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install packages (brew)"
-      ansible.builtin.apt:
+      community.general.homebrew:
         name:
           #- git
           - htop
@@ -82,7 +82,7 @@
           - golang-go
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'brew'
+         - ansible_facts['pkg_mgr'] == 'homebrew'
 
     - name: "Checkout kurzit from Github (Linux)"
       ansible.builtin.git:
@@ -123,7 +123,7 @@
 
     - name: "Make kurzit executable (Darwin)"
       ansible.builtin.file:
-        path: /User/{{ remote_regular_user }}/.kurzit/kurzit
+        path: /Users/{{ remote_regular_user }}/.kurzit/kurzit
         owner: '{{ remote_regular_user }}'
         mode: '0750'
       become: yes
@@ -133,7 +133,7 @@
 
     - name: "Run the kurzit executable (Darwin)"
       ansible.builtin.shell:
-        cmd: /User/{{ remote_regular_user }}/.kurzit/kurzit
+        cmd: /Users/{{ remote_regular_user }}/.kurzit/kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
