@@ -9,9 +9,9 @@
   #  flyctl_version: "0.1.130"
 
   tasks:
-    #- name: "Get the Running User"
-    #  ansible.builtin.set_fact:
-    #    remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+    - name: "Get the Running User"
+      ansible.builtin.set_fact:
+        remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
@@ -60,14 +60,36 @@
           - mediainfo
           - glow
           - poppler-utils
-          #- golang
+          - golang-go
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
-    - name: "Install golang"
-      ansible.builtin.include_role:
-        name: fubarhouse.golang
+    - name: "Checkout kurzit from Github"
+      ansible.builtin.git:
+        repo: https://github.com/mikepruett3/kurzit.git
+        dest: /home/{{ remote_regular_user }}/.kurzit
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Make kurzit executable"
+      ansible.builtin.file:
+        path: /home/{{ remote_regular_user }}/.kurzit/kurzit
+        owner: '{{ remote_regular_user }}'
+        group: '{{ remote_regular_user }}'
+        mode: '0750'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Run the kurzit executable"
+      ansible.builtin.shell:
+        cmd: /home/{{ remote_regular_user }}/.kurzit/kurzit
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    #- name: "Install golang"
+    #  ansible.builtin.include_role:
+    #    name: fubarhouse.golang
 
     - name: "Install go packages"
       ansible.builtin.shell:
