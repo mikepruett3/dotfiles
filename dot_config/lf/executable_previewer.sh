@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
-MIME=$(mimetype --all --brief "$1")
-#CATOPTS="--paging=never --style=changes --color=always"
+OS="$(uname -s)"
+case "${OS}" in
+    Linux*)
+        MIME=$(mimetype --all --brief "$1")
+        ;;
+    Darwin*)
+        MIME=$(file --mime-type "$1")
+        ;;
+    *)
+        echo "Unsupported operating system: ${OS}"
+        exit 1
+        ;;
+esac
 
 case "$MIME" in
     # .pdf
