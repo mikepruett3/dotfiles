@@ -4,9 +4,11 @@ OS="$(uname -s)"
 case "${OS}" in
     Linux*)
         MIME=$(mimetype --all --brief "$1")
+        CATCMD=$(batcat)
         ;;
     Darwin*)
         MIME=$(file --mime-type "$1")
+        CATCMD=$(bat)
         ;;
     *)
         echo "Unsupported operating system: ${OS}"
@@ -70,7 +72,7 @@ case "$MIME" in
     *text/plain*)
         # return false to always repaint, in case terminal size changes
         #batcat $CATOPTS "$1"
-        batcat "$1"
+        $CATCMD "$1"
         ;;
     *)
         echo "unknown format"
