@@ -68,23 +68,20 @@ case "$MIME" in
         ;;
     # any plain text file that doesn't have a specific handler
     *text/plain*)
-        EXT="${1: -3}"
-        echo $EXT
-        #EXT="${EXT,,}"
-        case "$EXT" in
-            .md)
-                glow -s dark "$1"
-                ;;
-            *)
-                ;;
-        esac
-
         case "${OS}" in
             Linux*)
                 batcat "$1"
                 ;;
             Darwin*)
-                bat "$1"
+                EXT="${1: -3}"
+                case "$EXT" in
+                    .md)
+                        glow -s dark "$1"
+                        ;;
+                    *)
+                        bat "$1"
+                        ;;
+                esac
                 ;;
             *)
                 echo "Unsupported operating system: ${OS}"
