@@ -51,7 +51,7 @@ cmd edit-config ${{
 }}
 
 cmd on-select &{{
-    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
+    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 }}
 
 # Basic Functions Shortcuts
