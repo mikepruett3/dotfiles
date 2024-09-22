@@ -68,7 +68,16 @@ case "$MIME" in
         ;;
     # any plain text file that doesn't have a specific handler
     *text/plain*)
-        $CATCMD "$1"
+        EXT="${1: -4}"
+        EXT="${EXT,,}"
+        case "$EXT" in
+            .md)
+                glow -s dark "$1"
+                ;;
+            *)
+                ;;
+        esac
+
         case "${OS}" in
             Linux*)
                 batcat "$1"
