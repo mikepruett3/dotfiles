@@ -69,6 +69,7 @@ case "$MIME" in
     # any plain text file that doesn't have a specific handler
     *text/plain*)
         EXT="${1: -4}"
+        echo $EXT
         EXT="${EXT,,}"
         case "$EXT" in
             .md)
