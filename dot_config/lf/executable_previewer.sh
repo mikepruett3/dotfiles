@@ -68,9 +68,9 @@ case "$MIME" in
         ;;
     # any plain text file that doesn't have a specific handler
     *text/plain*)
-        EXT="${1: -4}"
+        EXT="${1: -3}"
         echo $EXT
-        EXT="${EXT,,}"
+        #EXT="${EXT,,}"
         case "$EXT" in
             .md)
                 glow -s dark "$1"
