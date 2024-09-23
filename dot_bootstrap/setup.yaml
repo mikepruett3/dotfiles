@@ -93,6 +93,7 @@
           - htop
           - neovim
           #- fzf
+          - eza
           - lf
           - bat
           - p7zip
