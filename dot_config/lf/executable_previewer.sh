@@ -70,7 +70,11 @@ case "$MIME" in
     *text/plain*)
         case "${OS}" in
             Linux*)
-                batcat "$1"
+                if [ -f /etc/manjaro-release ]; then
+                    bat "$1"
+                else
+                    batcat "$1"
+                fi
                 ;;
             Darwin*)
                 EXT="${1: -3}"
