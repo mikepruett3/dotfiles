@@ -9,6 +9,9 @@ case "${OS}" in
         elif [ -f /etc/lsb-release ]; then
             sudo apt-get update
 	        sudo apt-get install -y ansible
+        elif [ -f /etc/manjaro-release ]; then
+            sudo pamac update
+            sudo pamac install ansible
         else
             echo "Unsupported Linux distribution"
             exit 1
