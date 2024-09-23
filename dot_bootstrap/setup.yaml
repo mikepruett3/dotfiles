@@ -89,14 +89,14 @@
     - name: "Install packages (pacman)"
       community.general.pacman:
         name:
-          #- git
+          - git
           - htop
-          - vim
+          - neovim
           #- fzf
           - lf
           - bat
-          - 7zip
-          - rar
+          - p7zip
+          - unrar-free
           - unzip
           - mediainfo
           - glow
