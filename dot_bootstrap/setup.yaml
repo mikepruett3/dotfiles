@@ -86,6 +86,28 @@
       when:
          - ansible_facts['pkg_mgr'] == 'homebrew'
 
+    - name: "Install packages (pacman)"
+      community.general.pacman:
+        name:
+          #- git
+          - htop
+          - vim
+          #- fzf
+          - lf
+          - bat
+          - 7zip
+          - rar
+          - unzip
+          - mediainfo
+          - glow
+          - poppler
+          - go
+        state: present
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+         - ansible_facts['pkg_mgr'] == 'pacman'
+
     - name: "Checkout kurzit from Github (Linux)"
       ansible.builtin.git:
         repo: https://github.com/mikepruett3/kurzit.git
