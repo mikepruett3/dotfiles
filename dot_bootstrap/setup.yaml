@@ -46,13 +46,30 @@
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
+    - name: "Download eza Keyring"
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+        dest: /etc/apt/keyrings/gierens.gpg
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Add the eza Repository"
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"
+        state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'apt'
+
     - name: "Install packages (apt)"
       ansible.builtin.apt:
         name:
           - git
+          - gpg
           - htop
           - vim
           - fzf
+          - eza
+          - lf
           - bat
           - 7zip
           - unrar-free
@@ -61,6 +78,7 @@
           - glow
           - poppler-utils
           - golang-go
+          - dos2unix
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
