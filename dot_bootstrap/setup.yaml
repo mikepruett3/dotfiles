@@ -63,6 +63,7 @@
     - name: "Install packages (apt)"
       ansible.builtin.apt:
         name:
+          - curl
           - git
           - gpg
           - htop
@@ -185,6 +186,14 @@
     #- name: "Install golang"
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
+
+    - name: "Install Starship prompt (Debian)"
+      ansible.builtin.shell:
+        cmd: curl -sS https://starship.rs/install.sh | sh
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - ansible_facts['os_family'] == "Debian"
 
     - name: "Install go packages"
       ansible.builtin.shell:
