@@ -55,7 +55,7 @@
           - fzf
           - bat
           - 7zip
-          - unrar
+          - unrar-free
           - unzip
           - mediainfo
           - glow
@@ -93,7 +93,7 @@
           - htop
           - neovim
           #- fzf
-          - eza
+          - ezaex
           - lf
           - bat
           - p7zip
