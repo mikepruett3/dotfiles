@@ -189,7 +189,7 @@
 
     - name: "Install Starship prompt (Debian)"
       ansible.builtin.shell:
-        cmd: curl -sS https://starship.rs/install.sh | sh
+        cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
