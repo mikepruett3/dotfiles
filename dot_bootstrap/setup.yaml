@@ -33,7 +33,7 @@
         name:
           - git
           - htop
-          - vim
+          - neovim
           - fzf
           - bat
           - 7zip
@@ -82,7 +82,7 @@
           - git
           - gpg
           - htop
-          - vim
+          - neovim
           - fzf
           - eza
           - lf
@@ -103,10 +103,14 @@
     - name: "Install packages (brew)"
       community.general.homebrew:
         name:
-          #- git
+          - curl
+          - git
+          - gpg
           - htop
-          - vim
-          #- fzf
+          - neovim
+          - fzf
+          - eza
+          - lf
           - bat
           - 7zip
           - rar
@@ -127,7 +131,7 @@
           - git
           - htop
           - neovim
-          #- fzf
+          - fzf
           - ezaex
           - lf
           - bat
@@ -139,8 +143,6 @@
           - poppler
           - go
         state: present
-      #become: yes
-      #become_user: '{{ remote_regular_user }}'
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
 
@@ -150,27 +152,19 @@
         dest: ~/.kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
-      #when:
-      #  - ansible_facts['os_family'] != "Darwin"
 
     - name: "Make kurzit executable"
       ansible.builtin.file:
         path: ~/.kurzit/kurzit
-        #owner: '{{ remote_regular_user }}'
-        #group: '{{ remote_regular_user }}'
         mode: '0750'
       become: yes
       become_user: '{{ remote_regular_user }}'
-      #when:
-      #  - ansible_facts['os_family'] != "Darwin"
 
     - name: "Run the kurzit executable"
       ansible.builtin.shell:
         cmd: ~/.kurzit/kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
-      #when:
-      #  - ansible_facts['os_family'] != "Darwin"
 
     #- name: "Checkout kurzit from Github (Darwin)"
     #  ansible.builtin.git:
