@@ -13,6 +13,21 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: "Make local font directory"
+      ansible.builtin.file:
+        path: ~/.local/share/fonts/
+        state: directory
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Copy the font to ~/.local/share/fonts"
+      ansible.builtin.copy:
+        src: ~/.local/share/chezmoi/fonts/
+        dest: ~/.local/share/fonts/
+        remote_src: yes
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
         name:
