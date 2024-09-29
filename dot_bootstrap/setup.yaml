@@ -123,7 +123,6 @@
         repo: "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=amd64] https://repository.mullvad.net/deb/stable {{ ansible_facts['distribution_release'] }} main"
         filename: mullvad
         state: present
-        force: true
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
