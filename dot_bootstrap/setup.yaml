@@ -203,13 +203,17 @@
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
 
-    - name: "Install Starship prompt (Debian)"
-      ansible.builtin.shell:
-        cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] == "Debian"
+    - name: "Install Starship Cross-Shell Prompt"
+      ansible.builtin.include_role:
+        name: andrewrothstein.starship
+
+    #- name: "Install Starship prompt"
+    #  ansible.builtin.shell:
+    #    cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - ansible_facts['os_family'] == "Debian"
 
     - name: "Install go packages"
       ansible.builtin.shell:
