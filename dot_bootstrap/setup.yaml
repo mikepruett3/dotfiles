@@ -120,7 +120,7 @@
 
     - name: "Add the mullvad Repository"
       ansible.builtin.apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main"
+        repo: "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=amd64] https://repository.mullvad.net/deb/stable {{ ansible_facts['distribution_release'] }} main"
         filename: mullvad
         state: present
       when:
