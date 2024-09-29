@@ -31,18 +31,25 @@
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
         name:
-          - git
-          - htop
-          - neovim
-          - fzf
           - bat
+          - curl
+          - dos2unix
+          - eza
+          - fontconfig
+          - fzf
+          - git
+          - glow
+          - golang
+          - gpg
+          - htop
+          - lf
+          - mediainfo
+          - neovim
+          - pydf
+          - poppler-utils
           - 7zip
           - unrar
           - unzip
-          - mediainfo
-          - glow
-          - poppler-utils
-          - golang
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'dnf'
@@ -78,24 +85,25 @@
     - name: "Install packages (apt)"
       ansible.builtin.apt:
         name:
+          - bat
           - curl
+          - dos2unix
+          - eza
+          - fontconfig
+          - fzf
           - git
+          - glow
+          - golang-go
           - gpg
           - htop
-          - neovim
-          - fzf
-          - eza
           - lf
-          - bat
+          - mediainfo
+          - neovim
           - pydf
+          - poppler-utils
           - 7zip
           - unrar-free
           - unzip
-          - mediainfo
-          - glow
-          - poppler-utils
-          - golang-go
-          - dos2unix
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
@@ -103,22 +111,25 @@
     - name: "Install packages (brew)"
       community.general.homebrew:
         name:
+          - bat
           - curl
+          - dos2unix
+          - eza
+          - fontconfig
+          - fzf
           - git
+          - glow
+          - go
           - gpg
           - htop
-          - neovim
-          - fzf
-          - eza
           - lf
-          - bat
+          - mediainfo
+          - neovim
+          - pydf
+          - poppler
           - 7zip
           - rar
           - unzip
-          - mediainfo
-          - glow
-          - poppler
-          - go
         state: present
       become: yes
       become_user: '{{ remote_regular_user }}'
@@ -128,23 +139,32 @@
     - name: "Install packages (pacman)"
       community.general.pacman:
         name:
-          - git
-          - htop
-          - neovim
-          - fzf
-          - ezaex
-          - lf
           - bat
+          - curl
+          - dos2unix
+          - ezaex
+          - fontconfig
+          - fzf
+          - git
+          - glow
+          - go
+          - gpg
+          - htop
+          - lf
+          - mediainfo
+          - neovim
+          - pydf
+          - poppler
           - p7zip
           - unrar-free
           - unzip
-          - mediainfo
-          - glow
-          - poppler
-          - go
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
+
+    - name: "Update the font information cache files"
+      ansible.builtin.shell:
+        cmd: fc-cache
 
     - name: "Checkout kurzit from Github"
       ansible.builtin.git:
@@ -165,33 +185,6 @@
         cmd: ~/.kurzit/kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
-
-    #- name: "Checkout kurzit from Github (Darwin)"
-    #  ansible.builtin.git:
-    #    repo: https://github.com/mikepruett3/kurzit.git
-    #    dest: /Users/{{ remote_regular_user }}/.kurzit
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - ansible_facts['os_family'] == "Darwin"
-
-    #- name: "Make kurzit executable (Darwin)"
-    #  ansible.builtin.file:
-    #    path: /Users/{{ remote_regular_user }}/.kurzit/kurzit
-    #    owner: '{{ remote_regular_user }}'
-    #    mode: '0750'
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - ansible_facts['os_family'] == "Darwin"
-
-    #- name: "Run the kurzit executable (Darwin)"
-    #  ansible.builtin.shell:
-    #    cmd: /Users/{{ remote_regular_user }}/.kurzit/kurzit
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - ansible_facts['os_family'] == "Darwin"
 
     #- name: "Install golang"
     #  ansible.builtin.include_role:
