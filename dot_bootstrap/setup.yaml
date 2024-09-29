@@ -64,26 +64,29 @@
     - name: "Download Charm.sh Keyring"
       ansible.builtin.get_url:
         url: https://repo.charm.sh/apt/gpg.key
-        dest: /etc/apt/keyrings/charm.asc
+        dest: /etc/apt/trusted.gpg.d/charm.asc
+        force: true
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the Charm.sh Repository"
       ansible.builtin.apt_repository:
-        repo: "deb [signed-by=/etc/apt/keyrings/charm.asc] https://repo.charm.sh/apt/ * *"
+        repo: "deb [signed-by=/etc/apt/trusted.gpg.d/charm.asc] https://repo.charm.sh/apt/ * *"
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Download eza Keyring"
-      ansible.builtin.shell:
-        cmd: wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+        dest: /etc/apt/trusted.gpg.d/gierens.asc
+        force: true
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the eza Repository"
       ansible.builtin.apt_repository:
-        repo: "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main"
+        repo: "deb [signed-by=/etc/apt/trusted.gpg.d/gierens.asc] http://deb.gierens.de stable main"
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
