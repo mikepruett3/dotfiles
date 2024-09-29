@@ -72,6 +72,7 @@
     - name: "Add the Charm.sh Repository"
       ansible.builtin.apt_repository:
         repo: "deb [signed-by=/etc/apt/trusted.gpg.d/charm.asc] https://repo.charm.sh/apt/ * *"
+        filename: charm
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
@@ -87,6 +88,7 @@
     - name: "Add the eza Repository"
       ansible.builtin.apt_repository:
         repo: "deb [signed-by=/etc/apt/trusted.gpg.d/gierens.asc] http://deb.gierens.de stable main"
+        filename: eza
         state: present
       when:
          - ansible_facts['pkg_mgr'] == 'apt'
