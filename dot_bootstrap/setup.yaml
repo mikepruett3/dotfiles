@@ -144,52 +144,52 @@
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
 
-    - name: "Checkout kurzit from Github (Linux)"
+    - name: "Checkout kurzit from Github"
       ansible.builtin.git:
         repo: https://github.com/mikepruett3/kurzit.git
-        dest: /home/{{ remote_regular_user }}/.kurzit
+        dest: ~/.kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] != "Darwin"
+      #when:
+      #  - ansible_facts['os_family'] != "Darwin"
 
-    - name: "Make kurzit executable (Linux)"
+    - name: "Make kurzit executable"
       ansible.builtin.file:
-        path: /home/{{ remote_regular_user }}/.kurzit/kurzit
+        path: ~/.kurzit/kurzit
         owner: '{{ remote_regular_user }}'
         group: '{{ remote_regular_user }}'
         mode: '0750'
       become: yes
       become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] != "Darwin"
+      #when:
+      #  - ansible_facts['os_family'] != "Darwin"
 
-    - name: "Run the kurzit executable (Linux)"
+    - name: "Run the kurzit executable"
       ansible.builtin.shell:
-        cmd: /home/{{ remote_regular_user }}/.kurzit/kurzit
+        cmd: ~/.kurzit/kurzit
       become: yes
       become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] != "Darwin"
+      #when:
+      #  - ansible_facts['os_family'] != "Darwin"
 
-    - name: "Checkout kurzit from Github (Darwin)"
-      ansible.builtin.git:
-        repo: https://github.com/mikepruett3/kurzit.git
-        dest: /Users/{{ remote_regular_user }}/.kurzit
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] == "Darwin"
+    #- name: "Checkout kurzit from Github (Darwin)"
+    #  ansible.builtin.git:
+    #    repo: https://github.com/mikepruett3/kurzit.git
+    #    dest: /Users/{{ remote_regular_user }}/.kurzit
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - ansible_facts['os_family'] == "Darwin"
 
-    - name: "Make kurzit executable (Darwin)"
-      ansible.builtin.file:
-        path: /Users/{{ remote_regular_user }}/.kurzit/kurzit
-        owner: '{{ remote_regular_user }}'
-        mode: '0750'
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - ansible_facts['os_family'] == "Darwin"
+    #- name: "Make kurzit executable (Darwin)"
+    #  ansible.builtin.file:
+    #    path: /Users/{{ remote_regular_user }}/.kurzit/kurzit
+    #    owner: '{{ remote_regular_user }}'
+    #    mode: '0750'
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - ansible_facts['os_family'] == "Darwin"
 
     #- name: "Run the kurzit executable (Darwin)"
     #  ansible.builtin.shell:
@@ -206,14 +206,6 @@
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:
         name: andrewrothstein.starship
-
-    #- name: "Install Starship prompt"
-    #  ansible.builtin.shell:
-    #    cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - ansible_facts['os_family'] == "Debian"
 
     - name: "Install go packages"
       ansible.builtin.shell:
