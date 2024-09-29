@@ -13,6 +13,13 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: "Make local .ssh directory"
+      ansible.builtin.file:
+        path: ~/.ssh/
+        state: directory
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Make local font directory"
       ansible.builtin.file:
         path: ~/.local/share/fonts/
@@ -189,6 +196,10 @@
     #- name: "Install golang"
     #  ansible.builtin.include_role:
     #    name: fubarhouse.golang
+
+    - name: "Install Visual Studio Code"
+      ansible.builtin.include_role:
+        name: gantsign.visual-studio-code
 
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:
