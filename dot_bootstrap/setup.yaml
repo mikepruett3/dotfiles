@@ -152,7 +152,7 @@
           - golang-go
           - gpg
           - htop
-          - lf
+          #- lf
           - mediainfo
           - mullvad-browser
           - neovim
@@ -257,10 +257,17 @@
       ansible.builtin.include_role:
         name: andrewrothstein.starship
 
-    - name: "Install go packages"
+    - name: "Install ansiart2utf8 go packages"
       ansible.builtin.shell:
         cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
       environment:
+        GOBIN: "/usr/local/bin"
+
+    - name: "Install ansiart2utf8 go packages"
+      ansible.builtin.shell:
+        cmd: go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+      environment:
+        CGO_ENABLED: "0"
         GOBIN: "/usr/local/bin"
 
     - name: "Download and Install the minio client"
