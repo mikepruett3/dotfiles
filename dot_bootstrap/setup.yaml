@@ -61,7 +61,7 @@
           - golang
           - gpg
           - htop
-          - lf
+          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -180,7 +180,7 @@
           - go
           - gpg
           - htop
-          - lf
+          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -208,7 +208,7 @@
           - go
           - gpg
           - htop
-          - lf
+          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -263,7 +263,7 @@
       environment:
         GOBIN: "/usr/local/bin"
 
-    - name: "Install ansiart2utf8 go packages"
+    - name: "Install lf go packages"
       ansible.builtin.shell:
         cmd: go install -ldflags="-s -w" github.com/gokcehan/lf@latest
       environment:
