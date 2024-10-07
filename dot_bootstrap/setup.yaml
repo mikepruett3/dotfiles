@@ -13,6 +13,18 @@
       ansible.builtin.set_fact:
         remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: "Set fact for architecture (x86_64)"
+      ansible.builtin.set_fact:
+        architecture: "amd64"
+      when:
+        - ansible_facts['architecture'] == "x86_64"
+
+    - name: "Set fact for architecture (i386)"
+      ansible.builtin.set_fact:
+        architecture: "i386"
+      when:
+        - ansible_facts['architecture'] == "i386"
+
     - name: "Make local .ssh directory"
       ansible.builtin.file:
         path: ~/.ssh/
@@ -250,3 +262,11 @@
         cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
       environment:
         GOBIN: "/usr/local/bin"
+
+    - name: "Download and Install the minio client"
+      ansible.builtin.get_url:
+        url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
+        dest: ~/bin/
+        mode: '0750'
+        become: yes
+        become_user: '{{ remote_regular_user }}'
