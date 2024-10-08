@@ -37,9 +37,49 @@ GOTO :IsElevated
 
 WHERE /Q "winget"
 IF ERRORLEVEL 0 (
-    WHERE /Q "starship"
+    WHERE /Q "age"
     IF ERRORLEVEL 1 (
-        CALL :winget "Starship.Starship"
+        CALL :winget "FiloSottile.age"
+    )
+
+    WHERE /Q "bat"
+    IF ERRORLEVEL 1 (
+        CALL :winget "sharkdp.bat"
+    )
+
+    WHERE /Q "btop"
+    IF ERRORLEVEL 1 (
+        CALL :winget "aristocratos.btop4win"
+    )
+
+    WHERE /Q "curl"
+    IF ERRORLEVEL 1 (
+        CALL :winget "cURL.cURL"
+    )
+
+    WHERE /Q "dos2unix"
+    IF ERRORLEVEL 1 (
+        CALL :winget "waterlan.dos2unix"
+    )
+
+    WHERE /Q "eza"
+    IF ERRORLEVEL 1 (
+        CALL :winget "eza-community.eza"
+    )
+
+    WHERE /Q "fzf"
+    IF ERRORLEVEL 1 (
+        CALL :winget "junegunn.fzf"
+    )
+
+    WHERE /Q "git"
+    IF ERRORLEVEL 1 (
+        CALL :winget "Git.Git"
+    )
+
+    WHERE /Q "glow"
+    IF ERRORLEVEL 1 (
+        CALL :winget "charmbracelet.glow"
     )
 
     WHERE /Q "go"
@@ -47,14 +87,9 @@ IF ERRORLEVEL 0 (
         CALL :winget "GoLang.Go"
     )
 
-    WHERE /Q "npm"
+    WHERE /Q "gpg"
     IF ERRORLEVEL 1 (
-        CALL :winget "OpenJS.NodeJS.LTS"
-    )
-
-    WHERE /Q "bat"
-    IF ERRORLEVEL 1 (
-        CALL :winget "sharkdp.bat"
+        CALL :winget "GnuPG.GnuPG"
     )
 
     WHERE /Q "less"
@@ -67,16 +102,6 @@ IF ERRORLEVEL 0 (
         CALL :winget "gokcehan.lf"
     )
 
-    WHERE /Q "eza"
-    IF ERRORLEVEL 1 (
-        CALL :winget "eza-community.eza"
-    )
-
-    WHERE /Q "glow"
-    IF ERRORLEVEL 1 (
-        CALL :winget "charmbracelet.glow"
-    )
-
     WHERE /Q "mediainfo"
     IF ERRORLEVEL 1 (
         CALL :winget "MediaArea.MediaInfo"
@@ -87,14 +112,9 @@ IF ERRORLEVEL 0 (
         CALL :winget "ArtifexSoftware.mutool"
     )
 
-    WHERE /Q "fzf"
+    WHERE /Q "npm"
     IF ERRORLEVEL 1 (
-        CALL :winget "junegunn.fzf"
-    )
-
-    WHERE /Q "rg"
-    IF ERRORLEVEL 1 (
-        CALL :winget "BurntSushi.ripgrep.MSVC"
+        CALL :winget "OpenJS.NodeJS.LTS"
     )
 
     WHERE /Q "nvim"
@@ -103,9 +123,14 @@ IF ERRORLEVEL 0 (
         CALL :npm "neovim"
     )
 
-    WHERE /Q "age"
+    WHERE /Q "rg"
     IF ERRORLEVEL 1 (
-        CALL :winget "FiloSottile.age"
+        CALL :winget "BurntSushi.ripgrep.MSVC"
+    )
+
+    WHERE /Q "starship"
+    IF ERRORLEVEL 1 (
+        CALL :winget "Starship.Starship"
     )
 )
 
