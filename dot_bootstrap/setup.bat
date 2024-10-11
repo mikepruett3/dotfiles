@@ -107,6 +107,11 @@ IF ERRORLEVEL 0 (
         CALL :winget "MediaArea.MediaInfo"
     )
 
+    WHERE /Q "mc"
+    IF ERRORLEVEL 1 (
+        CALL :winget "MinIO.Client"
+    )
+
     WHERE /Q "mutool"
     IF ERRORLEVEL 1 (
         CALL :winget "ArtifexSoftware.mutool"
@@ -159,6 +164,8 @@ IF ERRORLEVEL 0 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
 )
+
+mc.exe cp --recursive minio "%UserProfile%\Images\"
 
 RefreshEnv.cmd
 
