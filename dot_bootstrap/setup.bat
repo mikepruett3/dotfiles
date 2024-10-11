@@ -166,8 +166,9 @@ IF ERRORLEVEL 0 (
 )
 
 IF NOT EXIST .\Images\ MKDIR .\Images\
-mc cp --recursive minio .\Images\
+IF NOT EXIST .\Images\wallpapers\ mc cp --recursive minio .\Images\
 
-REM RefreshEnv.cmd
+RefreshEnv.cmd
 
-EXIT /B
+REM EXIT /B
+EXIT
