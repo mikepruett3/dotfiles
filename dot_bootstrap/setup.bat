@@ -166,9 +166,8 @@ IF ERRORLEVEL 0 (
 )
 
 MKDIR "%USERPROFILE%\Images\"
+mc cp --recursive minio "%UserProfile%\Images\"
 
 RefreshEnv.cmd
-
-mc.exe cp --recursive minio "%UserProfile%\Images\"
 
 EXIT /B
