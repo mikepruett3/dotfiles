@@ -165,9 +165,10 @@ IF ERRORLEVEL 0 (
     )
 )
 
-MKDIR .\Images\ > $null
+IF NOT EXIST .\Images\ MKDIR .\Images\
 mc cp --recursive minio .\Images\
 
 RefreshEnv.cmd
 
-EXIT /B
+REM EXIT /B
+EXIT
