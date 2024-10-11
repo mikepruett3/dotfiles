@@ -164,6 +164,11 @@ IF ERRORLEVEL 0 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
 
+    WHERE /Q "ascii-image-converter"
+    IF ERRORLEVEL 1 (
+        CALL :go "github.com/TheZoraiz/ascii-image-converter@latest"
+    )
+
     WHERE /Q "go-launcher"
     IF ERRORLEVEL 1 (
         CALL :go "github.com/mikepruett3/go-launcher@latest"
