@@ -7,7 +7,7 @@ GSUDO "%~f0" %*
 IF ERRORLEVEL 999 (
     ECHO Failed to elevate!
 )
-EXIT /b %ERRORLEVEL%
+EXIT /B %ERRORLEVEL%
 
 :winget
 ECHO.
@@ -169,6 +169,8 @@ IF NOT EXIST .\Images\ MKDIR .\Images\
 mc cp --recursive minio .\Images\
 
 RefreshEnv.cmd
+
+:EOF
 
 REM EXIT /B
 EXIT
