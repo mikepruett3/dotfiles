@@ -170,7 +170,4 @@ mc cp --recursive minio .\Images\
 
 RefreshEnv.cmd
 
-:EOF
-
-REM EXIT /B
-EXIT
+EXIT /B
