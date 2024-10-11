@@ -9,8 +9,6 @@ IF ERRORLEVEL 999 (
 )
 EXIT /b %ERRORLEVEL%
 
-MKDIR "%UserProfile%\Images\"
-
 :winget
 ECHO.
 ECHO Installing Package - %~1
@@ -166,6 +164,8 @@ IF ERRORLEVEL 0 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
 )
+
+MKDIR "%USERPROFILE%\Images\"
 
 RefreshEnv.cmd
 
