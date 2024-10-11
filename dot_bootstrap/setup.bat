@@ -170,5 +170,4 @@ mc cp --recursive minio .\Images\
 
 REM RefreshEnv.cmd
 
-REM EXIT /B
-EXIT
+EXIT /B
