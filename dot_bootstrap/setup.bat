@@ -170,5 +170,5 @@ IF NOT EXIST .\Images\wallpapers\ mc cp --recursive minio .\Images\
 
 RefreshEnv.cmd
 
-REM EXIT /B
-EXIT
+:EOF
+EXIT /B
