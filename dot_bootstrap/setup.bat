@@ -9,6 +9,8 @@ IF ERRORLEVEL 999 (
 )
 EXIT /b %ERRORLEVEL%
 
+MKDIR "%UserProfile%\Images\"
+
 :winget
 ECHO.
 ECHO Installing Package - %~1
@@ -167,7 +169,6 @@ IF ERRORLEVEL 0 (
 
 RefreshEnv.cmd
 
-MKDIR "%UserProfile%\Images\"
 mc.exe cp --recursive minio "%UserProfile%\Images\"
 
 EXIT /B
