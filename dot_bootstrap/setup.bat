@@ -163,6 +163,16 @@ IF ERRORLEVEL 0 (
     IF ERRORLEVEL 1 (
         CALL :go "github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest"
     )
+
+    WHERE /Q "go-launcher"
+    IF ERRORLEVEL 1 (
+        CALL :go "github.com/mikepruett3/go-launcher@latest"
+    )
+
+    WHERE /Q "imgconv"
+    IF ERRORLEVEL 1 (
+        CALL :go "github.com/mikepruett3/imgconv@latest"
+    )
 )
 
 IF NOT EXIST .\Images\ MKDIR .\Images\
