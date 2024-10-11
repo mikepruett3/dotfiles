@@ -168,6 +168,8 @@ IF ERRORLEVEL 0 (
 IF NOT EXIST .\Images\ MKDIR .\Images\
 IF NOT EXIST .\Images\wallpapers\ mc cp --recursive minio .\Images\
 
+REG IMPORT %USERPROFILE%\.bootstrap\cmdhere.reg
+
 RefreshEnv.cmd
 
 EXIT /B

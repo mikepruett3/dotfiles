@@ -1,0 +1,30 @@
+Windows Registry Editor Version 5.00
+
+; From = https://www.winhelponline.com/blog/cmd-here-windows-10-context-menu-add/
+
+[HKEY_CLASSES_ROOT\Directory\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_CLASSES_ROOT\Directory\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\cmdprompt]
+@="@shell32.dll,-8506"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_CLASSES_ROOT\Drive\shell\cmdprompt\command]
+@="cmd.exe /s /k pushd \"%V\""
