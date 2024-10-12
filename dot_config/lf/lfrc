@@ -57,6 +57,7 @@ cmd on-select &{{
 # Basic Functions Shortcuts
 map . set hidden!
 map DD delete
+map Df delete -f
 map p paste
 map x cut
 map y copy
