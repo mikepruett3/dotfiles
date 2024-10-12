@@ -264,6 +264,24 @@
       environment:
         GOBIN: "/usr/local/bin"
 
+    - name: "Install ascii-image-converter go packages"
+      ansible.builtin.shell:
+        cmd: go install github.com/TheZoraiz/ascii-image-converter@latest
+      environment:
+        GOBIN: "/usr/local/bin"
+
+    - name: "Install go-launcher go packages"
+      ansible.builtin.shell:
+        cmd: go install github.com/mikepruett3/go-launcher@latest
+      environment:
+        GOBIN: "/usr/local/bin"
+
+    - name: "Install imgconv go packages"
+      ansible.builtin.shell:
+        cmd: go install github.com/mikepruett3/imgconv@latest
+      environment:
+        GOBIN: "/usr/local/bin"
+
     - name: "Install lf go packages"
       ansible.builtin.shell:
         cmd: go install -ldflags="-s -w" github.com/gokcehan/lf@latest
