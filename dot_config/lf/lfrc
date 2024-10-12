@@ -17,6 +17,10 @@ cmd mimetype ${{
     file --mime-type "$f"
 }}
 
+cmd delete-force ${{
+    rm -rf "$f"
+}}
+
 cmd mkdir ${{
     printf "Directory Name: "
     read ans
@@ -57,7 +61,7 @@ cmd on-select &{{
 # Basic Functions Shortcuts
 map . set hidden!
 map DD delete
-map Df delete -f
+map Df delete-force
 map p paste
 map x cut
 map y copy
