@@ -160,7 +160,7 @@
           - pydf
           - poppler-utils
           - 7zip
-          - tailscale
+          #- tailscale
           - unrar-free
           - unzip
         state: present
