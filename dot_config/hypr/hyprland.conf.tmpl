@@ -35,7 +35,7 @@ $menu = wofi --show drun
 # exec-once = $terminal
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
-exec-once = waybar & hyprpaper & avizo-service & hypridle
+exec-once = waybar & hyprpaper & hypridle
 #exec-once = [workspace 2 silent] fireox
 
 #############################
@@ -242,6 +242,8 @@ binde = , XF86MonBrightnessDown, exec, lightctl down
 
 # Example windowrule v1
 # windowrule = float, ^(kitty)$
+windowrule = workspace 2, title:^(Firefox)(.*)$
+windowrule = workspace 4, title:^(mpv)(.*)$
 
 # Example windowrule v2
 # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
