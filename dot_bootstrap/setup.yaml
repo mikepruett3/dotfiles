@@ -207,7 +207,7 @@
           - git
           - glow
           - go
-          - gpg
+          - gnupg
           - htop
           #- lf
           - mediainfo
