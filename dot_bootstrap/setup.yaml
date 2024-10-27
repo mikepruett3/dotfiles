@@ -67,7 +67,6 @@
           - golang
           - gpg
           - htop
-          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -186,7 +185,6 @@
           - go
           - gpg
           - htop
-          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -214,7 +212,6 @@
           - go
           - gnupg
           - htop
-          #- lf
           - mediainfo
           - neovim
           - pydf
@@ -352,4 +349,3 @@
       when:
         - tailnet is defined
         - tailnet.rc == 0
-
