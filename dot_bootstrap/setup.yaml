@@ -26,6 +26,11 @@
       when:
         - ansible_facts['architecture'] == "i386"
 
+    - name: "Set fact for Desktop Session"
+      ansible.builtin.set_fact:
+        desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default=undef()) }}"
+      ignore_errors: true
+
     - name: "Make local .ssh directory"
       ansible.builtin.file:
         path: ~/.ssh/
@@ -222,6 +227,22 @@
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
 
+    - name: "Install Desktop packages (hyprland)"
+      community.general.pacman:
+        name:
+          - kitty
+          - wofi
+          - waybar
+          - hyprpaper
+          - hypridle
+          - pwvucontrol
+          - obsidian
+          - firefox
+        state: present
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+
     - name: "Install Yay Package Manager"
       ansible.builtin.include_role:
         name: jahrik.yay
@@ -317,8 +338,17 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
-    #- name: "Sync minio storage to ~/Images"
-    #  ansible.builtin.shell:
-    #    cmd: ~/bin/mc cp --recursive minio ~/Images/
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
+    - name: "Check if connected to Tailnet"
+      ansible.builtin.shell:
+        cmd: tailscale status
+      ignore_errors: true
+      register: tailnet
+
+    - name: "Sync minio storage to ~/Images"
+      ansible.builtin.shell:
+        cmd: ~/bin/mc cp --recursive minio ~/Images/
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - tailnet is defined
+        - tailnet.rc == 0
