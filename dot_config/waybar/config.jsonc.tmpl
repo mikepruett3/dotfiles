@@ -185,11 +185,11 @@
             "car": "",
             "default": ["", "", ""]
         },
-        {{- if eq .chezmoi.hostname "broly" }}
+{{- if eq .chezmoi.hostname "broly" }}
         "on-click": "pavucontrol"
-        {{ else if eq .chezmoi.os "linux" -}}
+{{ else if eq .chezmoi.os "linux" -}}
         "on-click": "pwvucontrol"
-        {{- end }}
+{{- end }}
     },
     "custom/media": {
         "format": "{icon} {}",
