@@ -16,7 +16,7 @@ case "${OS}" in
             sudo pamac update
             sudo pamac install ansible
         elif [ -f /etc/arch-release ]; then
-            sudo pacman -Sy
+            sudo pacman -Syu
             sudo pacman -S ansible
         else
             echo "Unsupported Linux distribution"
