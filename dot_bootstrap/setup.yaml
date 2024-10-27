@@ -215,9 +215,18 @@
           - pydf
           - poppler
           - p7zip
+          - tailscale
           - unrar-free
           - unzip
         state: present
+      when:
+         - ansible_facts['pkg_mgr'] == 'pacman'
+
+    - name: "Install Yay Package Manager"
+      ansible.builtin.include_role:
+        name: jahrik.yay
+      vars:
+        install: true
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
 
@@ -255,6 +264,15 @@
         name: ansible-role-visual-studio-code
       when:
          - ansible_facts['pkg_mgr'] != 'pacman'
+
+    - name: "Install Visual Studio Code (yay)"
+      ansible.builtin.include_role:
+        name: jahrik.yay
+      vars:
+        aur_packages:
+          - visual-studio-code-bin
+      when:
+         - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:

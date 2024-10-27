@@ -8,3 +8,4 @@ roles:
   #- src: gantsign.visual-studio-code
   - src: fubarhouse.golang
   - src: andrewrothstein.starship
+  - src: jahrik.yay
