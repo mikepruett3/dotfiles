@@ -4,7 +4,7 @@
   become: true
   connection: local
   gather_facts: true
-  no_log: true
+  no_log: false
 
   #vars:
   #  flyctl_version: "0.1.130"
