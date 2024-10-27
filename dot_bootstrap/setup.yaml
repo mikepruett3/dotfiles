@@ -301,6 +301,6 @@
 
     - name: "Sync minio storage to ~/Images"
       ansible.builtin.shell:
-        cmd: mc cp --recursive minio ~/Images/
+        cmd: bin/mc cp --recursive minio ~/Images/
       become: yes
       become_user: '{{ remote_regular_user }}'
