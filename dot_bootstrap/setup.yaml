@@ -253,6 +253,8 @@
       ansible.builtin.include_role:
         #name: gantsign.visual-studio-code
         name: ansible-role-visual-studio-code
+      when:
+         - ansible_facts['pkg_mgr'] != 'pacman'
 
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:
