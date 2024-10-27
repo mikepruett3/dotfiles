@@ -16,7 +16,11 @@
     "modules-right": [
         "mpd",
         "idle_inhibitor",
+{{- if eq .chezmoi.hostname "broly" }}
         "pulseaudio",
+{{ else if eq .chezmoi.os "linux" -}}
+        "pipewire",
+{{- end }}
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -186,6 +190,25 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "pipewire": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pwvucontrol"
     },
     "custom/media": {
         "format": "{icon} {}",
