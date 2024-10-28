@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
 [global]
 font = Iosevka Term 11
 
@@ -256,4 +255,3 @@ timeout = 8
 #    urgency = normal
 #
 # vim: ft=cfg
-{{- end }}
