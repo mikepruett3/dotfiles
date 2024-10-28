@@ -198,6 +198,14 @@
       when:
          - ansible_facts['pkg_mgr'] == 'homebrew'
 
+    - name: "Install Yay Package Manager"
+      ansible.builtin.include_role:
+        name: jahrik.yay
+      vars:
+        install: true
+      when:
+         - ansible_facts['pkg_mgr'] == 'pacman'
+
     - name: "Install packages (pacman)"
       community.general.pacman:
         name:
@@ -240,13 +248,16 @@
         - desktop is defined
         - desktop == 'hyprland'
 
-    - name: "Install Yay Package Manager"
+    - name: "Install Desktop packages (yay)"
       ansible.builtin.include_role:
         name: jahrik.yay
       vars:
-        install: true
+        aur_packages:
+          - vesktop-bin
       when:
-         - ansible_facts['pkg_mgr'] == 'pacman'
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Update the font information cache files"
       ansible.builtin.shell:
