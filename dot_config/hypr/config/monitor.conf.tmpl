@@ -1,0 +1,16 @@
+# -----------------------------------------------------
+# Monitor Setup
+# See https://wiki.hyprland.org/Configuring/Monitors/
+# -----------------------------------------------------
+
+monitor=,preferred,auto,auto
+
+{{- if eq .chezmoi.hostname "broly" }}
+monitor= eDP-1,highres,0x0,1.2
+{{- end }}
+
+{{- if eq .chezmoi.hostname "goku" }}
+monitor= DP-1,highres,auto-right,1.2
+monitor= HDMI-A-1,highrr,auto,1
+monitor= HDMI-A-2,highres,auto-left,1.2
+{{- end }}

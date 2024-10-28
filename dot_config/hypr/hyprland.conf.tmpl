@@ -1,84 +1,38 @@
-# You can split this configuration into multiple files
-# Create your files separately and then link them to this file like this:
-# source = ~/.config/hypr/myColors.conf
+#  _   _                  _                 _
+# | | | |_   _ _ __  _ __| | __ _ _ __   __| |
+# | |_| | | | | '_ \| '__| |/ _` | '_ \ / _` |
+# |  _  | |_| | |_) | |  | | (_| | | | | (_| |
+# |_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|
+#        |___/|_|
+#
+# -----------------------------------------------------
 
+# -----------------------------------------------------
+# Monitor
+# -----------------------------------------------------
+source = ~/.config/hypr/conf/monitor.conf
 
-################
-### MONITORS ###
-################
+# -----------------------------------------------------
+# Keywords
+# -----------------------------------------------------
+source = ~/.config/hypr/conf/keywords.conf
 
-# See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=,preferred,auto,auto
-{{- if eq .chezmoi.hostname "broly" }}
-monitor= eDP-1, highres, 0x0, 1.2
-{{- end }}
-{{- if eq .chezmoi.hostname "goku" }}
-monitor= DP-1, highres, auto-right, 1.2
-monitor= HDMI-A-1, highrr, auto, 1
-monitor= HDMI-A-2, highres, auto-left, 1.2
-{{- end }}
+# -----------------------------------------------------
+# Autostart
+# -----------------------------------------------------
+source = ~/.config/hypr/conf/autostart.conf
 
-###################
-### MY PROGRAMS ###
-###################
+# -----------------------------------------------------
+# Environment
+# -----------------------------------------------------
+source = ~/.config/hypr/conf/environment.conf
 
-# See https://wiki.hyprland.org/Configuring/Keywords/
-
-# Set programs that you use
-$terminal = kitty
-$fileManager = dolphin
-$menu = wofi --show drun
-
-
-#################
-### AUTOSTART ###
-#################
-
-# Autostart necessary processes (like notifications daemons, status bars, etc.)
-# Or execute your favorite apps at launch like this:
-
-# exec-once = $terminal
-# exec-once = nm-applet &
-# exec-once = waybar & hyprpaper & firefox
-exec-once = waybar & hyprpaper & hypridle
-#exec-once = [workspace 2 silent] fireox
-
-#############################
-### ENVIRONMENT VARIABLES ###
-#############################
-
-# See https://wiki.hyprland.org/Configuring/Environment-variables/
-
-env = GDK_SCALE,2
-env = XCURSOR_SIZE,24
-env = HYPRCURSOR_SIZE,24
-
-
-#####################
-### LOOK AND FEEL ###
-#####################
+# -----------------------------------------------------
+# Load configuration files
+# -----------------------------------------------------
+source = ~/.config/hypr/conf/window.conf
 
 # Refer to https://wiki.hyprland.org/Configuring/Variables/
-
-# https://wiki.hyprland.org/Configuring/Variables/#general
-general {
-    gaps_in = 3
-    gaps_out = 5
-
-    border_size = 0
-
-    # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-    col.inactive_border = rgba(595959aa)
-
-    # Set to true enable resizing windows by clicking and dragging on borders and gaps
-    resize_on_border = false
-
-    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-    allow_tearing = false
-
-    layout = dwindle
-}
 
 # https://wiki.hyprland.org/Configuring/Variables/#decoration
 decoration {
