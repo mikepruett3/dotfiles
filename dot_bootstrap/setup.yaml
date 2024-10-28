@@ -240,9 +240,12 @@
           - waybar
           - hyprpaper
           - hypridle
+          - xdg-desktop-portal-hyprland
           - pwvucontrol
           - obsidian
           - firefox
+          - bluez
+          - bluez-utils
         state: present
       when:
         - desktop is defined
