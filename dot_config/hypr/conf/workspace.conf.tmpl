@@ -1,0 +1,13 @@
+# -----------------------------------------------------
+# Workspaces
+# See https://wiki.hyprland.org/Configuring/Workspace-Rules/
+# -----------------------------------------------------
+
+{{- if eq .chezmoi.hostname "goku" }}
+workspace=1,monitor:HDMI-A-1,default:true
+workspace=2,monitor:HDMI-A-2
+workspace=3,monitor:DP-1
+workspace=4,monitor:DP-1
+#workspace=5,monitor:HDMI-A-2
+#workspace=6,monitor:DP-1
+{{- end }}

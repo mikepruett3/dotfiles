@@ -1,0 +1,18 @@
+# -----------------------------------------------------
+# Window Rules
+# See https://wiki.hyprland.org/Configuring/Window-Rules/
+# -----------------------------------------------------
+
+{{- if eq .chezmoi.hostname "goku" }}
+windowrule = workspace 2, title:^(.*)(Firefox)(.*)$
+windowrule = workspace 3, title:^(.*)(Visual Studio Code)(.*)$
+windowrule = workspace 4, title:^(.*)(Discord)(.*)$
+{{- end }}
+
+{{- if eq .chezmoi.hostname "broly" }}
+windowrule = workspace 2, title:^(.*)(Firefox)(.*)$
+windowrule = workspace 3, title:^(.*)(mpv)(.*)$
+windowrule = workspace 4, title:^(.*)(Code)(.*)$
+{{- end }}
+
+windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
