@@ -4,7 +4,7 @@
 
 # Use "hyprctl -j monitors" to determine the parameters for the lock and unlock positions.
 unlockedMonitorYPositions=(0 0 0)
-lockedMonitorYPositions=(1152 1152 1152)
+lockedMonitorYPositions=(1080 1080 1080)
 
 monitors=$(hyprctl -j monitors)
 tailMonitorIndex=$(($(echo "$monitors" | jq length)-1))
