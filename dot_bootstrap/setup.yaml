@@ -26,9 +26,10 @@
       when:
         - ansible_facts['architecture'] == "i386"
 
-    - name: "Set fact for Desktop Session"
+    - name: "Set fact for Session Information"
       ansible.builtin.set_fact:
         desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default=undef()) }}"
+        #wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME', default=undef()) }}"
       ignore_errors: true
 
     - name: "Make local .ssh directory"
@@ -76,7 +77,7 @@
           - unzip
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'dnf'
+        - ansible_facts['pkg_mgr'] == 'dnf'
 
     # Based on https://www.jeffgeerling.com/blog/2022/aptkey-deprecated-debianubuntu-how-fix-ansible
     - name: "Download Charm.sh Keyring"
@@ -85,7 +86,7 @@
         dest: /etc/apt/trusted.gpg.d/charm.asc
         force: true
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the Charm.sh Repository"
       ansible.builtin.apt_repository:
@@ -93,7 +94,7 @@
         filename: charm
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Download eza Keyring"
       ansible.builtin.get_url:
@@ -101,7 +102,7 @@
         dest: /etc/apt/trusted.gpg.d/gierens.asc
         force: true
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the eza Repository"
       ansible.builtin.apt_repository:
@@ -109,7 +110,7 @@
         filename: eza
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Download tailscale Keyring"
       ansible.builtin.get_url:
@@ -117,7 +118,8 @@
         dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
         force: true
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - desktop is defined
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the tailscale Repository"
       ansible.builtin.get_url:
@@ -125,7 +127,8 @@
         dest: /etc/apt/sources.list.d/tailscale.list
         force: true
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - desktop is defined
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Download mullvad Keyring"
       ansible.builtin.get_url:
@@ -133,7 +136,8 @@
         dest: /usr/share/keyrings/mullvad-keyring.asc
         force: true
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - desktop is defined
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Add the mullvad Repository"
       ansible.builtin.apt_repository:
@@ -141,7 +145,8 @@
         filename: mullvad
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - desktop is defined
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install packages (apt)"
       ansible.builtin.apt:
@@ -159,17 +164,38 @@
           - htop
           #- lf
           - mediainfo
-          - mullvad-browser
           - neovim
           - pydf
           - poppler-utils
           - 7zip
-          #- tailscale
           - unrar-free
           - unzip
         state: present
       when:
-         - ansible_facts['pkg_mgr'] == 'apt'
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Install Desktop packages (apt - hyprland)"
+      community.general.pacman:
+        name:
+          - kitty
+          - wofi
+          - waybar
+          - hyprpaper
+          - hypridle
+          - xdg-desktop-portal-hyprland
+          - pwvucontrol
+          - mako
+          - obsidian
+          - firefox
+          - mullvad-browser
+          - tailscale
+          - bluez
+          - bluez-utils
+        state: present
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install packages (brew)"
       community.general.homebrew:
@@ -233,7 +259,7 @@
       when:
          - ansible_facts['pkg_mgr'] == 'pacman'
 
-    - name: "Install Desktop packages (hyprland)"
+    - name: "Install Desktop packages (pacman - hyprland)"
       community.general.pacman:
         name:
           - kitty
@@ -252,6 +278,7 @@
       when:
         - desktop is defined
         - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Install Desktop packages (yay)"
       ansible.builtin.include_role:
@@ -297,7 +324,9 @@
         #name: gantsign.visual-studio-code
         name: ansible-role-visual-studio-code
       when:
-         - ansible_facts['pkg_mgr'] != 'pacman'
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] != 'pacman'
 
     - name: "Install Visual Studio Code (yay)"
       ansible.builtin.include_role:
@@ -306,7 +335,9 @@
         aur_packages:
           - visual-studio-code-bin
       when:
-         - ansible_facts['pkg_mgr'] == 'pacman'
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:
