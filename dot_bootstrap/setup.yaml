@@ -190,14 +190,13 @@
           - hyprpaper
           - hypridle
           - xdg-desktop-portal-hyprland
-          - pwvucontrol
-          - mako
-          - obsidian
+          - pavucontrol
+          - mako-notifier
           - firefox
           - mullvad-browser
           - tailscale
           - bluez
-          - bluez-utils
+          - bluez-tools
         state: present
       when:
         - desktop is defined
@@ -388,6 +387,18 @@
         mode: '0755'
       become: yes
       become_user: '{{ remote_regular_user }}'
+
+    - name: "Download and Install the Obsidian (apt)"
+      ansible.builtin.get_url:
+        url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.7.4/Obsidian-1.7.4.AppImage"
+        dest: ~/Apps/Obsidian-1.7.4.AppImage
+        mode: '0755'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
