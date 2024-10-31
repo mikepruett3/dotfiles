@@ -7,6 +7,11 @@
 [credential]
 	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 {{- end }}
+{{ if eq .chezmoi.os "linux" -}}
+# Linux Credential Manager
+[credential]
+	helper = /usr/bin/git-credential-manager
+{{- end }}
 
 [credential "https://git.torafuma.com"]
 	username = "mikepruett3@gmail.com"
