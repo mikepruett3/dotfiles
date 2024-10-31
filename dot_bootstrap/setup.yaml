@@ -249,14 +249,16 @@
           - fontconfig
           - fzf
           - git
+          - git-credential-manager
           - glow
           - go
           - gnupg
           - htop
           - mediainfo
           - neovim
-          - pydf
+          - pass
           - poppler
+          - pydf
           - p7zip
           - tailscale
           - unrar-free
