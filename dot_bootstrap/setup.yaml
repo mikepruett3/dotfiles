@@ -46,6 +46,13 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
+    - name: "Make local Apps directory"
+      ansible.builtin.file:
+        path: ~/Apps/
+        state: directory
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Copy the font to ~/.local/share/fonts"
       ansible.builtin.copy:
         src: ~/.local/share/chezmoi/fonts/
@@ -379,6 +386,14 @@
         url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
         dest: ~/bin/
         mode: '0750'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Download and Install the Vesktop client"
+      ansible.builtin.get_url:
+        url: "https://vencord.dev/download/vesktop/arm64/appimage"
+        dest: ~/Apps/Vesktop-1.5.3.AppImage
+        mode: '0755'
       become: yes
       become_user: '{{ remote_regular_user }}'
 
