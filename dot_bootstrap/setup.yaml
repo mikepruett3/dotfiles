@@ -182,7 +182,7 @@
         - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Install Desktop packages (apt - hyprland)"
-      community.general.pacman:
+      ansible.builtin.apt:
         name:
           - kitty
           - wofi
