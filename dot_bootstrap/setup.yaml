@@ -188,7 +188,7 @@
           - wofi
           - waybar
           - hyprpaper
-          - hypridle
+          #- hypridle
           - xdg-desktop-portal-hyprland
           - pavucontrol
           - mako-notifier
