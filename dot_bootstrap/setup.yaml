@@ -192,7 +192,7 @@
           - xdg-desktop-portal-hyprland
           - pavucontrol
           - mako-notifier
-          - firefox
+          - firefox-esr
           - mullvad-browser
           - tailscale
           - bluez
