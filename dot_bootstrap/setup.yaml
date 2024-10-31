@@ -382,7 +382,7 @@
 
     - name: "Download and Install the Vesktop client"
       ansible.builtin.get_url:
-        url: "https://vencord.dev/download/vesktop/arm64/appimage"
+        url: "https://github.com/Vencord/Vesktop/releases/download/v1.5.3/Vesktop-1.5.3.AppImage"
         dest: ~/Apps/Vesktop-1.5.3.AppImage
         mode: '0755'
       become: yes
