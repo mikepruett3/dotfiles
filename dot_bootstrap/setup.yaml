@@ -298,16 +298,16 @@
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] == 'pacman'
 
-    - name: "Install Desktop packages (yay)"
-      ansible.builtin.include_role:
-        name: jahrik.yay
-      vars:
-        aur_packages:
-          - vesktop-bin
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'pacman'
+    #- name: "Install Desktop packages (yay)"
+    #  ansible.builtin.include_role:
+    #    name: jahrik.yay
+    #  vars:
+    #    aur_packages:
+    #      - vesktop-bin
+    #  when:
+    #    - desktop is defined
+    #    - desktop == 'hyprland'
+    #    - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Update the font information cache files"
       ansible.builtin.shell:
