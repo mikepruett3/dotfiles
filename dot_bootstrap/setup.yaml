@@ -53,6 +53,13 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
+    - name: "Make local Applications desktop directory"
+      ansible.builtin.file:
+        path: ~/.local/share/applications/
+        state: directory
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Copy the font to ~/.local/share/fonts"
       ansible.builtin.copy:
         src: ~/.local/share/chezmoi/fonts/
@@ -398,6 +405,14 @@
         url: "https://github.com/mikepruett3/youtube-desktop/releases/download/v1.0.4/YouTube.Desktop-1.0.4.AppImage"
         dest: ~/Apps/YouTube.Desktop-1.0.4.AppImage
         mode: '0755'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Create the Desktop file for YouTube-Desktop"
+      ansible.builtin.template:
+        src: youtube-desktop.j2
+        dest: ~/.local/share/applications/youtube-desktop.desktop
+        mode: '0640'
       become: yes
       become_user: '{{ remote_regular_user }}'
 
