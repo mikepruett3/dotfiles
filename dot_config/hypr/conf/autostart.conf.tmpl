@@ -1,0 +1,12 @@
+# -----------------------------------------------------
+# Autostart
+# See https://wiki.hyprland.org/FAQ/#how-do-i-autostart-my-favorite-apps
+# -----------------------------------------------------
+
+exec-once = waybar
+exec-once = mako
+exec-once = hypridle
+exec-once = hyprpaper
+exec-once = [workspace 4 silent] $discord
+
+source = ~/.config/hypr/conf/monitors/{{- .chezmoi.hostname -}}.conf
