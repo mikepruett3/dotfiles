@@ -166,7 +166,7 @@
           - fontconfig
           - fzf
           - git
-          - git-credential-manager
+          #- git-credential-manager
           - glow
           - golang-go
           - gpg
