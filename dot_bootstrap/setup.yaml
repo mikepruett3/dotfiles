@@ -436,6 +436,12 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
+    - name: "Force an update to the xdg-desktop-menu"
+      ansible.builtin.shell:
+        cmd: xdg-desktop-menu forceupdate
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Check if connected to Tailnet"
       ansible.builtin.shell:
         cmd: tailscale status
