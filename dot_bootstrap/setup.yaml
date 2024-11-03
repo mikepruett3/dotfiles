@@ -159,12 +159,14 @@
       ansible.builtin.apt:
         name:
           - bat
+          - btop
           - curl
           - dos2unix
           - eza
           - fontconfig
           - fzf
           - git
+          - git-credential-manager
           - glow
           - golang-go
           - gpg
@@ -172,8 +174,9 @@
           #- lf
           - mediainfo
           - neovim
-          - pydf
+          - pass
           - poppler-utils
+          - pydf
           - 7zip
           - unrar-free
           - unzip
@@ -386,6 +389,14 @@
       ansible.builtin.get_url:
         url: "https://github.com/Vencord/Vesktop/releases/download/v1.5.3/Vesktop-1.5.3.AppImage"
         dest: ~/Apps/Vesktop-1.5.3.AppImage
+        mode: '0755'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Download and Install the YouTube-Desktop client"
+      ansible.builtin.get_url:
+        url: "https://github.com/mikepruett3/youtube-desktop/releases/download/v1.0.4/YouTube.Desktop-1.0.4.AppImage"
+        dest: ~/Apps/YouTube.Desktop-1.0.4.AppImage
         mode: '0755'
       become: yes
       become_user: '{{ remote_regular_user }}'
