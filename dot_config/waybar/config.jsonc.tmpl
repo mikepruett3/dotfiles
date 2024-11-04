@@ -7,13 +7,18 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "include": [
+        "~/.config/waybar/conf/backlight.json",
+        "~/.config/waybar/conf/batteries/{{- .chezmoi.hostname -}}.json",
         "~/.config/waybar/conf/clock.json",
         "~/.config/waybar/conf/cpu.json",
         "~/.config/waybar/conf/idle_inhibitor.json",
         "~/.config/waybar/conf/memory.json",
+        "~/.config/waybar/conf/network.json",
+        "~/.config/waybar/conf/power-profiles-daemon.json",
+        "~/.config/waybar/conf/audio/{{- .chezmoi.hostname -}}.json",
+        "~/.config/waybar/conf/temperatures/{{- .chezmoi.hostname -}}.json",
         "~/.config/waybar/conf/tray.json",
         "~/.config/waybar/conf/workspaces/{{- .chezmoi.hostname -}}.json",
-        "~/.config/waybar/conf/temperatures/{{- .chezmoi.hostname -}}.json"
     ],
     "modules-left": [
         "hyprland/workspaces",
@@ -40,72 +45,6 @@
         "custom/power"
     ],
     // Modules configuration
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-{{- if eq .chezmoi.hostname "broly" }}
-        "on-click": "pavucontrol"
-{{ else if eq .chezmoi.os "linux" -}}
-        "on-click": "pwvucontrol"
-{{- end }}
-    },
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
