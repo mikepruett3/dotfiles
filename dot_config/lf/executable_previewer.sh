@@ -72,15 +72,16 @@ case "$MIME" in
                 ;;
         esac
         ;;
+    *application/json*)
+        cat "$1"
+        ;;
+    *text/html*)
+        cat "$1"
+        ;;
     # any plain text file that doesn't have a specific handler
     *text/plain*)
         case "${OS}" in
             Linux*)
-                #if [ -f /etc/manjaro-release ]; then
-                #    bat "$1"
-                #else
-                #    batcat "$1"
-                #fi
                 cat "$1"
                 ;;
             Darwin*)
