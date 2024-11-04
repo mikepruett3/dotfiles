@@ -3,7 +3,13 @@
 OS="$(uname -s)"
 case "${OS}" in
     Linux*)
-        MIME=$(mimetype --all --brief "$1")
+        if [ -x "$(command -v xdg-mime)" ]; then
+            MIME=$(xdg-mime query filetype "$1"
+        elif [ -x "$(command -v mimetype)" ]; then
+            MIME=$(mimetype --all --brief "$1")
+        else
+            MIME=$(file --mime-type "$1")
+        fi
         ;;
     Darwin*)
         MIME=$(file --mime-type "$1")
@@ -70,11 +76,12 @@ case "$MIME" in
     *text/plain*)
         case "${OS}" in
             Linux*)
-                if [ -f /etc/manjaro-release ]; then
-                    bat "$1"
-                else
-                    batcat "$1"
-                fi
+                #if [ -f /etc/manjaro-release ]; then
+                #    bat "$1"
+                #else
+                #    batcat "$1"
+                #fi
+                cat "$1"
                 ;;
             Darwin*)
                 EXT="${1: -3}"
