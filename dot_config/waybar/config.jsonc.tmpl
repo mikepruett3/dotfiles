@@ -6,6 +6,9 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
+    "include": [
+        "~/.config/waybar/conf/keyboard-state.json"
+    ],
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap"
@@ -23,7 +26,7 @@
         "memory",
         "temperature",
         "backlight",
-        //"keyboard-state",
+        "keyboard-state",
         //"hyprland/language",
         "battery",
         "clock",
@@ -49,15 +52,15 @@
             // "default": ""
          }
     },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
+    //"keyboard-state": {
+    //    "numlock": true,
+    //    "capslock": true,
+    //    "format": "{name} {icon}",
+    //    "format-icons": {
+    //        "locked": "",
+    //        "unlocked": ""
+    //    }
+    //},
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
