@@ -362,11 +362,18 @@
         - not result.stat.isdir
         - result.rc != 0
 
+    - name: "Check if Visual Studio Code is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v code
+      register: result
+      failed_when: result.rc >= 2
+
     - name: "Install Visual Studio Code"
       ansible.builtin.include_role:
         #name: gantsign.visual-studio-code
         name: ansible-role-visual-studio-code
       when:
+        - result.rc != 0
         - desktop is defined
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] != 'pacman'
@@ -378,6 +385,7 @@
         aur_packages:
           - visual-studio-code-bin
       when:
+        - result.rc != 0
         - desktop is defined
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] == 'pacman'
@@ -477,7 +485,7 @@
       ansible.builtin.stat:
         path: ~/Images
       register: result
-      failed_when: result.rc >= 2
+      ignore_errors: true
       become: yes
       become_user: '{{ remote_regular_user }}'
 
