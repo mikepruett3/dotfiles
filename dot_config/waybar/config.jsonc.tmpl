@@ -15,6 +15,7 @@
         "~/.config/waybar/conf/memory.json",
         "~/.config/waybar/conf/network.json",
         "~/.config/waybar/conf/power-profiles-daemon.json",
+        "~/.config/waybar/conf/power.json",
         "~/.config/waybar/conf/audio/{{- .chezmoi.hostname -}}.json",
         "~/.config/waybar/conf/temperatures/{{- .chezmoi.hostname -}}.json",
         "~/.config/waybar/conf/tray.json",
@@ -44,29 +45,4 @@
         "tray",
         "custom/power"
     ],
-    // Modules configuration
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/power": {
-        "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
-    }
 }
