@@ -323,9 +323,9 @@
         cmd: fc-cache
 
     - name: "Check if kurzit has been installed"
+      register: result
       ansible.builtin.stat:
         path: ~/.kurzit
-      register: result
       failed_when: result.rc >= 2
       become: yes
       become_user: '{{ remote_regular_user }}'
