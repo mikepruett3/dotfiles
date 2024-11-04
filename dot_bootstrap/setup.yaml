@@ -474,6 +474,8 @@
         cmd: command -v mc
       register: result
       failed_when: result.rc >= 2
+      become: yes
+      become_user: '{{ remote_regular_user }}'
 
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
