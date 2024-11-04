@@ -241,13 +241,20 @@
       when:
          - ansible_facts['pkg_mgr'] == 'homebrew'
 
+    - name: "Check if Yay is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v yay
+      register: result
+      failed_when: result.rc >= 2
+
     - name: "Install Yay Package Manager"
       ansible.builtin.include_role:
         name: jahrik.yay
       vars:
         install: true
       when:
-         - ansible_facts['pkg_mgr'] == 'pacman'
+        - result.rc != 0
+        - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Install packages (pacman)"
       community.general.pacman:
