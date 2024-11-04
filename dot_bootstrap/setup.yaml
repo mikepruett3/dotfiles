@@ -214,6 +214,7 @@
           - libnss-mdns
           - mupdf
           - mupdf-tools
+          - youtube-dl
           - viewnior
         state: present
       when:
@@ -326,6 +327,7 @@
         cmd: yay -S --needed --noconfirm --noprogressbar {{ item }}
       with_items:
         - hyprshot
+        - youtube-dl
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
