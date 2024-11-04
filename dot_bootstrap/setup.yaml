@@ -209,7 +209,7 @@
           - bluez
           - bluez-tools
           - cups
-          - ahavi-daemon
+          - avahi-daemon
           - libnss-mdns
           - mupdf
           - mupdf-tools
@@ -308,7 +308,7 @@
           - bluez
           - bluez-utils
           - cups
-          - ahavi
+          - avahi
           - nss-mdns
           - libmupdf
           - mupdf-gl
