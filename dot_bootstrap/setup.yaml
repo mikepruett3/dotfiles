@@ -312,6 +312,8 @@
         cmd: yay -S --noconfirm {{ item }}
       with_items:
         - hyprshot
+      become: yes
+      become_user: '{{ remote_regular_user }}'
       when:
         - desktop is defined
         - desktop == 'hyprland'
