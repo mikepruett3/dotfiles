@@ -7,7 +7,8 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "include": [
-        "~/.config/waybar/conf/keyboard-state.json"
+        //"~/.config/waybar/conf/keyboard-state.json",
+        "~/.config/waybar/conf/workspaces/{{- .chezmoi.hostname -}}.json"
     ],
     "modules-left": [
         "hyprland/workspaces",
@@ -26,7 +27,7 @@
         "memory",
         "temperature",
         "backlight",
-        "keyboard-state",
+        //"keyboard-state",
         //"hyprland/language",
         "battery",
         "clock",
@@ -34,33 +35,6 @@
         "custom/power"
     ],
     // Modules configuration
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": ""
-            // "urgent": "",
-            // "focused": "",
-            // "active": "",
-            // "default": ""
-         }
-    },
-    //"keyboard-state": {
-    //    "numlock": true,
-    //    "capslock": true,
-    //    "format": "{name} {icon}",
-    //    "format-icons": {
-    //        "locked": "",
-    //        "unlocked": ""
-    //    }
-    //},
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
