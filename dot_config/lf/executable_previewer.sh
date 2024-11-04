@@ -5,7 +5,8 @@ case "${OS}" in
     Linux*)
         if [ -x $(command -v xdg-mime) ]; then
             MIME=$(xdg-mime query filetype "$1"
-        elif [ -x $(command -v mimetype) ]; then
+        fi
+        if [ -x $(command -v mimetype) ]; then
             MIME=$(mimetype --all --brief "$1")
         else
             MIME=$(file --mime-type "$1")
