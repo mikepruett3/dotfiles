@@ -309,7 +309,7 @@
 
     - name: "Install Desktop packages (yay)"
       ansible.builtin.shell:
-        cmd: yay -S --noconfirm {{ item }}
+        cmd: yay -S --needed --noconfirm --noprogressbar {{ item }}
       with_items:
         - hyprshot
       become: yes
