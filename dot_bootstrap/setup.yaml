@@ -380,11 +380,10 @@
         - ansible_facts['pkg_mgr'] != 'pacman'
 
     - name: "Install Visual Studio Code (yay)"
-      ansible.builtin.include_role:
-        name: jahrik.yay
-      vars:
-        aur_packages:
-          - visual-studio-code-bin
+      ansible.builtin.shell:
+        cmd: yay -S --needed --noconfirm --noprogressbar visual-studio-code-bin
+      become: yes
+      become_user: '{{ remote_regular_user }}'
       when:
         - result.rc != 0
         - desktop is defined
