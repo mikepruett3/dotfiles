@@ -208,6 +208,12 @@
           - tailscale
           - bluez
           - bluez-tools
+          - cups
+          - ahavi-daemon
+          - libnss-mdns
+          - mupdf
+          - mupdf-tools
+          - viewnior
         state: present
       when:
         - desktop is defined
@@ -301,6 +307,12 @@
           - firefox
           - bluez
           - bluez-utils
+          - cups
+          - ahavi
+          - nss-mdns
+          - libmupdf
+          - mupdf-gl
+          - viewnior
         state: present
       when:
         - desktop is defined
