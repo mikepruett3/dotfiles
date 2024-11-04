@@ -7,7 +7,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "include": [
-        //"~/.config/waybar/conf/keyboard-state.json",
+        "~/.config/waybar/conf/*.json",
         "~/.config/waybar/conf/workspaces/{{- .chezmoi.hostname -}}.json"
     ],
     "modules-left": [
@@ -27,7 +27,7 @@
         "memory",
         "temperature",
         "backlight",
-        //"keyboard-state",
+        "keyboard-state",
         //"hyprland/language",
         "battery",
         "clock",
