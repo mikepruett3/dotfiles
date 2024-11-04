@@ -308,11 +308,10 @@
         - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Install Desktop packages (yay)"
-      ansible.builtin.include_role:
-        name: jahrik.yay
-      vars:
-        aur_packages:
-          - hyprshot
+      ansible.builtin.shell:
+        cmd: yay -S --noconfirm {{ item }}
+      with_items:
+        - hyprshot
       when:
         - desktop is defined
         - desktop == 'hyprland'
