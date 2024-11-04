@@ -390,9 +390,17 @@
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] == 'pacman'
 
+    - name: "Check if Starship Cross-Shell Prompt is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v starship
+      register: result
+      failed_when: result.rc >= 2
+
     - name: "Install Starship Cross-Shell Prompt"
       ansible.builtin.include_role:
         name: andrewrothstein.starship
+      when:
+        - result.rc != 0
 
     - name: "Install ansiart2utf8 go packages"
       ansible.builtin.shell:
@@ -461,11 +469,19 @@
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] == 'apt'
 
+    - name: "Check if minio client is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v mc
+      register: result
+      failed_when: result.rc >= 2
+
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
         url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
         dest: ~/bin/
         mode: '0750'
+      when:
+        - result.rc != 0
       become: yes
       become_user: '{{ remote_regular_user }}'
 
