@@ -205,6 +205,7 @@
           - mako-notifier
           - firefox-esr
           - mullvad-browser
+          - mpv
           - tailscale
           - bluez
           - bluez-tools
@@ -303,6 +304,7 @@
           - xdg-desktop-portal-hyprland
           - pwvucontrol
           - mako
+          - mpv
           - obsidian
           - firefox
           - bluez
