@@ -7,7 +7,11 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "include": [
-        "~/.config/waybar/conf/*.json",
+        "~/.config/waybar/conf/clock.json",
+        "~/.config/waybar/conf/cpu.json",
+        "~/.config/waybar/conf/idle_inhibitor.json",
+        "~/.config/waybar/conf/memory.json",
+        "~/.config/waybar/conf/tray.json",
         "~/.config/waybar/conf/workspaces/{{- .chezmoi.hostname -}}.json",
         "~/.config/waybar/conf/temperatures/{{- .chezmoi.hostname -}}.json"
     ],
