@@ -451,7 +451,7 @@
 
     - name: "Get Download link of the latest Vesktop AppImage client"
       ansible.builtin.shell:
-        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".AppImage")) | .browser_download_url' | grep -v arm64
       register: url
 
     - name: "Download and Install the Vesktop client"
