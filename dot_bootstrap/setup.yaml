@@ -476,6 +476,7 @@
         name: "Vesktop"
         comment: "A custom Discord desktop app"
         exec: "Vesktop.AppImage"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
         icon: "vesktop"
         terminal: false
         type: "Application"
@@ -514,6 +515,7 @@
         name: "YouTube Desktop"
         comment: "A simple YouTube Desktop application, built using Electron.js"
         exec: "YouTube.Desktop.AppImage"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
         icon: "youtube-desktop"
         terminal: false
         type: "Application"
@@ -552,6 +554,7 @@
         name: "Obsidian"
         comment: "Obsidian"
         exec: "Obsidian.AppImage"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
         icon: "obsidian"
         terminal: false
         type: "Application"
@@ -582,6 +585,7 @@
         name: "Plexamp"
         comment: "Plexamp"
         exec: "Plexamp.AppImage"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
         icon: "plexamp"
         terminal: false
         type: "Application"
