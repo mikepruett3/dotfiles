@@ -562,6 +562,36 @@
         - desktop is defined
         - desktop == 'hyprland'
 
+    - name: "Download and Install the Plexamp client"
+      ansible.builtin.get_url:
+        url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.2.AppImage"
+        dest: ~/Apps/Plexamp.AppImage
+        mode: '0755'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+
+    - name: "Create the Desktop file for Plexamp"
+      ansible.builtin.template:
+        src: desktop.j2
+        dest: ~/.local/share/applications/plexamp.desktop
+        mode: '0640'
+      vars:
+        name: "Plexamp"
+        comment: "Plexamp"
+        exec: "Plexamp.AppImage"
+        icon: "plexamp"
+        terminal: false
+        type: "Application"
+        startupnotification: true
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+
     - name: "Check if minio client is installed and in the path"
       ansible.builtin.shell:
         cmd: command -v mc
