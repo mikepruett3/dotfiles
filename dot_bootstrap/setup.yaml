@@ -611,8 +611,7 @@
 
     - name: "Install the Private internet Access VPN client"
       ansible.builtin.shell:
-        cmd: sh pia-linux-3.6.1-08339.run --quiet --accept
-        chdir: ~/Downloads
+        cmd: sh ~/Downloadspia-linux-3.6.1-08339.run --quiet --accept
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
