@@ -449,27 +449,61 @@
         CGO_ENABLED: "0"
         GOBIN: "/usr/local/bin"
 
+    - name: "Get Download link of the latest Vesktop AppImage client"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+      register: url
+
     - name: "Download and Install the Vesktop client"
       ansible.builtin.get_url:
-        url: "https://github.com/Vencord/Vesktop/releases/download/v1.5.3/Vesktop-1.5.3.AppImage"
-        dest: ~/Apps/Vesktop-1.5.3.AppImage
+        url: "{{ url.stdout }}"
+        dest: ~/Apps/Vesktop.AppImage
         mode: '0755'
       become: yes
       become_user: '{{ remote_regular_user }}'
 
+    - name: "Create the Desktop file for Vesktop client"
+      ansible.builtin.template:
+        src: desktop.j2
+        dest: ~/.local/share/applications/vesktop.desktop
+        mode: '0640'
+      vars:
+        name: "Vesktop"
+        comment: "A custom Discord desktop app"
+        exec: "Vesktop.AppImage"
+        icon: "vesktop"
+        terminal: false
+        type: "Application"
+        startupnotification: true
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
+    - name: "Get Download link of the latest YouTube-Desktop AppImage client"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/mikepruett3/youtube-desktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+      register: url
+
     - name: "Download and Install the YouTube-Desktop client"
       ansible.builtin.get_url:
-        url: "https://github.com/mikepruett3/youtube-desktop/releases/download/v1.0.4/YouTube.Desktop-1.0.4.AppImage"
-        dest: ~/Apps/YouTube.Desktop-1.0.4.AppImage
+        url: "{{ url.stdout }}"
+        dest: ~/Apps/YouTube.Desktop.AppImage
         mode: '0755'
       become: yes
       become_user: '{{ remote_regular_user }}'
 
     - name: "Create the Desktop file for YouTube-Desktop"
       ansible.builtin.template:
-        src: youtube-desktop.j2
+        src: desktop.j2
         dest: ~/.local/share/applications/youtube-desktop.desktop
         mode: '0640'
+      vars:
+        name: "YouTube Desktop"
+        comment: "A simple YouTube Desktop application, built using Electron.js"
+        exec: "YouTube.Desktop.AppImage"
+        icon: "youtube-desktop"
+        terminal: false
+        type: "Application"
+        startupnotification: true
       become: yes
       become_user: '{{ remote_regular_user }}'
 
