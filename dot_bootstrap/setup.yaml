@@ -598,29 +598,29 @@
         - desktop is defined
         - desktop == 'hyprland'
 
-    - name: "Download the Private internet Access VPN client"
-      ansible.builtin.get_url:
-        url: "https://installers.privateinternetaccess.com/download/pia-linux-3.6.1-08339.run"
-        dest: ~/Downloads
-        mode: '0755'
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
+    #- name: "Download the Private internet Access VPN client"
+    #  ansible.builtin.get_url:
+    #    url: "https://installers.privateinternetaccess.com/download/pia-linux-3.6.1-08339.run"
+    #    dest: ~/Downloads
+    #    mode: '0755'
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - desktop is defined
+    #    - desktop == 'hyprland'
 
-    - name: "Install the Private internet Access VPN client"
-      ansible.builtin.command:
-        argv:
-          - /usr/bin/sh
-          - -cl ~/Downloads/pia-linux-3.6.1-08339.run
-          - --quiet
-          - --accept
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
+    #- name: "Install the Private internet Access VPN client"
+    #  ansible.builtin.command:
+    #    argv:
+    #      - /usr/bin/sh
+    #      - -cl ~/Downloads/pia-linux-3.6.1-08339.run
+    #      - --quiet
+    #      - --accept
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
+    #  when:
+    #    - desktop is defined
+    #    - desktop == 'hyprland'
 
     - name: "Check if minio client is installed and in the path"
       ansible.builtin.shell:
