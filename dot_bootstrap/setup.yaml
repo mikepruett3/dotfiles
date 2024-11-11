@@ -610,7 +610,7 @@
         - desktop == 'hyprland'
 
     - name: "Install the Private internet Access VPN client"
-      ansible.builtin.shell: ~/Downloads/pia-linux-3.6.1-08339.run --quiet --accept
+      ansible.builtin.command: ~/Downloads/pia-linux-3.6.1-08339.run --quiet --accept
       args:
         executable: /usr/bin/sh
       become: yes
