@@ -612,8 +612,8 @@
     - name: "Install the Private internet Access VPN client"
       ansible.builtin.command:
         argv:
-          - -cl /usr/bin/sh
-          - ~/Downloads/pia-linux-3.6.1-08339.run
+          - /usr/bin/sh
+          - -cl ~/Downloads/pia-linux-3.6.1-08339.run
           - --quiet
           - --accept
       become: yes
