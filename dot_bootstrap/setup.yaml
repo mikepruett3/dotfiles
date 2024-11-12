@@ -254,7 +254,8 @@
       ansible.builtin.shell:
         cmd: command -v yay
       register: result
-      failed_when: result.rc >= 2
+      #failed_when: result.rc >= 2
+      ignore_errors: true
 
     - name: "Install Yay Package Manager"
       ansible.builtin.include_role:
