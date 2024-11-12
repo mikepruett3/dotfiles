@@ -198,7 +198,7 @@
           - wofi
           - waybar
           - hyprpaper
-          - hyprshot
+          #- hyprshot
           #- hypridle
           - xdg-desktop-portal-hyprland
           - pavucontrol
