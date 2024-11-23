@@ -78,6 +78,7 @@ map bD mkdir
 
 # Function Key Shortcuts
 map <f-5> reload
+map <f-2> rename
 #map <f-12> mimetype
 
 # Directory Shortcuts
