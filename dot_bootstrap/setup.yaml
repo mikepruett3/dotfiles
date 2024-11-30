@@ -336,6 +336,7 @@
         cmd: yay -S --needed --noconfirm --noprogressbar {{ item }}
       with_items:
         - hyprshot
+        - waypaper
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
