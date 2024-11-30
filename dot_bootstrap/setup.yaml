@@ -218,6 +218,7 @@
           - libnss-mdns
           - mupdf
           - mupdf-tools
+          - swww
           - yt-dlp
           - viewnior
         state: present
@@ -321,6 +322,7 @@
           - nss-mdns
           - libmupdf
           - mupdf-gl
+          - swww
           - yt-dlp
           - viewnior
         state: present
