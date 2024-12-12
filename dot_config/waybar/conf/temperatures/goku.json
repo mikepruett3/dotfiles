@@ -7,6 +7,6 @@
         "format": "{temperatureF}°F {icon}",
         "format-critical": "{temperatureF}°F {icon}",
         //"format-icons": ["", "", ""]
-        "format-icons": ["","","󰔅"]
+        "format-icons": ["","","󰔅"]
     }
 }
