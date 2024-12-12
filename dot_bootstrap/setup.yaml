@@ -39,12 +39,12 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
-    - name: "Make local font directory"
-      ansible.builtin.file:
-        path: ~/.local/share/fonts/
-        state: directory
-      become: yes
-      become_user: '{{ remote_regular_user }}'
+    #- name: "Make local font directory"
+    #  ansible.builtin.file:
+    #    path: ~/.local/share/fonts/
+    #    state: directory
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
 
     - name: "Make local Apps directory"
       ansible.builtin.file:
