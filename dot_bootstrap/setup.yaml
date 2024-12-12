@@ -484,25 +484,25 @@
     #    - desktop is defined
     #    - desktop == 'hyprland'
 
-    #- name: "Create the Desktop file for Vesktop client"
-    #  ansible.builtin.template:
-    #    src: desktop.j2
-    #    dest: ~/.local/share/applications/vesktop.desktop
-    #    mode: '0640'
-    #  vars:
-    #    name: "Vesktop"
-    #    comment: "A custom Discord desktop app"
-    #    exec: "Vesktop.AppImage"
-    #    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-    #    icon: "vesktop"
-    #    terminal: false
-    #    type: "Application"
-    #    startupnotification: true
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - desktop is defined
-    #    - desktop == 'hyprland'
+    - name: "Create the Desktop file for Vesktop client"
+      ansible.builtin.template:
+        src: desktop.j2
+        dest: ~/.local/share/applications/vesktop.desktop
+        mode: '0640'
+      vars:
+        name: "Vesktop"
+        comment: "A custom Discord desktop app"
+        exec: "/usr/bin/vesktop"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+        icon: "vesktop"
+        terminal: false
+        type: "Application"
+        startupnotification: true
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
 
     - name: "Get Download link of the latest YouTube-Desktop AppImage client"
       ansible.builtin.shell:
