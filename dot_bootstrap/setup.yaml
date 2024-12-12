@@ -60,13 +60,13 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
-    - name: "Copy the font to ~/.local/share/fonts"
-      ansible.builtin.copy:
-        src: ~/.local/share/chezmoi/fonts/
-        dest: ~/.local/share/fonts/
-        remote_src: yes
-      become: yes
-      become_user: '{{ remote_regular_user }}'
+    #- name: "Copy the font to ~/.local/share/fonts"
+    #  ansible.builtin.copy:
+    #    src: ~/.local/share/chezmoi/fonts/
+    #    dest: ~/.local/share/fonts/
+    #    remote_src: yes
+    #  become: yes
+    #  become_user: '{{ remote_regular_user }}'
 
     - name: "Install packages (dnf)"
       ansible.builtin.dnf:
@@ -342,6 +342,7 @@
         - ludusavi
         - hyprshot
         - streamdeck-ui
+        - ttf-hack-nerd
         - waypaper
         - vesktop-bin
       become: yes
