@@ -39,12 +39,12 @@
       become: yes
       become_user: '{{ remote_regular_user }}'
 
-    #- name: "Make local font directory"
-    #  ansible.builtin.file:
-    #    path: ~/.local/share/fonts/
-    #    state: directory
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
+    - name: "Make local font directory"
+      ansible.builtin.file:
+        path: ~/.local/share/fonts/
+        state: directory
+      become: yes
+      become_user: '{{ remote_regular_user }}'
 
     - name: "Make local Apps directory"
       ansible.builtin.file:
@@ -222,6 +222,36 @@
           - yt-dlp
           - viewnior
         state: present
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Get Download link of the latest Hack Nerd Font (apt)"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("Hack.zip")) | .browser_download_url'
+      register: url
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Download the latest Hack Nerd Font (apt)"
+      ansible.builtin.get_url:
+        url: "{{ url.stdout }}"
+        dest: ~/.local/share/fonts/Hack.zip
+        mode: '0755'
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Unzip the latest Hack Nerd Font (apt)"
+      ansible.builtin.shell:
+        cmd: unzip Hack.zip && rm -f Hack.zip
+        chdir: ~/.local/share/fonts/
       when:
         - desktop is defined
         - desktop == 'hyprland'
