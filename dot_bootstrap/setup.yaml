@@ -252,6 +252,8 @@
       ansible.builtin.shell:
         cmd: unzip Hack.zip && rm -f Hack.zip
         chdir: ~/.local/share/fonts/
+      become: yes
+      become_user: '{{ remote_regular_user }}'
       when:
         - desktop is defined
         - desktop == 'hyprland'
