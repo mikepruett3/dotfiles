@@ -210,6 +210,14 @@
           - bluez-tools
           - blueman
           - mpv
+          - libgirepository1.0-dev
+          - pipx
+          - python3-importlib-metadata
+          - python3-imageio
+          - python3-gi
+          - python3-gi-cairo
+          - python3-screeninfo
+          - gir1.2-gtk-3.0
           - tailscale
           - bluez
           - bluez-tools
@@ -252,6 +260,16 @@
       ansible.builtin.shell:
         cmd: unzip Hack.zip && rm -f Hack.zip
         chdir: ~/.local/share/fonts/
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Install waypaper (apt)"
+      ansible.builtin.shell:
+        cmd: pipx install waypaper
       become: yes
       become_user: '{{ remote_regular_user }}'
       when:
