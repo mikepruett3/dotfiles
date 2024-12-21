@@ -535,7 +535,7 @@
         - desktop == 'hyprland'
         - ansible_facts['pkg_mgr'] == 'apt'
 
-    - name: "Create the Desktop file for Vesktop client"
+    - name: "Create the Desktop file for Vesktop client (pacman)"
       ansible.builtin.template:
         src: desktop.j2
         dest: ~/.local/share/applications/vesktop.desktop
@@ -554,6 +554,28 @@
       when:
         - desktop is defined
         - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'pacman'
+
+    - name: "Create the Desktop file for Vesktop client (apt)"
+      ansible.builtin.template:
+        src: desktop.j2
+        dest: ~/.local/share/applications/vesktop.desktop
+        mode: '0640'
+      vars:
+        name: "Vesktop"
+        comment: "A custom Discord desktop app"
+        exec: "/opt/Vesktop/vesktop"
+        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+        icon: "vesktop"
+        terminal: false
+        type: "Application"
+        startupnotification: true
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Get Download link of the latest YouTube-Desktop AppImage client"
       ansible.builtin.shell:
