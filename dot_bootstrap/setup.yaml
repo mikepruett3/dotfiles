@@ -516,24 +516,24 @@
         CGO_ENABLED: "0"
         GOBIN: "/usr/local/bin"
 
-    #- name: "Get Download link of the latest Vesktop AppImage client"
-    #  ansible.builtin.shell:
-    #    cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".AppImage")) | .browser_download_url' | grep -v arm64
-    #  register: url
-    #  when:
-    #    - desktop is defined
-    #    - desktop == 'hyprland'
+    - name: "Get Download link of the latest Vesktop AppImage client (apt)"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".deb")) | .browser_download_url' | grep -v arm64
+      register: url
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
-    #- name: "Download and Install the Vesktop client"
-    #  ansible.builtin.get_url:
-    #    url: "{{ url.stdout }}"
-    #    dest: ~/Apps/Vesktop.AppImage
-    #    mode: '0755'
-    #  become: yes
-    #  become_user: '{{ remote_regular_user }}'
-    #  when:
-    #    - desktop is defined
-    #    - desktop == 'hyprland'
+    - name: "Download and Install the Vesktop client (apt)"
+      ansible.builtin.apt:
+        deb: "{{ url.stdout }}"
+      #become: yes
+      #become_user: '{{ remote_regular_user }}'
+      when:
+        - desktop is defined
+        - desktop == 'hyprland'
+        - ansible_facts['pkg_mgr'] == 'apt'
 
     - name: "Create the Desktop file for Vesktop client"
       ansible.builtin.template:
