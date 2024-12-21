@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-OPTIONS="-enable-features=WaylandWindowDecorations --ozone-platform-hint=auto"
-
-eval ${HOME}/Apps/Vesktop-1.5.3.AppImage #$OPTIONS
