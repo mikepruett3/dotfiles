@@ -3,19 +3,14 @@
 
 {
     "modules-left": [
-      //"custom/icon-left-outer",
       "group/group-power",
       "custom/icon-split",
       "hyprland/workspaces"
-      //"custom/icon-right"
     ],
     "modules-center": [
-      //"custom/icon-left",
       "clock"
-      //"custom/icon-right"
     ],
     "modules-right": [
-      //"custom/icon-left",
       "network",
       "custom/icon-split",
       "memory",
@@ -25,7 +20,6 @@
       "battery",
       "custom/icon-split",
       "wireplumber"
-      //"custom/icon-right-outer"
     ],
 
     "clock": {
@@ -92,14 +86,6 @@
       "max-length": 50
     },
 
-    //"image": {
-    //  "path": "/home/amelia/Photos/Sticker_PPG_20_The_Herta_04.png",
-    //  "size": 20,
-    //  "exec": "./hover_image.sh",
-    //  "interval": 0,
-    //  "tooltip": true
-    //},
-
     "group/group-power": {
       "orientation": "inherit",
       "drawer": {
@@ -108,8 +94,8 @@
           "transition-left-to-right": true
       },
       "modules": [
-          //"image",
           "custom/lock",
+          "custom/sleep",
           "custom/reboot",
           "custom/power"
       ]
@@ -119,24 +105,8 @@
       "exec":"echo '󰣇'",
       "interval": 0
     },
-    "custom/icon-left": {
-      "exec": "echo '✦'",
-      "interval": 0
-    },
-    "custom/icon-left-outer": {
-      "exec": "echo '✦'",
-      "interval": 0
-    },
     "custom/icon-split": {
       "exec": "echo '|'",
-      "interval": 0
-    },
-    "custom/icon-right": {
-      "exec": "echo '✦'",
-      "interval": 0
-    },
-    "custom/icon-right-outer": {
-      "exec": "echo '✦'",
       "interval": 0
     },
 
@@ -144,6 +114,11 @@
         "format": "󰍁",
         "tooltip": false,
         "on-click": "hyprlock"
+    },
+    "custom/sleep": {
+        "format": "󰒲",
+        "tooltip": false,
+        "on-click": "systemctl suspend"
     },
     "custom/reboot": {
         "format": "󰜉",
