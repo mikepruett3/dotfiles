@@ -19,7 +19,10 @@
       "custom/icon-split",
       "battery",
       "custom/icon-split",
-      "wireplumber",
+      //"wireplumber",
+      "include": [
+        "~/.config/waybar/conf/audio/{{- .chezmoi.hostname -}}.json"
+      ],
       "tray"
     ],
 
@@ -47,7 +50,8 @@
         "code": "󰨞",
         "dolphin": "",
         "discord": "",
-        "home assistant": ""
+        "home assistant": "",
+        "steam": ""
       }
     },
     "battery": {
