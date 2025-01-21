@@ -2,6 +2,9 @@
 // CREATED BY KITTENZEXE
 
 {
+    "include": [
+        "~/.config/waybar/conf/audio/{{- .chezmoi.hostname -}}.json"
+    ],
     "modules-left": [
       "group/group-power",
       "custom/icon-split",
@@ -20,7 +23,7 @@
       "battery",
       "custom/icon-split",
       //"wireplumber",
-      "~/.config/waybar/conf/audio/{{- .chezmoi.hostname -}}.json",
+      "pulseaudio",
       "tray"
     ],
 
