@@ -3,6 +3,9 @@
 # See https://wiki.hyprland.org/FAQ/#how-do-i-autostart-my-favorite-apps
 # -----------------------------------------------------
 
+{{- if eq .chezmoi.hostname "work-laptop" }}
+exec-once=kanshi
+{{- end }}
 exec-once = waybar
 exec-once = mako
 exec-once = hypridle
