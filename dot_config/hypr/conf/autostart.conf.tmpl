@@ -11,6 +11,6 @@ exec-once = waypaper --restore
 exec-once = [silent] $discord
 #exec-once = [silent] gtk-launch blueman-manager
 exec-once = blueman-applet
-exec-once = [silent workspace special] $terminal
+exec-once = [workspace special:magic silent] $terminal
 
 source = ~/.config/hypr/conf/autostarts/{{- .chezmoi.hostname -}}.conf
