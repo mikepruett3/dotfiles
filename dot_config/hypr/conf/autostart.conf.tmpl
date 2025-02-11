@@ -8,9 +8,9 @@ exec-once = mako
 exec-once = hypridle
 exec-once = hyprpaper
 exec-once = waypaper --restore
-exec-once = [workspace 4 silent] $discord
+exec-once = [silent] $discord
 #exec-once = [silent] gtk-launch blueman-manager
-#exec-once = [silent workspace special] kitty
 exec-once = blueman-applet
+exec-once = [silent workspace special] $terminal
 
 source = ~/.config/hypr/conf/autostarts/{{- .chezmoi.hostname -}}.conf
