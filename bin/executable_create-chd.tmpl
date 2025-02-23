@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+filepath=*.cue
+
+for file in $filepath; do
+    newfile="${file%.*}"
+    chdman createcd --input "$file" --output "$newfile.chd"
+done
