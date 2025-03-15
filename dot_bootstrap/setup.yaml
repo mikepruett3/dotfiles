@@ -87,7 +87,7 @@
 
     - name: "Check if kurzit has been installed"
       ansible.builtin.stat:
-        path: ~/.kurzit/
+        path: ~/.kurzit
       become: yes
       become_user: '{{ regular_user }}'
       ignore_errors: true
