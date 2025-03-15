@@ -79,6 +79,9 @@
       ignore_errors: true
       register: result
 
+    - debug:
+        var: result
+
     - name: "Import fonts Playbook"
       ansible.builtin.include_tasks:
         file: fonts.yaml
