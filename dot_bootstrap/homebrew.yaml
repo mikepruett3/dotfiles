@@ -1,0 +1,26 @@
+---
+
+- name: "Install packages (brew)"
+  community.general.homebrew:
+    name:
+      - bat
+      - curl
+      - dos2unix
+      - eza
+      - fontconfig
+      - fzf
+      - git
+      - glow
+      - go
+      - gpg
+      - htop
+      - mediainfo
+      - neovim
+      - pydf
+      - poppler
+      - 7zip
+      - rar
+      - unzip
+    state: present
+  become: yes
+  become_user: '{{ remote_regular_user }}'

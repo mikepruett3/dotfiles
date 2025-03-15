@@ -1,0 +1,94 @@
+---
+
+- name: "Install packages (pacman)"
+  community.general.pacman:
+    name:
+      - bat
+      - btop
+      - curl
+      - dos2unix
+      - eza
+      - fontconfig
+      - fzf
+      - git
+      - git-credential-manager
+      - glow
+      - go
+      - gnupg
+      - htop
+      - mediainfo
+      - neovim
+      - pass
+      - poppler
+      - pydf
+      - p7zip
+      - tailscale
+      - unrar-free
+      - unzip
+    state: present
+
+- name: "Install Desktop packages (pacman - hyprland)"
+  community.general.pacman:
+    name:
+      - kitty
+      - wofi
+      - waybar
+      - hyprpaper
+      - hypridle
+      - hyprlock
+      - xdg-desktop-portal-hyprland
+      - pamixer
+      - pwvucontrol
+      - mako
+      - mpv
+      - firefox
+      - chromium
+      - bluez
+      - bluez-utils
+      - blueman
+      - cups
+      - avahi
+      - nss-mdns
+      - libmupdf
+      - mupdf-gl
+      - swww
+      - gamemode
+      - lib32-gamemode
+      - yt-dlp
+      - viewnior
+    state: present
+  when:
+    - desktop is defined
+    - desktop == 'hyprland'
+
+- name: "Check if Yay is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v yay
+  register: result
+  #failed_when: result.rc >= 2
+  ignore_errors: true
+
+- name: "Install Yay Package Manager"
+  ansible.builtin.include_role:
+    name: jahrik.yay
+  vars:
+    install: true
+  when:
+    - result.rc != 0
+
+- name: "Install Desktop packages (yay)"
+  ansible.builtin.shell:
+    cmd: yay -S --needed --noconfirm --noprogressbar {{ item }}
+  with_items:
+    - cdw
+    - ludusavi
+    - hyprshot
+    - streamdeck-ui
+    #- ttf-hack-nerd
+    - waypaper
+    - vesktop-bin
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  when:
+    - desktop is defined
+    - desktop == 'hyprland'

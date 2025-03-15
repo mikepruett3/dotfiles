@@ -1,0 +1,24 @@
+---
+
+- name: "Install packages (dnf)"
+  ansible.builtin.dnf:
+    name:
+      - bat
+      - curl
+      - dos2unix
+      - eza
+      - fontconfig
+      - fzf
+      - git
+      - glow
+      - golang
+      - gpg
+      - htop
+      - mediainfo
+      - neovim
+      - pydf
+      - poppler-utils
+      - 7zip
+      - unrar
+      - unzip
+    state: present

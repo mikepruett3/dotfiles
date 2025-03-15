@@ -1,0 +1,40 @@
+---
+
+- name: "Get Download link of the latest Hack Nerd Font"
+  ansible.builtin.shell:
+    cmd: curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("Hack.zip")) | .browser_download_url'
+  register: url
+  #when:
+  #  - desktop is defined
+  #  - desktop == 'hyprland'
+
+- name: "Download the latest Hack Nerd Font"
+  ansible.builtin.get_url:
+    url: "{{ url.stdout }}"
+    dest: ~/.local/share/fonts/Hack.zip
+    mode: '0755'
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  #when:
+  #  - desktop is defined
+  #  - desktop == 'hyprland'
+
+- name: "Unzip the latest Hack Nerd Font"
+  ansible.builtin.shell:
+    cmd: unzip -o Hack.zip && rm -f Hack.zip
+    chdir: ~/.local/share/fonts/
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  #when:
+  #  - desktop is defined
+  #  - desktop == 'hyprland'
+
+- name: "Update the font information cache files (user)"
+  ansible.builtin.shell:
+    cmd: fc-cache
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+
+- name: "Update the font information cache files (sudo)"
+  ansible.builtin.shell:
+    cmd: fc-cache

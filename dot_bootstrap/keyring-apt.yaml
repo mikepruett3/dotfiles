@@ -1,0 +1,70 @@
+---
+
+# Based on https://www.jeffgeerling.com/blog/2022/aptkey-deprecated-debianubuntu-how-fix-ansible
+- name: "Download Charm.sh Keyring"
+  ansible.builtin.get_url:
+    url: https://repo.charm.sh/apt/gpg.key
+    dest: /etc/apt/trusted.gpg.d/charm.asc
+    force: true
+  #when:
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Add the Charm.sh Repository"
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/charm.asc] https://repo.charm.sh/apt/ * *"
+    filename: charm
+    state: present
+  #when:
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Download eza Keyring"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+    dest: /etc/apt/trusted.gpg.d/gierens.asc
+    force: true
+  #when:
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Add the eza Repository"
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/gierens.asc] http://deb.gierens.de stable main"
+    filename: eza
+    state: present
+  #when:
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Download tailscale Keyring"
+  ansible.builtin.get_url:
+    url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    force: true
+  when:
+    - desktop is defined
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Add the tailscale Repository"
+  ansible.builtin.get_url:
+    url: https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list
+    dest: /etc/apt/sources.list.d/tailscale.list
+    force: true
+  when:
+    - desktop is defined
+  #  - ansible_facts['pkg_mgr'] == 'apt'
+
+#- name: "Download mullvad Keyring"
+#  ansible.builtin.get_url:
+#    url: https://repository.mullvad.net/deb/mullvad-keyring.asc
+#    dest: /usr/share/keyrings/mullvad-keyring.asc
+#    force: true
+#  when:
+#    - desktop is defined
+#    - ansible_facts['pkg_mgr'] == 'apt'
+
+#- name: "Add the mullvad Repository"
+#  ansible.builtin.apt_repository:
+#    repo: "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=amd64] https://repository.mullvad.net/deb/stable {{ ansible_facts['distribution_release'] }} main"
+#    filename: mullvad
+#    state: present
+#  when:
+#    - desktop is defined
+#    - ansible_facts['pkg_mgr'] == 'apt'
