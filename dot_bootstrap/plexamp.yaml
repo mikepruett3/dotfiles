@@ -25,3 +25,4 @@
     startupnotification: true
   become: true
   become_user: '{{ regular_user }}'
+
