@@ -14,9 +14,6 @@
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
 
-- debug:
-    var: '{{ regular_user }}'
-
 - name: "Create the Desktop file for Vesktop client"
   ansible.builtin.template:
     src: desktop.j2

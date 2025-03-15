@@ -13,7 +13,6 @@
     - name: "Get the Running User"
       ansible.builtin.set_fact:
         regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
-        #regular_user: "{{ ansible_user_id }}"
 
     - name: "Set fact for architecture (x86_64)"
       ansible.builtin.set_fact:
@@ -37,44 +36,44 @@
       ansible.builtin.file:
         path: ~/.ssh/
         state: directory
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Make local font directory"
       ansible.builtin.file:
         path: ~/.local/share/fonts/
         state: directory
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Make local Apps directory"
       ansible.builtin.file:
         path: ~/Apps/
         state: directory
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Make local Applications desktop directory"
       ansible.builtin.file:
         path: ~/.local/share/applications/
         state: directory
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
-    #- name: "Import keyring-apt Playbook"
-    #  ansible.builtin.include_tasks:
-    #    file: keyring-apt.yaml
-    #  when:
-    #    - ansible_facts['pkg_mgr'] == 'apt'
+    - name: "Import keyring-apt Playbook"
+      ansible.builtin.include_tasks:
+        file: keyring-apt.yaml
+      when:
+        - ansible_facts['pkg_mgr'] == 'apt'
 
-    #- name: "Import {{ ansible_facts['pkg_mgr'] }} Playbook"
-    #  ansible.builtin.include_tasks:
-    #    file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
+    - name: "Import {{ ansible_facts['pkg_mgr'] }} Playbook"
+      ansible.builtin.include_tasks:
+        file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
 
     - name: "Check if Hack fonts have been installed"
       ansible.builtin.stat:
         path: ~/.local/share/fonts/HackNerdFont-Regular.ttf
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
       ignore_errors: true
       register: result
@@ -88,7 +87,7 @@
     - name: "Check if kurzit has been installed"
       ansible.builtin.stat:
         path: ~/.kurzit
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
       ignore_errors: true
       register: result
