@@ -12,8 +12,8 @@
   tasks:
     - name: "Get the Running User"
       ansible.builtin.set_fact:
-        #regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
-        regular_user: "{{ ansible_user_id }}"
+        regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+        #regular_user: "{{ ansible_user_id }}"
 
     - name: "Set fact for architecture (x86_64)"
       ansible.builtin.set_fact:
