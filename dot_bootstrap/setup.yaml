@@ -78,10 +78,10 @@
     - name: "Check if kurzit has been installed"
       ansible.builtin.stat:
         path: ~/.kurzit
-      register: result
       ignore_errors: true
       become: yes
       become_user: '{{ regular_user }}'
+      register: result
 
     - name: "Import kurzit Playbook"
       ansible.builtin.include_tasks:
