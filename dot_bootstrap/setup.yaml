@@ -142,6 +142,8 @@
     - name: "Import Vesktop Playbook"
       ansible.builtin.include_tasks:
         file: vesktop.yaml
+      become: yes
+      become_user: '{{ regular_user }}'
       #when:
       #  - result.rc != 0
 

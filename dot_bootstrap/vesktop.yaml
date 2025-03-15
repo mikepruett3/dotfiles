@@ -10,6 +10,7 @@
 - name: "Download and Install the Vesktop client (apt)"
   ansible.builtin.apt:
     deb: "{{ url.stdout }}"
+  become: true
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
 
@@ -18,8 +19,6 @@
     src: desktop.j2
     dest: ~/.local/share/applications/vesktop.desktop
     mode: '0640'
-  become: yes
-  become_user: '{{ regular_user }}'
   vars:
     name: "Vesktop"
     comment: "A custom Discord desktop app"
@@ -29,4 +28,5 @@
     terminal: false
     type: "Application"
     startupnotification: true
-
+  #become: yes
+  #become_user: '{{ regular_user }}'
