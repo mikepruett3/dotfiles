@@ -157,8 +157,8 @@
     - name: "Import YouTube-Desktop Playbook"
       ansible.builtin.include_tasks:
         file: youtube.yaml
-      #when:
-      #  - result.rc != 0
+      when:
+        - result.rc != 0
 
     - name: "Check if HomeAssistant-Desktop is installed"
       ansible.builtin.stat:
@@ -173,47 +173,24 @@
     - name: "Import HomeAssistant-Desktop Playbook"
       ansible.builtin.include_tasks:
         file: hass.yaml
+      when:
+        - result.rc != 0
+
+    - name: "Check if Obsidian is installed"
+      ansible.builtin.stat:
+        path: ~/Apps/Obsidian.AppImage
+      become: true
+      become_user: '{{ regular_user }}'
+      ignore_errors: true
+      register: result
+      when:
+        - desktop is defined
+
+    - name: "Import Obsidian Playbook"
+      ansible.builtin.include_tasks:
+        file: obsidian.yaml
       #when:
       #  - result.rc != 0
-
-    - name: "Get Download link of the latest Obsidian client"
-      ansible.builtin.shell:
-        cmd: curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url' | grep -v arm64
-      register: url
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-
-    - name: "Download and Install the Obsidian client"
-      ansible.builtin.get_url:
-        url: "{{ url.stdout }}"
-        dest: ~/Apps/Obsidian.AppImage
-        mode: '0755'
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-
-    - name: "Create the Desktop file for Obsidian"
-      ansible.builtin.template:
-        src: desktop.j2
-        dest: ~/.local/share/applications/obsidian.desktop
-        mode: '0640'
-      vars:
-        name: "Obsidian"
-        comment: "Obsidian"
-        exec: "Obsidian.AppImage"
-        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-        icon: "obsidian"
-        terminal: false
-        type: "Application"
-        startupnotification: true
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
 
     - name: "Download and Install the Plexamp client"
       ansible.builtin.get_url:

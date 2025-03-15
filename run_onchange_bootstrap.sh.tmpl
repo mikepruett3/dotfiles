@@ -1,7 +1,6 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env bash
 
-# .bootstrap/setup.yml hash:        {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
 # .bootstrap/apt.yaml hash:         {{ include "dot_bootstrap/apt.yaml" | sha256sum }}
 # .bootstrap/dnf.yaml hash:         {{ include "dot_bootstrap/dnf.yaml" | sha256sum }}
 # .bootstrap/fonts.yaml hash:       {{ include "dot_bootstrap/fonts.yaml" | sha256sum }}
@@ -9,7 +8,10 @@
 # .bootstrap/hass.yaml hash:        {{ include "dot_bootstrap/hass.yaml" | sha256sum }}
 # .bootstrap/homebrew.yaml hash:    {{ include "dot_bootstrap/homebrew.yaml" | sha256sum }}
 # .bootstrap/keyring-apt.yaml hash: {{ include "dot_bootstrap/keyring-apt.yaml" | sha256sum }}
+# .bootstrap/kurzit.yaml hash:      {{ include "dot_bootstrap/kurzit.yaml" | sha256sum }}
+# .bootstrap/obsidian.yaml hash:    {{ include "dot_bootstrap/obsidian.yaml" | sha256sum }}
 # .bootstrap/pacman.yaml hash:      {{ include "dot_bootstrap/pacman.yaml" | sha256sum }}
+# .bootstrap/setup.yml hash:        {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
 # .bootstrap/vesktop.yaml hash:     {{ include "dot_bootstrap/vesktop.yaml" | sha256sum }}
 # .bootstrap/vscode.yaml hash:      {{ include "dot_bootstrap/vscode.yaml" | sha256sum }}
 # .bootstrap/youtube.yaml hash:     {{ include "dot_bootstrap/youtube.yaml" | sha256sum }}
@@ -17,14 +19,5 @@
 if command -v ansible-playbook &> /dev/null; then
     ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
     ansible-playbook -v {{ joinPath .chezmoi.sourceDir "dot_bootstrap/setup.yaml" | quote }}
-fi
-{{- else if eq .chezmoi.os "darwin" -}}
-#!/usr/bin/env bash
-
-# .bootstrap/setup.yml              hash: {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
-
-if command -v ansible-playbook &> /dev/null; then
-    ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
-    ansible-playbook -v {{ joinPath .chezmoi.sourceDir "dot_bootstrap/setup.yaml" | quote }} #--ask-become-pass
 fi
 {{- end }}
