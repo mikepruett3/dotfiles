@@ -253,6 +253,7 @@
         cmd: tailscale status
       #ignore_errors: true
       register: tailnet
+      failed_when: tailnet.rc >= 2
 
     - name: "Check if ~/Images has been created"
       ansible.builtin.stat:
