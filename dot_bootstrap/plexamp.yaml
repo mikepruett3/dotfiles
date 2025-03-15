@@ -1,0 +1,27 @@
+---
+
+- name: "Download and Install the Plexamp client"
+  ansible.builtin.get_url:
+    url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.2.AppImage"
+    dest: ~/Apps/Plexamp.AppImage
+    mode: '0755'
+  become: true
+  become_user: '{{ regular_user }}'
+
+- name: "Create the Desktop file for Plexamp"
+  ansible.builtin.template:
+    src: desktop.j2
+    dest: ~/.local/share/applications/plexamp.desktop
+    mode: '0640'
+  vars:
+    name: "Plexamp"
+    comment: "Plexamp"
+    path: "/home/{{ regular_user }}/Apps/"
+    exec: "Plexamp.AppImage"
+    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    icon: "plexamp"
+    terminal: false
+    type: "Application"
+    startupnotification: true
+  become: true
+  become_user: '{{ regular_user }}'

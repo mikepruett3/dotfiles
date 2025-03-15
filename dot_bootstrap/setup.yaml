@@ -189,39 +189,24 @@
     - name: "Import Obsidian Playbook"
       ansible.builtin.include_tasks:
         file: obsidian.yaml
+      when:
+        - not result.stat.exists
+
+    - name: "Check if Plexamp is installed"
+      ansible.builtin.stat:
+        path: ~/Apps/Plexamp.AppImage
+      become: true
+      become_user: '{{ regular_user }}'
+      ignore_errors: true
+      register: result
+      when:
+        - desktop is defined
+
+    - name: "Import Plexamp Playbook"
+      ansible.builtin.include_tasks:
+        file: plexamp.yaml
       #when:
-      #  - result.rc != 0
-
-    - name: "Download and Install the Plexamp client"
-      ansible.builtin.get_url:
-        url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.2.AppImage"
-        dest: ~/Apps/Plexamp.AppImage
-        mode: '0755'
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-
-    - name: "Create the Desktop file for Plexamp"
-      ansible.builtin.template:
-        src: desktop.j2
-        dest: ~/.local/share/applications/plexamp.desktop
-        mode: '0640'
-      vars:
-        name: "Plexamp"
-        comment: "Plexamp"
-        exec: "Plexamp.AppImage"
-        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-        icon: "plexamp"
-        terminal: false
-        type: "Application"
-        startupnotification: true
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
+      #  - not result.stat.exists
 
     #- name: "Download the Private internet Access VPN client"
     #  ansible.builtin.get_url:
