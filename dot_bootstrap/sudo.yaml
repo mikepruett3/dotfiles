@@ -25,6 +25,27 @@
       when:
         - ansible_facts['os_family'] == 'Archlinux'
 
+    - name: "Install sudo Package (Debian)"
+      ansible.builtin.apt:
+        name: sudo
+      state: present
+      when:
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Install sudo Package (RedHat)"
+      ansible.builtin.dnf:
+        name: sudo
+      state: present
+      when:
+        - ansible_facts['pkg_mgr'] == 'dnf'
+
+    - name: "Install sudo Package (Arch)"
+      community.general.pacman:
+        name: sudo
+      state: present
+      when:
+        - ansible_facts['pkg_mgr'] == 'pacman'
+
     - name: "Add Running User to Sudoers Group"
       ansible.builtin.user:
         name: '{{ running_user }}'
