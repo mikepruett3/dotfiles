@@ -264,12 +264,12 @@
       become: true
       become_user: '{{ regular_user }}'
 
-    - name: "Sync minio storage to ~/Images"
-      ansible.builtin.shell:
-        cmd: ~/bin/mc cp --recursive minio ~/Images/
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - not result.stat.exists
-        - tailnet is defined
-        - tailnet.rc == 0
+    #- name: "Sync minio storage to ~/Images"
+    #  ansible.builtin.shell:
+    #    cmd: ~/bin/mc cp --recursive minio ~/Images/
+    #  become: yes
+    #  become_user: '{{ regular_user }}'
+    #  when:
+    #    - not result.stat.exists
+    #    - tailnet is defined
+    #    - tailnet.rc == 0
