@@ -2,7 +2,7 @@
 
 - name: "Download and Install the Plexamp client"
   ansible.builtin.get_url:
-    url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.2.AppImage"
+    url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.5.AppImage"
     dest: ~/Apps/Plexamp.AppImage
     mode: '0755'
   become: true
