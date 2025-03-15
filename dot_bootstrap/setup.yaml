@@ -194,7 +194,7 @@
 
     - name: "Check if Plexamp is installed"
       ansible.builtin.stat:
-        path: ~/Apps/Plexamp.AppImage
+        path: ~/Apps/Plexamp.AppImage2
       become: true
       become_user: '{{ regular_user }}'
       #ignore_errors: true
@@ -257,19 +257,18 @@
 
     - name: "Check if ~/Images has been created"
       ansible.builtin.stat:
-        path: ~/Images2
+        path: ~/Images
       register: result
-      #ignore_errors: true
-      failed_when: result.rc >= 2
+      ignore_errors: true
       become: true
       become_user: '{{ regular_user }}'
 
-    #- name: "Sync minio storage to ~/Images"
-    #  ansible.builtin.shell:
-    #    cmd: ~/bin/mc cp --recursive minio ~/Images/
-    #  become: yes
-    #  become_user: '{{ regular_user }}'
-    #  when:
-    #    - not result.stat.exists
-    #    - tailnet is defined
-    #    - tailnet.rc == 0
+    - name: "Sync minio storage to ~/Images"
+      ansible.builtin.shell:
+        cmd: ~/bin/mc cp --recursive minio ~/Images/
+      become: yes
+      become_user: '{{ regular_user }}'
+      when:
+        - not result.stat.exists
+        - tailnet is defined
+        - tailnet.rc == 0
