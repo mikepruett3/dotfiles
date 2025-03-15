@@ -11,7 +11,7 @@
   tasks:
     - name: "Set fact for the Running User"
       ansible.builtin.set_fact:
-        running_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+        running_user: "{{ ansible_user_id }}"
 
     - name: "Set fact for Sudoers Group (Debian)"
       ansible.builtin.set_fact:
