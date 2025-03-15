@@ -35,6 +35,7 @@
       community.general.sudoers:
         name: "{{ sudoers_group }}"
         group: "{{ sudoers_group }}"
-        commands: ALL
-        host: ALL
         nopassword: true
+        commands: ALL
+        #host: ALL
+        state: present
