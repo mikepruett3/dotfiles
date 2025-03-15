@@ -130,66 +130,20 @@
       ansible.builtin.include_tasks:
         file: goapps.yaml
 
-    - name: "Get Download link of the latest Vesktop AppImage client (apt)"
+    - name: "Check if Vesktop is installed"
       ansible.builtin.shell:
-        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".deb")) | .browser_download_url' | grep -v arm64
-      register: url
+        cmd: command -v vesktop
+      register: result
+      failed_when: result.rc >= 2
       when:
         - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'apt'
+        #- desktop == 'hyprland'
 
-    - name: "Download and Install the Vesktop client (apt)"
-      ansible.builtin.apt:
-        deb: "{{ url.stdout }}"
-      #become: yes
-      #become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'apt'
-
-    - name: "Create the Desktop file for Vesktop client (pacman)"
-      ansible.builtin.template:
-        src: desktop.j2
-        dest: ~/.local/share/applications/vesktop.desktop
-        mode: '0640'
-      vars:
-        name: "Vesktop"
-        comment: "A custom Discord desktop app"
-        exec: "/usr/bin/vesktop"
-        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-        icon: "vesktop"
-        terminal: false
-        type: "Application"
-        startupnotification: true
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'pacman'
-
-    - name: "Create the Desktop file for Vesktop client (apt)"
-      ansible.builtin.template:
-        src: desktop.j2
-        dest: ~/.local/share/applications/vesktop.desktop
-        mode: '0640'
-      vars:
-        name: "Vesktop"
-        comment: "A custom Discord desktop app"
-        exec: "/opt/Vesktop/vesktop"
-        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-        icon: "vesktop"
-        terminal: false
-        type: "Application"
-        startupnotification: true
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'apt'
+    - name: "Import Vesktop Playbook"
+      ansible.builtin.include_tasks:
+        file: vesktop.yaml
+      #when:
+      #  - result.rc != 0
 
     - name: "Get Download link of the latest YouTube-Desktop AppImage client"
       ansible.builtin.shell:

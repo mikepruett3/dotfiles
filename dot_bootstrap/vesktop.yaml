@@ -1,0 +1,31 @@
+---
+
+- name: "Get Download link of the latest Vesktop AppImage client (apt)"
+  ansible.builtin.shell:
+    cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".deb")) | .browser_download_url' | grep -v arm64
+  register: url
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Download and Install the Vesktop client (apt)"
+  ansible.builtin.apt:
+    deb: "{{ url.stdout }}"
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Create the Desktop file for Vesktop client"
+  ansible.builtin.template:
+    src: desktop.j2
+    dest: ~/.local/share/applications/vesktop.desktop
+    mode: '0640'
+  vars:
+    name: "Vesktop"
+    comment: "A custom Discord desktop app"
+    exec: "/usr/bin/vesktop"
+    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    icon: "vesktop"
+    terminal: false
+    type: "Application"
+    startupnotification: true
+  become: yes
+  become_user: '{{ regular_user }}'
