@@ -96,9 +96,6 @@
       ansible.builtin.include_tasks:
         file: kurzit.yaml
       when:
-        #- result.stat.isdir is not defined
-        #- not result.stat.isdir
-        #- result.rc != 0
         - not result.stat.exists
 
     - name: "Check if Visual Studio Code is installed and in the path"
@@ -149,7 +146,6 @@
         path: ~/Apps/YouTube.Desktop.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -165,7 +161,6 @@
         path: ~/Apps/Home.Assistant.Desktop.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -181,7 +176,6 @@
         path: ~/Apps/Obsidian.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -194,10 +188,9 @@
 
     - name: "Check if Plexamp is installed"
       ansible.builtin.stat:
-        path: ~/Apps/Plexamp.AppImage2
+        path: ~/Apps/Plexamp.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -251,7 +244,6 @@
     - name: "Check if connected to Tailnet"
       ansible.builtin.shell:
         cmd: tailscale status
-      #ignore_errors: true
       register: tailnet
       failed_when: tailnet.rc >= 2
 
