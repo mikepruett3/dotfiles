@@ -149,7 +149,7 @@
         path: ~/Apps/YouTube.Desktop.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -165,7 +165,7 @@
         path: ~/Apps/Home.Assistant.Desktop.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -181,7 +181,7 @@
         path: ~/Apps/Obsidian.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -197,7 +197,7 @@
         path: ~/Apps/Plexamp.AppImage
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
       when:
         - desktop is defined
@@ -205,39 +205,31 @@
     - name: "Import Plexamp Playbook"
       ansible.builtin.include_tasks:
         file: plexamp.yaml
-      #when:
-      #  - not result.stat.exists
+      when:
+        - not result.stat.exists
 
-    #- name: "Download the Private internet Access VPN client"
-    #  ansible.builtin.get_url:
-    #    url: "https://installers.privateinternetaccess.com/download/pia-linux-3.6.1-08339.run"
-    #    dest: ~/Downloads
-    #    mode: '0755'
-    #  become: yes
+    #- name: "Check if Private internet Access VPN client is installed"
+    #  ansible.builtin.stat:
+    #    path: ~/Apps/Plexamp.AppImage
+    #  become: true
     #  become_user: '{{ regular_user }}'
+    #  #ignore_errors: true
+    #  register: result
     #  when:
     #    - desktop is defined
-    #    - desktop == 'hyprland'
 
-    #- name: "Install the Private internet Access VPN client"
-    #  ansible.builtin.command:
-    #    argv:
-    #      - /usr/bin/sh
-    #      - -cl ~/Downloads/pia-linux-3.6.1-08339.run
-    #      - --quiet
-    #      - --accept
-    #  become: yes
-    #  become_user: '{{ regular_user }}'
+    #- name: "Import Private internet Access VPN client Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: pia.yaml
     #  when:
-    #    - desktop is defined
-    #    - desktop == 'hyprland'
+    #    - not result.stat.exists
 
     - name: "Check if minio client is installed and in the path"
       ansible.builtin.shell:
         cmd: command -v mc
       register: result
       failed_when: result.rc >= 2
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Download and Install the minio client"
@@ -245,29 +237,29 @@
         url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
         dest: ~/bin/
         mode: '0750'
+      become: true
+      become_user: '{{ regular_user }}'
       when:
         - result.rc != 0
-      become: yes
-      become_user: '{{ regular_user }}'
 
     - name: "Force an update to the xdg-desktop-menu"
       ansible.builtin.shell:
         cmd: xdg-desktop-menu forceupdate
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Check if connected to Tailnet"
       ansible.builtin.shell:
         cmd: tailscale status
-      ignore_errors: true
+      #ignore_errors: true
       register: tailnet
 
     - name: "Check if ~/Images has been created"
       ansible.builtin.stat:
         path: ~/Images
       register: result
-      ignore_errors: true
-      become: yes
+      #ignore_errors: true
+      become: true
       become_user: '{{ regular_user }}'
 
     - name: "Sync minio storage to ~/Images"
@@ -276,8 +268,6 @@
       become: yes
       become_user: '{{ regular_user }}'
       when:
-        - result.stat.isdir is not defined
-        - not result.stat.isdir
-        - result.rc != 0
+        - not result.stat.exists
         - tailnet is defined
         - tailnet.rc == 0
