@@ -6,8 +6,7 @@
   gather_facts: true
   no_log: false
 
-  #vars:
-  #  flyctl_version: "0.1.130"
+  vars:
 
   tasks:
     - name: "Get the Running User"
@@ -253,7 +252,7 @@
     - name: "Sync minio storage to ~/Images"
       ansible.builtin.shell:
         cmd: ~/bin/mc cp --recursive minio ~/Images/
-      become: yes
+      become: true
       become_user: '{{ regular_user }}'
       when:
         - not result.stat.exists
