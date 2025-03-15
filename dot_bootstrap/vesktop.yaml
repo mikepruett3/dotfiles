@@ -21,14 +21,12 @@
   ansible.builtin.template:
     src: desktop.j2
     dest: "/home/{{ regular_user }}/.local/share/applications/vesktop.desktop"
-    #owner: '{{ regular_user }}'
-    #group: '{{ regular_user }}'
     mode: '0640'
   vars:
     name: "Vesktop"
     comment: "A custom Discord desktop app"
     path: "/usr/bin/"
-    exec: "/usr/bin/vesktop"
+    exec: "vesktop"
     options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
     icon: "vesktop"
     terminal: false

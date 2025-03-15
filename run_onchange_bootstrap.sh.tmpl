@@ -1,7 +1,16 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 
-# .bootstrap/setup.yml hash: {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
+# .bootstrap/setup.yml hash:        {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
+# .bootstrap/apt.yaml hash:         {{ include "dot_bootstrap/apt.yaml" | sha256sum }}
+# .bootstrap/dnf.yaml hash:         {{ include "dot_bootstrap/dnf.yaml" | sha256sum }}
+# .bootstrap/fonts.yaml hash:       {{ include "dot_bootstrap/fonts.yaml" | sha256sum }}
+# .bootstrap/goapps.yaml hash:      {{ include "dot_bootstrap/goapps.yaml" | sha256sum }}
+# .bootstrap/homebrew.yaml hash:    {{ include "dot_bootstrap/homebrew.yaml" | sha256sum }}
+# .bootstrap/keyring-apt.yaml hash: {{ include "dot_bootstrap/keyring-apt.yaml" | sha256sum }}
+# .bootstrap/pacman.yaml hash:      {{ include "dot_bootstrap/pacman.yaml" | sha256sum }}
+# .bootstrap/vesktop.yaml hash:     {{ include "dot_bootstrap/vesktop.yaml" | sha256sum }}
+# .bootstrap/vscode.yaml hash:      {{ include "dot_bootstrap/vscode.yaml" | sha256sum }}
 
 if command -v ansible-playbook &> /dev/null; then
     ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
@@ -10,7 +19,7 @@ fi
 {{- else if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
-# .bootstrap/setup.yml hash: {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
+# .bootstrap/setup.yml              hash: {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
 
 if command -v ansible-playbook &> /dev/null; then
     ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
