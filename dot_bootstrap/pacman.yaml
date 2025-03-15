@@ -16,6 +16,7 @@
       - go
       - gnupg
       - htop
+      - jq
       - mediainfo
       - neovim
       - pass

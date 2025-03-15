@@ -17,6 +17,7 @@
       - gpg
       - htop
       #- lf
+      - jq
       - mediainfo
       - neovim
       - pass
