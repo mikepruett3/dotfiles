@@ -1,0 +1,41 @@
+---
+
+- name: "Check if kurzit has been installed"
+  ansible.builtin.stat:
+    path: ~/.kurzit
+  register: result
+  ignore_errors: true
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+
+- name: "Checkout kurzit from Github"
+  ansible.builtin.git:
+    repo: https://github.com/mikepruett3/kurzit.git
+    dest: ~/.kurzit
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  when:
+    - result.stat.isdir is not defined
+    - not result.stat.isdir
+    - result.rc != 0
+
+- name: "Make kurzit executable"
+  ansible.builtin.file:
+    path: ~/.kurzit/kurzit
+    mode: '0750'
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  when:
+    - result.stat.isdir is not defined
+    - not result.stat.isdir
+    - result.rc != 0
+
+- name: "Run the kurzit executable"
+  ansible.builtin.shell:
+    cmd: ~/.kurzit/kurzit
+  become: yes
+  become_user: '{{ remote_regular_user }}'
+  when:
+    - result.stat.isdir is not defined
+    - not result.stat.isdir
+    - result.rc != 0
