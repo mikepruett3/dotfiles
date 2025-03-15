@@ -1,0 +1,33 @@
+---
+- name: Local Machine Bootstrap
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+  no_log: false
+
+
+  tasks:
+    - name: "Get the Running User"
+      ansible.builtin.set_fact:
+        regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+    - name: "Kill running Vesktop client"
+      ansible.builtin.shell:
+        cmd: killall --regexp vesktop
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Get Download link of the latest Vesktop client Debian package"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/Vencord/Vesktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith(".deb")) | .browser_download_url' | grep -v arm64
+      register: url
+      when:
+        - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Download and Install the Vesktop client (apt)"
+      ansible.builtin.apt:
+        deb: "{{ url.stdout | string }}"
+        state: present
+      when:
+        - ansible_facts['pkg_mgr'] == 'apt'
