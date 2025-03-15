@@ -30,7 +30,6 @@
       ansible.builtin.set_fact:
         desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default=undef()) }}"
         #wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME', default=undef()) }}"
-      ignore_errors: true
 
     - name: "Make local .ssh directory"
       ansible.builtin.file:
@@ -75,7 +74,6 @@
         path: ~/.local/share/fonts/HackNerdFont-Regular.ttf
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
 
     - name: "Import fonts Playbook"
@@ -89,7 +87,6 @@
         path: ~/.kurzit
       become: true
       become_user: '{{ regular_user }}'
-      #ignore_errors: true
       register: result
 
     - name: "Import kurzit Playbook"
@@ -206,7 +203,6 @@
     #    path: ~/Apps/Plexamp.AppImage
     #  become: true
     #  become_user: '{{ regular_user }}'
-    #  #ignore_errors: true
     #  register: result
     #  when:
     #    - desktop is defined
@@ -251,7 +247,6 @@
       ansible.builtin.stat:
         path: ~/Images
       register: result
-      ignore_errors: true
       become: true
       become_user: '{{ regular_user }}'
 
@@ -264,4 +259,3 @@
         - not result.stat.exists
         - tailnet is defined
         - tailnet.rc == 0
-
