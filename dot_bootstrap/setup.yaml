@@ -71,9 +71,19 @@
       ansible.builtin.include_tasks:
         file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
 
+    - name: "Check if Hack fonts have been installed"
+      ansible.builtin.stat:
+        path: ~/.local/share/fonts/*NerdFont*.ttf
+      become: yes
+      become_user: '{{ regular_user }}'
+      ignore_errors: true
+      register: result
+
     - name: "Import fonts Playbook"
       ansible.builtin.include_tasks:
         file: fonts.yaml
+      when:
+        - not result.stat.exists
 
     - name: "Check if kurzit has been installed"
       ansible.builtin.stat:
@@ -82,6 +92,9 @@
       become_user: '{{ regular_user }}'
       ignore_errors: true
       register: result
+
+    - debug:
+        var: result
 
     - name: "Import kurzit Playbook"
       ansible.builtin.include_tasks:
