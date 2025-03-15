@@ -37,5 +37,5 @@
         group: "{{ sudoers_group }}"
         nopassword: true
         commands: ALL
-        #host: ALL
+        host: ALL
         state: present
