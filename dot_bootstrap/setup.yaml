@@ -73,7 +73,7 @@
 
     - name: "Check if Hack fonts have been installed"
       ansible.builtin.stat:
-        path: ~/.local/share/fonts/*NerdFont*.ttf
+        path: ~/.local/share/fonts/HackNerdFont-Regular.ttf
       become: yes
       become_user: '{{ regular_user }}'
       ignore_errors: true
