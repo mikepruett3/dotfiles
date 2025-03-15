@@ -1,0 +1,32 @@
+---
+
+- name: "Get Download link of the latest YouTube-Desktop AppImage client"
+  ansible.builtin.shell:
+    cmd: curl -s https://api.github.com/repos/mikepruett3/youtube-desktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+  register: url
+
+- name: "Download and Install the YouTube-Desktop client"
+  ansible.builtin.get_url:
+    url: "{{ url.stdout | string }}"
+    dest: ~/Apps/YouTube.Desktop.AppImage
+    mode: '0755'
+  become: true
+  become_user: '{{ regular_user }}'
+
+- name: "Create the Desktop file for YouTube-Desktop"
+  ansible.builtin.template:
+    src: desktop.j2
+    dest: ~/.local/share/applications/youtube-desktop.desktop
+    mode: '0640'
+  vars:
+    name: "YouTube Desktop"
+    comment: "A simple YouTube Desktop application, built using Electron.js"
+    path: "/home/{{ regular_user }}/Apps/"
+    exec: "YouTube.Desktop.AppImage"
+    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    icon: "youtube-desktop"
+    terminal: false
+    type: "Application"
+    startupnotification: true
+  become: true
+  become_user: '{{ regular_user }}'

@@ -11,6 +11,7 @@
 # .bootstrap/pacman.yaml hash:      {{ include "dot_bootstrap/pacman.yaml" | sha256sum }}
 # .bootstrap/vesktop.yaml hash:     {{ include "dot_bootstrap/vesktop.yaml" | sha256sum }}
 # .bootstrap/vscode.yaml hash:      {{ include "dot_bootstrap/vscode.yaml" | sha256sum }}
+# .bootstrap/youtube.yaml hash:     {{ include "dot_bootstrap/youtube.yaml" | sha256sum }}
 
 if command -v ansible-playbook &> /dev/null; then
     ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
