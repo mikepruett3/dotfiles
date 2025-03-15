@@ -5,11 +5,12 @@ roles:
     src: https://github.com/mikepruett3/ansible-role-visual-studio-code.git
 
   # From Ansible Galaxy
-  #- src: gantsign.visual-studio-code
-  - src: fubarhouse.golang
-  - src: andrewrothstein.starship
-  - src: jahrik.yay
+  #- name: gantsign.visual-studio-code
+  - name: fubarhouse.golang
+  - name: andrewrothstein.starship
+  - name: jahrik.yay
 
 collections:
   # From Ansible Galaxy
-  - src: community.general
+  - name: community.general
+    source: https://galaxy.ansible.com
