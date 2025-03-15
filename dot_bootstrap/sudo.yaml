@@ -1,0 +1,39 @@
+---
+- name: Local Machine Sudoers Change
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+  no_log: false
+
+  #vars:
+
+  tasks:
+    - name: "Set fact for the Running User"
+      ansible.builtin.set_fact:
+        running_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+    - name: "Set fact for Sudoers Group (Debian)"
+      ansible.builtin.set_fact:
+        sudoers_group: "sudo"
+      when:
+        - ansible_facts['os_family'] == 'Debian'
+
+    - name: "Set fact for Sudoers Group (Arch)"
+      ansible.builtin.set_fact:
+        sudoers_group: "wheel"
+      when:
+        - ansible_facts['os_family'] == 'Archlinux'
+
+    - name: "Add Running User to Sudoers Group"
+      ansible.builtin.user:
+        name: '{{ running_user }}'
+        groups: "{{ sudoers_group }}"
+        append: yes
+
+    - name: "Set Sudoers Group to not have to provide a Password"
+      community.general.sudoers:
+        name: "{{ sudoers_group }}"
+        group: "{{ sudoers_group }}"
+        commands: ALL
+        nopassword: false

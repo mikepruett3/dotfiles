@@ -9,3 +9,7 @@ roles:
   - src: fubarhouse.golang
   - src: andrewrothstein.starship
   - src: jahrik.yay
+
+collections:
+  # From Ansible Galaxy
+  - src: community.general.sudoers
