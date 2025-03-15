@@ -75,7 +75,7 @@
         path: ~/.local/share/fonts/HackNerdFont-Regular.ttf
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
 
     - name: "Import fonts Playbook"
@@ -89,7 +89,7 @@
         path: ~/.kurzit
       become: true
       become_user: '{{ regular_user }}'
-      ignore_errors: true
+      #ignore_errors: true
       register: result
 
     - name: "Import kurzit Playbook"
