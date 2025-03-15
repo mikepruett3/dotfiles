@@ -153,7 +153,6 @@
       register: result
       when:
         - desktop is defined
-        #- desktop == 'hyprland'
 
     - name: "Import YouTube-Desktop Playbook"
       ansible.builtin.include_tasks:
@@ -161,44 +160,21 @@
       #when:
       #  - result.rc != 0
 
-    - name: "Get Download link of the latest HomeAssistant-Desktop AppImage client"
-      ansible.builtin.shell:
-        cmd: curl -s https://api.github.com/repos/mikepruett3/homeassistant-desktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
-      register: url
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
-
-    - name: "Download and Install the HomeAssistant-Desktop client"
-      ansible.builtin.get_url:
-        url: "{{ url.stdout }}"
-        dest: ~/Apps/Home.Assistant.Desktop.AppImage
-        mode: '0755'
-      become: yes
+    - name: "Check if HomeAssistant-Desktop is installed"
+      ansible.builtin.stat:
+        path: ~/Apps/Home.Assistant.Desktop.AppImage
+      become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
+      register: result
       when:
         - desktop is defined
-        - desktop == 'hyprland'
 
-    - name: "Create the Desktop file for HomeAssistant-Desktop"
-      ansible.builtin.template:
-        src: desktop.j2
-        dest: ~/.local/share/applications/homeassistant-desktop.desktop
-        mode: '0640'
-      vars:
-        name: "HomeAssistant Desktop"
-        comment: "A simple Home Assistant Desktop application, built using Electron.js"
-        exec: "Home.Assistant.Desktop.AppImage"
-        options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
-        icon: "homeassistant-desktop"
-        terminal: false
-        type: "Application"
-        startupnotification: true
-      become: yes
-      become_user: '{{ regular_user }}'
-      when:
-        - desktop is defined
-        - desktop == 'hyprland'
+    - name: "Import YouTube-Desktop Playbook"
+      ansible.builtin.include_tasks:
+        file: youtube.yaml
+      #when:
+      #  - result.rc != 0
 
     - name: "Get Download link of the latest Obsidian client"
       ansible.builtin.shell:
