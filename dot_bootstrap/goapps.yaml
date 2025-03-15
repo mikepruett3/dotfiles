@@ -1,0 +1,72 @@
+---
+
+- name: "Check if ansiart2utf8 is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v ansiart2utf8
+  register: result
+  failed_when: result.rc >= 2
+
+- name: "Install ansiart2utf8 go packages"
+  ansible.builtin.shell:
+    cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
+  environment:
+    GOBIN: "/usr/local/bin"
+  when:
+    - result.rc != 0
+
+- name: "Check if ascii-image-converter is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v ascii-image-converter
+  register: result
+  failed_when: result.rc >= 2
+
+- name: "Install ascii-image-converter go packages"
+  ansible.builtin.shell:
+    cmd: go install github.com/TheZoraiz/ascii-image-converter@latest
+  environment:
+    GOBIN: "/usr/local/bin"
+  when:
+    - result.rc != 0
+
+- name: "Check if go-launcher is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v go-launcher
+  register: result
+  failed_when: result.rc >= 2
+
+- name: "Install go-launcher go packages"
+  ansible.builtin.shell:
+    cmd: go install github.com/mikepruett3/go-launcher@latest
+  environment:
+    GOBIN: "/usr/local/bin"
+  when:
+    - result.rc != 0
+
+- name: "Check if imgconv is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v imgconv
+  register: result
+  failed_when: result.rc >= 2
+
+- name: "Install imgconv go packages"
+  ansible.builtin.shell:
+    cmd: go install github.com/mikepruett3/imgconv@latest
+  environment:
+    GOBIN: "/usr/local/bin"
+  when:
+    - result.rc != 0
+
+- name: "Check if lf is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v lf
+  register: result
+  failed_when: result.rc >= 2
+
+- name: "Install lf go packages"
+  ansible.builtin.shell:
+    cmd: go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+  environment:
+    CGO_ENABLED: "0"
+    GOBIN: "/usr/local/bin"
+  when:
+    - result.rc != 0
