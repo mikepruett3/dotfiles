@@ -6,7 +6,7 @@
   register: result
   failed_when: result.rc >= 2
 
-- name: "Install ansiart2utf8 go packages"
+- name: "Install ansiart2utf8 go package"
   ansible.builtin.shell:
     cmd: go install github.com/BourgeoisBear/ansiart2utf8/ansiart2utf8@latest
   environment:
@@ -20,7 +20,7 @@
   register: result
   failed_when: result.rc >= 2
 
-- name: "Install ascii-image-converter go packages"
+- name: "Install ascii-image-converter go package"
   ansible.builtin.shell:
     cmd: go install github.com/TheZoraiz/ascii-image-converter@latest
   environment:
@@ -34,7 +34,7 @@
   register: result
   failed_when: result.rc >= 2
 
-- name: "Install go-launcher go packages"
+- name: "Install go-launcher go package"
   ansible.builtin.shell:
     cmd: go install github.com/mikepruett3/go-launcher@latest
   environment:
@@ -48,7 +48,7 @@
   register: result
   failed_when: result.rc >= 2
 
-- name: "Install imgconv go packages"
+- name: "Install imgconv go package"
   ansible.builtin.shell:
     cmd: go install github.com/mikepruett3/imgconv@latest
   environment:
@@ -62,7 +62,7 @@
   register: result
   failed_when: result.rc >= 2
 
-- name: "Install lf go packages"
+- name: "Install lf go package"
   ansible.builtin.shell:
     cmd: go install -ldflags="-s -w" github.com/gokcehan/lf@latest
   environment:
