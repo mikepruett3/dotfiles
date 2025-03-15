@@ -7,10 +7,6 @@
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
 
-#- name: "Set fact for Vesktop download url"
-#  ansible.builtin.set_fact:
-#    url: '{{ url.stdout | string }}'
-
 - name: "Download and Install the Vesktop client (apt)"
   ansible.builtin.apt:
     deb: "{{ url.stdout | string }}"
@@ -23,14 +19,15 @@
 
 - name: "Create the Desktop file for Vesktop client"
   ansible.builtin.template:
-    src: templates/desktop.j2
+    src: desktop.j2
     dest: "/home/{{ regular_user }}/.local/share/applications/vesktop.desktop"
-    owner: '{{ regular_user }}'
-    group: '{{ regular_user }}'
+    #owner: '{{ regular_user }}'
+    #group: '{{ regular_user }}'
     mode: '0640'
   vars:
     name: "Vesktop"
     comment: "A custom Discord desktop app"
+    path: "/usr/bin/"
     exec: "/usr/bin/vesktop"
     options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
     icon: "vesktop"
