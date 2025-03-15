@@ -36,4 +36,5 @@
         name: "{{ sudoers_group }}"
         group: "{{ sudoers_group }}"
         commands: ALL
-        nopassword: false
+        #host: ALL
+        nopassword: true
