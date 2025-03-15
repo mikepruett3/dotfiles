@@ -84,26 +84,11 @@
       register: result
       failed_when: result.rc >= 2
 
-    - name: "Install Visual Studio Code"
-      ansible.builtin.include_role:
-        #name: gantsign.visual-studio-code
-        name: ansible-role-visual-studio-code
+    - name: "Import Visual Studio Code Playbook"
+      ansible.builtin.include_tasks:
+        file: vscode.yaml
       when:
         - result.rc != 0
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] != 'pacman'
-
-    - name: "Install Visual Studio Code (yay)"
-      ansible.builtin.shell:
-        cmd: yay -S --needed --noconfirm --noprogressbar visual-studio-code-bin
-      become: yes
-      become_user: '{{ remote_regular_user }}'
-      when:
-        - result.rc != 0
-        - desktop is defined
-        - desktop == 'hyprland'
-        - ansible_facts['pkg_mgr'] == 'pacman'
 
     - name: "Check if Starship Cross-Shell Prompt is installed and in the path"
       ansible.builtin.shell:
