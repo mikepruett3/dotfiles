@@ -264,3 +264,4 @@
         - not result.stat.exists
         - tailnet is defined
         - tailnet.rc == 0
+
