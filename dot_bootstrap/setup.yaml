@@ -170,9 +170,9 @@
       when:
         - desktop is defined
 
-    - name: "Import YouTube-Desktop Playbook"
+    - name: "Import HomeAssistant-Desktop Playbook"
       ansible.builtin.include_tasks:
-        file: youtube.yaml
+        file: hass.yaml
       #when:
       #  - result.rc != 0
 
