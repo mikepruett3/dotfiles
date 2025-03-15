@@ -12,4 +12,4 @@ roles:
 
 collections:
   # From Ansible Galaxy
-  - src: community.general.sudoers
+  - src: community.general
