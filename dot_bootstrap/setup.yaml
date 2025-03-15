@@ -257,9 +257,10 @@
 
     - name: "Check if ~/Images has been created"
       ansible.builtin.stat:
-        path: ~/Images
+        path: ~/Images2
       register: result
       #ignore_errors: true
+      failed_when: result.rc >= 2
       become: true
       become_user: '{{ regular_user }}'
 
