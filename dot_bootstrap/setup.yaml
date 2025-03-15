@@ -77,10 +77,10 @@
 
     - name: "Check if kurzit has been installed"
       ansible.builtin.stat:
-        path: ~/.kurzit
-      ignore_errors: true
+        path: "/home/{{ regular_user }}/.kurzit/"
       become: yes
       become_user: '{{ regular_user }}'
+      ignore_errors: true
       register: result
 
     - name: "Import kurzit Playbook"
@@ -88,7 +88,7 @@
         file: kurzit.yaml
       when:
         - result.stat.isdir is not defined
-        #- not result.stat.isdir
+        - not result.stat.isdir
         - result.rc != 0
 
     - name: "Check if Visual Studio Code is installed and in the path"
