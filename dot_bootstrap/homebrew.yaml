@@ -24,4 +24,4 @@
       - unzip
     state: present
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'

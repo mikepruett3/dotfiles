@@ -5,7 +5,7 @@
     repo: https://github.com/mikepruett3/kurzit.git
     dest: ~/.kurzit
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
   #when:
   #  - result.stat.isdir is not defined
   #  - not result.stat.isdir
@@ -16,7 +16,7 @@
     path: ~/.kurzit/kurzit
     mode: '0750'
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
   #when:
   #  - result.stat.isdir is not defined
   #  - not result.stat.isdir
@@ -26,7 +26,7 @@
   ansible.builtin.shell:
     cmd: ~/.kurzit/kurzit
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
   #when:
   #  - result.stat.isdir is not defined
   #  - not result.stat.isdir

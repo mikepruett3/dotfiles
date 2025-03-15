@@ -14,7 +14,7 @@
     dest: ~/.local/share/fonts/Hack.zip
     mode: '0755'
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
   #when:
   #  - desktop is defined
   #  - desktop == 'hyprland'
@@ -24,7 +24,7 @@
     cmd: unzip -o Hack.zip && rm -f Hack.zip
     chdir: ~/.local/share/fonts/
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
   #when:
   #  - desktop is defined
   #  - desktop == 'hyprland'
@@ -33,7 +33,7 @@
   ansible.builtin.shell:
     cmd: fc-cache
   become: yes
-  become_user: '{{ remote_regular_user }}'
+  become_user: '{{ regular_user }}'
 
 - name: "Update the font information cache files (sudo)"
   ansible.builtin.shell:

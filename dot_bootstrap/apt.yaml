@@ -75,7 +75,7 @@
 #  ansible.builtin.shell:
 #    cmd: pipx install waypaper
 #  become: yes
-#  become_user: '{{ remote_regular_user }}'
+#  become_user: '{{ regular_user }}'
 #  when:
 #    - desktop is defined
 #    - desktop == 'hyprland'
