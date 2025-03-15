@@ -61,15 +61,15 @@
       become: yes
       become_user: '{{ regular_user }}'
 
-    - name: "Import keyring-apt Playbook"
-      ansible.builtin.include_tasks:
-        file: keyring-apt.yaml
-      when:
-        - ansible_facts['pkg_mgr'] == 'apt'
+    #- name: "Import keyring-apt Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: keyring-apt.yaml
+    #  when:
+    #    - ansible_facts['pkg_mgr'] == 'apt'
 
-    - name: "Import {{ ansible_facts['pkg_mgr'] }} Playbook"
-      ansible.builtin.include_tasks:
-        file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
+    #- name: "Import {{ ansible_facts['pkg_mgr'] }} Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
 
     - name: "Check if Hack fonts have been installed"
       ansible.builtin.stat:
