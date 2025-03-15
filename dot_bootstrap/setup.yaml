@@ -74,9 +74,21 @@
       ansible.builtin.include_tasks:
         file: fonts.yaml
 
+    - name: "Check if kurzit has been installed"
+      ansible.builtin.stat:
+        path: ~/.kurzit
+      register: result
+      ignore_errors: true
+      become: yes
+      become_user: '{{ remote_regular_user }}'
+
     - name: "Import kurzit Playbook"
       ansible.builtin.include_tasks:
         file: kurzit.yaml
+      when:
+        - result.stat.isdir is not defined
+        - not result.stat.isdir
+        - result.rc != 0
 
     - name: "Check if Visual Studio Code is installed and in the path"
       ansible.builtin.shell:
