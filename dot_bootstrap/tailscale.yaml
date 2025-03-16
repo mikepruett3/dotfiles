@@ -1,0 +1,37 @@
+---
+
+- name: "Install Tailscale packages (pacman)"
+  community.general.pacman:
+    name: tailscale
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'pacman'
+
+- name: "Download Tailscale Keyring"
+  ansible.builtin.get_url:
+    url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    force: true
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Add the Tailscale Repository"
+  ansible.builtin.get_url:
+    url: https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list
+    dest: /etc/apt/sources.list.d/tailscale.list
+    force: true
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Install Tailscale packages (apt)"
+  ansible.builtin.apt:
+    name: tailscale
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Start Tailscale service, if not started"
+  ansible.builtin.service:
+    name: tailscale
+    enabled: true
+    state: started

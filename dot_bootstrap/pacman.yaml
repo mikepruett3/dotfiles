@@ -22,7 +22,6 @@
       - poppler
       - pydf
       - p7zip
-      - tailscale
       - unrar-free
       - unzip
     state: present
@@ -31,9 +30,6 @@
   community.general.pacman:
     name:
       - avahi
-      - bluez
-      - bluez-utils
-      - blueman
       - chromium
       - cups
       - firefox
@@ -93,7 +89,6 @@
     - streamdeck-ui
     #- ttf-hack-nerd
     - waypaper
-    - vesktop-bin
   become: yes
   become_user: '{{ regular_user }}'
   when:

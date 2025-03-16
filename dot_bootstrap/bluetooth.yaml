@@ -1,0 +1,28 @@
+---
+
+- name: "Install Bluetooth packages (pacman)"
+  community.general.pacman:
+    name:
+      - blueman
+      - bluez
+      - bluez-utils
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'pacman'
+
+- name: "Install Bluetooth packages (apt)"
+  ansible.builtin.apt:
+    name:
+      - bluetooth
+      - blueman
+      - bluez
+      - bluez-tools
+    state: present
+  when:
+    - ansible_facts['pkg_mgr'] == 'apt'
+
+- name: "Start Bluetooth service, if not started"
+  ansible.builtin.service:
+    name: bluetooth
+    enabled: true
+    state: started

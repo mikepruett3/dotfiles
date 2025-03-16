@@ -68,6 +68,18 @@
       ansible.builtin.include_tasks:
         file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
 
+    - name: "Import Bluetooth Playbook"
+      ansible.builtin.include_tasks:
+        file: bluetooth.yaml
+      when:
+        - desktop is defined
+
+    - name: "Import Tailscale Playbook"
+      ansible.builtin.include_tasks:
+        file: tailscale.yaml
+      when:
+        - desktop is defined
+
     - name: "Check if Hack fonts have been installed"
       ansible.builtin.stat:
         path: ~/.local/share/fonts/HackNerdFont-Regular.ttf

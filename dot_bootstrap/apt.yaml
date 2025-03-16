@@ -16,7 +16,6 @@
       - golang-go
       - gpg
       - htop
-      #- lf
       - jq
       - mediainfo
       - neovim
@@ -41,11 +40,7 @@
       - pavucontrol
       - mako-notifier
       - firefox-esr
-      #- mullvad-browser
       - chromium
-      - bluetooth
-      - bluez-tools
-      - blueman
       - mpv
       - libgirepository1.0-dev
       - pipx
@@ -55,15 +50,11 @@
       - python3-gi-cairo
       - python3-screeninfo
       - gir1.2-gtk-3.0
-      - tailscale
-      - bluez
-      - bluez-tools
       - cups
       - avahi-daemon
       - libnss-mdns
       - mupdf
       - mupdf-tools
-      #- swww
       - yt-dlp
       - viewnior
     state: present

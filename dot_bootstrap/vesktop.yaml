@@ -14,6 +14,14 @@
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
 
+- name: "Install the Vesktop client (pacman)"
+  ansible.builtin.shell:
+    cmd: yay -S --needed --noconfirm --noprogressbar vesktop-bin
+  become: yes
+  become_user: '{{ regular_user }}'
+  when:
+    - ansible_facts['pkg_mgr'] == 'pacman'
+
 - name: "Create the Desktop file for Vesktop client"
   ansible.builtin.template:
     src: desktop.j2
