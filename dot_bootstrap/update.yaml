@@ -69,3 +69,50 @@
         mode: '0755'
       become: true
       become_user: '{{ regular_user }}'
+
+    - name: "Kill running Obsidian client"
+      ansible.builtin.shell:
+        cmd: killall --regexp obsidian
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Get Download link of the latest Obsidian client"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url' | grep -v arm64
+      register: url
+
+    - name: "Download and Install the Obsidian client"
+      ansible.builtin.get_url:
+        url: "{{ url.stdout | string }}"
+        dest: ~/Apps/Obsidian.AppImage
+        mode: '0755'
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Kill running Plexamp client"
+      ansible.builtin.shell:
+        cmd: killall --regexp plexamp
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Download and Install the Plexamp client"
+      ansible.builtin.get_url:
+        url: "https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-4.11.5.AppImage"
+        dest: ~/Apps/Plexamp.AppImage
+        mode: '0755'
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Download and Install the minio client"
+      ansible.builtin.get_url:
+        url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
+        dest: ~/bin/
+        mode: '0750'
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Force an update to the xdg-desktop-menu"
+      ansible.builtin.shell:
+        cmd: xdg-desktop-menu forceupdate
+      become: true
+      become_user: '{{ regular_user }}'
