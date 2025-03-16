@@ -31,3 +31,41 @@
         state: present
       when:
         - ansible_facts['pkg_mgr'] == 'apt'
+
+    - name: "Kill running YouTube-Desktop client"
+      ansible.builtin.shell:
+        cmd: killall --regexp youtube-desktop
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Get Download link of the latest YouTube-Desktop AppImage client"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/mikepruett3/youtube-desktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+      register: url
+
+    - name: "Download and Install the YouTube-Desktop client"
+      ansible.builtin.get_url:
+        url: "{{ url.stdout | string }}"
+        dest: ~/Apps/YouTube.Desktop.AppImage
+        mode: '0755'
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Kill running HomeAssistant-Desktop client"
+      ansible.builtin.shell:
+        cmd: killall --regexp homeassistant-desktop
+      become: true
+      become_user: '{{ regular_user }}'
+
+    - name: "Get Download link of the latest HomeAssistant-Desktop AppImage client"
+      ansible.builtin.shell:
+        cmd: curl -s https://api.github.com/repos/mikepruett3/homeassistant-desktop/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("AppImage")) | .browser_download_url'
+      register: url
+
+    - name: "Download and Install the HomeAssistant-Desktop client"
+      ansible.builtin.get_url:
+        url: "{{ url.stdout | string }}"
+        dest: ~/Apps/Home.Assistant.Desktop.AppImage
+        mode: '0755'
+      become: true
+      become_user: '{{ regular_user }}'
