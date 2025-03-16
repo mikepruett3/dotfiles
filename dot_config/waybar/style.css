@@ -97,6 +97,14 @@ tooltip {
     border-radius: 0px 0px 0px 12px;
 }
 
+#tray {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #image {
     background-color: #000000;
     padding-left: 10px;
