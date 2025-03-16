@@ -69,7 +69,6 @@ tooltip {
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 0px 0px 12px 0;
 }
 
 #cpu {
@@ -103,6 +102,7 @@ tooltip {
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
+    border-radius: 0px 0px 12px 0;
 }
 
 #image {
