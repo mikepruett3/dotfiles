@@ -60,7 +60,7 @@
     },
 
     "tray": {
-      "icon-size": 21,
+      //"icon-size": 21,
       "spacing": 10
     },
 
@@ -121,12 +121,14 @@
     "network": {
       "format": "{ifname}",
       "format-wifi": "{essid} ({signalStrength}%) ",
-      "format-ethernet": "Connected 󰈀",
-      "format-disconnected": "Disconnected",
+      "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+      "format-disconnected": "Disconnected ⚠",
+      "format-linked": "{ifname} (No IP) ⚠",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
       "tooltip-format": "{ifname} via {gwaddr} 󰈀",
       "tooltip-format-wifi": "{ipaddr} ",
       "tooltip-format-ethernet": "{ifname} ({ipaddr}) 󰈀",
-      "tooltip-format-disconnected": "Disconnected",
+      "tooltip-format-disconnected": "Disconnected ⚠",
       "max-length": 50
     },
 
