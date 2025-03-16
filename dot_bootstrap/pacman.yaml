@@ -30,32 +30,34 @@
 - name: "Install Desktop packages (pacman - hyprland)"
   community.general.pacman:
     name:
-      - kitty
-      - kanshi
-      - wofi
-      - waybar
-      - hyprpaper
-      - hypridle
-      - hyprlock
-      - xdg-desktop-portal-hyprland
-      - pamixer
-      - mako
-      - mpv
-      - firefox
-      - chromium
+      - avahi
       - bluez
       - bluez-utils
       - blueman
+      - chromium
       - cups
-      - avahi
-      - nss-mdns
-      - libmupdf
-      - mupdf-gl
-      - swww
+      - firefox
       - gamemode
+      - hypridle
+      - hyprlock
+      - hyprpaper
+      - kanshi
+      - kitty
       - lib32-gamemode
-      - yt-dlp
+      - libmupdf
+      - mako
+      - mpv
+      - mupdf-gl
+      - nss-mdns
+      - pamixer
+      - pciutils
+      - swww
+      - usbutils
       - viewnior
+      - wofi
+      - waybar
+      - xdg-desktop-portal-hyprland
+      - yt-dlp
     state: present
   when:
     - desktop is defined
@@ -86,6 +88,7 @@
     - ludusavi
     - hyprshot
     - pwvucontrol
+    - sddm-theme-tokyo-night-git
     - streamdeck-ui
     #- ttf-hack-nerd
     - waypaper
