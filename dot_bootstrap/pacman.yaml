@@ -38,7 +38,6 @@
       - hyprlock
       - xdg-desktop-portal-hyprland
       - pamixer
-      - pwvucontrol
       - mako
       - mpv
       - firefox
@@ -84,6 +83,7 @@
     - git-credential-manager
     - ludusavi
     - hyprshot
+    - pwvucontrol
     - streamdeck-ui
     #- ttf-hack-nerd
     - waypaper
