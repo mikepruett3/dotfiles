@@ -63,9 +63,10 @@
 - name: "Check if Yay is installed and in the path"
   ansible.builtin.shell:
     cmd: command -v yay
+  become: yes
+  become_user: '{{ regular_user }}'
   register: result
-  #failed_when: result.rc >= 2
-  ignore_errors: true
+  failed_when: result.rc >= 2
 
 - name: "Install Yay Package Manager"
   ansible.builtin.include_role:
