@@ -3,6 +3,7 @@
 - name: "Install packages (apt)"
   ansible.builtin.apt:
     name:
+      - bash-completion
       - bat
       - btop
       - curl
