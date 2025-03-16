@@ -32,6 +32,6 @@
 
 - name: "Start Tailscale service, if not started"
   ansible.builtin.service:
-    name: tailscale
+    name: tailscaled
     enabled: true
     state: started
