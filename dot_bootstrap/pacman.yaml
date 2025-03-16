@@ -88,8 +88,8 @@
     #- ttf-hack-nerd
     - waypaper
     - vesktop-bin
-  #become: yes
-  #become_user: '{{ regular_user }}'
+  become: yes
+  become_user: '{{ regular_user }}'
   when:
     - desktop is defined
     - desktop == 'hyprland'
