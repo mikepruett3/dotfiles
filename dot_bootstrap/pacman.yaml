@@ -4,6 +4,7 @@
   community.general.pacman:
     name:
       - bat
+      - bash-completion
       - btop
       - curl
       - dos2unix
