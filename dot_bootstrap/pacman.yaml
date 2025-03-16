@@ -37,6 +37,7 @@
       - chromium
       - cups
       - firefox
+      - fuse
       - gamemode
       - hypridle
       - hyprlock
