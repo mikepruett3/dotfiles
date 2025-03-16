@@ -112,7 +112,7 @@ tooltip {
     border-radius: 0px 0px 0px 12px;
 }
 
-#custom-quit, #custom-lock, #custom-reboot, #custom-power {
+#custom-quit, #custom-lock, #custom-sleep, #custom-reboot, #custom-power {
     background-color: #000000;
     color: #846bc4;
     font-size: 18px;
