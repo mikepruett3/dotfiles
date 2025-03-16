@@ -17,6 +17,7 @@
         cmd: killall --regexp vesktop
       become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
 
     - name: "Get Download link of the latest Vesktop client Debian package"
       ansible.builtin.shell:
@@ -37,6 +38,7 @@
         cmd: killall --regexp youtube-desktop
       become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
 
     - name: "Get Download link of the latest YouTube-Desktop AppImage client"
       ansible.builtin.shell:
@@ -56,6 +58,7 @@
         cmd: killall --regexp homeassistant-desktop
       become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
 
     - name: "Get Download link of the latest HomeAssistant-Desktop AppImage client"
       ansible.builtin.shell:
@@ -75,6 +78,7 @@
         cmd: killall --regexp obsidian
       become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
 
     - name: "Get Download link of the latest Obsidian client"
       ansible.builtin.shell:
@@ -94,6 +98,7 @@
         cmd: killall --regexp plexamp
       become: true
       become_user: '{{ regular_user }}'
+      ignore_errors: true
 
     - name: "Download and Install the Plexamp client"
       ansible.builtin.get_url:
