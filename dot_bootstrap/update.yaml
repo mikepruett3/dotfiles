@@ -12,6 +12,18 @@
       ansible.builtin.set_fact:
         regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
 
+    - name: "Set fact for architecture (x86_64)"
+      ansible.builtin.set_fact:
+        architecture: "amd64"
+      when:
+        - ansible_facts['architecture'] == "x86_64"
+
+    - name: "Set fact for architecture (i386)"
+      ansible.builtin.set_fact:
+        architecture: "i386"
+      when:
+        - ansible_facts['architecture'] == "i386"
+
     - name: "Kill running Vesktop client"
       ansible.builtin.shell:
         cmd: killall --regexp vesktop
