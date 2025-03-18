@@ -1,8 +1,8 @@
 {{ if eq .chezmoi.os "windows" -}}
 @ECHO OFF
 
-REM %USERPROFILE%\.bootstrap\setup.bat hash: {{ include "dot_bootstrap/setup.bat" | sha256sum }}
+REM %USERPROFILE%\.bootstrap\windows\setup.bat hash: {{ include "dot_bootstrap/windows/setup.bat" | sha256sum }}
 
-START /WAIT "BootStrapping System" CMD /C %USERPROFILE%\.bootstrap\setup.bat
+START /WAIT "BootStrapping System" CMD /C %USERPROFILE%\.bootstrap\windows\setup.bat
 
 {{- end }}
