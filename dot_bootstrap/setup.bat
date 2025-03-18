@@ -117,6 +117,11 @@ IF ERRORLEVEL 0 (
         CALL :winget "ArtifexSoftware.mutool"
     )
 
+    WHERE /Q "nano"
+    IF ERRORLEVEL 1 (
+        CALL :winget "GNU.Nano"
+    )
+
     WHERE /Q "npm"
     IF ERRORLEVEL 1 (
         CALL :winget "OpenJS.NodeJS.LTS"
@@ -146,10 +151,10 @@ IF ERRORLEVEL 0 (
         CALL :scoop "file"
     )
 
-    WHERE /Q "mpv"
-    IF ERRORLEVEL 1 (
-        CALL :scoop "mpv"
-    )
+    REM WHERE /Q "mpv"
+    REM IF ERRORLEVEL 1 (
+    REM     CALL :scoop "mpv"
+    REM )
 
     WHERE /Q "chroma"
     IF ERRORLEVEL 1 (
