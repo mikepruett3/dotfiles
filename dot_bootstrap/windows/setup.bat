@@ -52,6 +52,11 @@ IF ERRORLEVEL 0 (
         CALL :winget "aristocratos.btop4win"
     )
 
+    WHERE /Q "code"
+    IF ERRORLEVEL 1 (
+        CALL :winget "Microsoft.VisualStudioCode"
+    )
+
     WHERE /Q "curl"
     IF ERRORLEVEL 1 (
         CALL :winget "cURL.cURL"
@@ -188,6 +193,7 @@ IF ERRORLEVEL 0 (
 IF NOT EXIST .\Images\ MKDIR .\Images\
 IF NOT EXIST .\Images\wallpapers\ mc cp --recursive minio .\Images\
 
+REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\add-vscode-context-menu.reg
 REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\cmdhere.reg
 
 RefreshEnv.cmd
