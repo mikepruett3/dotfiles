@@ -2,7 +2,7 @@ Windows Registry Editor Version 5.00
 
 ; Add "Open with Code" to the context menu for files/directory/directory background/drive.
 
-'{{ .chezmoi.homeDir | replaceAllRegex "\" "\" }}'
+{{ .chezmoi.homeDir | replaceAllRegex "m" "n" }}
 
 [HKEY_CLASSES_ROOT\*\shell\VSCode]
 "Icon"="C:\\Users\\mpruett\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
