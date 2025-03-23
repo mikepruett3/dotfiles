@@ -16,7 +16,7 @@
 
 [CmdletBinding()]
 param (
-  [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+  [Parameter(Mandatory=$True,ValueFromPipeline=$True)]
   [string]
   $Name
 )
@@ -37,44 +37,48 @@ $link = $content |
   Where-Object name -match "$Name" |
   Select-Object -ExpandProperty browser_download_url
 
-Write-Verbose "Downloading the selected Nerd Fonts zip file to %TEMP%..."
-if ($link) {
-    if (!(Test-Path -Path $ENV:TEMP\$Name.zip -PathType Leaf)) {
-        Invoke-WebRequest -Uri $link -OutFile $ENV:TEMP\$Name.zip
-    }
-} else {
-    Write-Error "No matching font found for $Name.zip"
-    Break
-}
-
-Write-Verbose "Extracting the $Name.zip file..."
-if (!(Test-Path -Path $ENV:TEMP\$Name\ -PathType Container)) {
-    Expand-Archive -Path $ENV:TEMP\$Name.zip `
-      -DestinationPath $ENV:TEMP\$Name\
-}
-
-Write-Verbose "Processing the fonts from $ENV:TEMP\$Name\..."
-$FontList = Get-ChildItem -Path $ENV:TEMP\$Name\ -Include ('*.fon','*.otf','*.ttc','*.ttf') -Recurse
-foreach ($Font in $FontList) {
-  $FontName = $Font.Name
-  $BaseName = $Font.BaseName
-  if (!(Test-Path -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName -PathType Leaf)) {
-    Write-Verbose "Installing font - $BaseName"
-    Copy-Item -Path $Font -Destination $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\
-
-    Write-Verbose "Register font $BaseName for all users"
-    #Write-Output $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName
-    New-ItemProperty -Name $BaseName `
-      -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" `
-      -PropertyType string `
-      -Value $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName |
-      Out-Null
+if (!(Test-Path -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\*$Name*)) {
+  Write-Verbose "Downloading the selected Nerd Fonts zip file to %TEMP%..."
+  if ($link) {
+      if (!(Test-Path -Path $ENV:TEMP\$Name.zip -PathType Leaf)) {
+          Invoke-WebRequest -Uri $link -OutFile $ENV:TEMP\$Name.zip
+      }
+  } else {
+      Write-Error "No matching font found for $Name.zip"
+      Break
   }
-}
 
-Write-Verbose "Cleaning up downloaded files..."
-Remove-Item -Path $ENV:TEMP\$Name\ -Recurse -Force -ErrorAction SilentlyContinue
-Remove-Item -Path $ENV:TEMP\$Name.zip -Force -ErrorAction SilentlyContinue
+  Write-Verbose "Extracting the $Name.zip file..."
+  if (!(Test-Path -Path $ENV:TEMP\$Name\ -PathType Container)) {
+      Expand-Archive -Path $ENV:TEMP\$Name.zip `
+        -DestinationPath $ENV:TEMP\$Name\
+  }
+
+  Write-Verbose "Processing the fonts from $ENV:TEMP\$Name\..."
+  $FontList = Get-ChildItem -Path $ENV:TEMP\$Name\ -Include ('*.fon','*.otf','*.ttc','*.ttf') -Recurse
+  foreach ($Font in $FontList) {
+    $FontName = $Font.Name
+    $BaseName = $Font.BaseName
+    if (!(Test-Path -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName -PathType Leaf)) {
+      Write-Verbose "Installing font - $BaseName"
+      Copy-Item -Path $Font -Destination $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\
+
+      Write-Verbose "Register font $BaseName for all users"
+      #Write-Output $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName
+      New-ItemProperty -Name $BaseName `
+        -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" `
+        -PropertyType string `
+        -Value $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName |
+        Out-Null
+    }
+  }
+
+  Write-Verbose "Cleaning up downloaded files..."
+  Remove-Item -Path $ENV:TEMP\$Name\ -Recurse -Force -ErrorAction SilentlyContinue
+  Remove-Item -Path $ENV:TEMP\$Name.zip -Force -ErrorAction SilentlyContinue
+} else {
+  Write-Verbose "$Name Nerd Fonts already installed!!!"
+}
 
 Write-Verbose "Cleaning up used Variables..."
 Remove-Variable -Name "Name" -ErrorAction SilentlyContinue
