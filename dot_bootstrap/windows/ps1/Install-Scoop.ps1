@@ -17,6 +17,8 @@ Write-Verbose "Checking to see if scoop is already installed..."
 if (!(Get-Command -Name "scoop" -CommandType Application)) {
     Write-Verbose "Installing scoop package manager..."
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+} else {
+    Write-Verbose "scoop already installed!!!"
 }
 
 if (!($(scoop bucket list).Name -eq "extras")) {
