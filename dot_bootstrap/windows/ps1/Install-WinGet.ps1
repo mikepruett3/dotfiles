@@ -15,11 +15,11 @@ param ()
 
 Write-Verbose "Checking to see if winget is already installed..."
 if (!(Get-Command -Name "winget" -CommandType Application)) {
-    Write-Verbose "Installing winget package manager..."
-    # From crutkas's gist - https://gist.github.com/crutkas/6c2096eae387e544bd05cde246f23901
-    #$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
-    if (!(Get-AppPackage -name "Microsoft.DesktopAppInstaller")) {
-      Write-Verbose -Message "Installing WinGet..."
+  Write-Verbose "Installing winget package manager..."
+  # From crutkas's gist - https://gist.github.com/crutkas/6c2096eae387e544bd05cde246f23901
+  #$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
+  if (!(Get-AppPackage -name "Microsoft.DesktopAppInstaller")) {
+    Write-Verbose -Message "Installing WinGet..."
 @'
 # Set URL and Enable TLSv12
 $releases_url = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
@@ -36,9 +36,9 @@ $latestRelease = $releases.assets | Where { $_.browser_download_url.EndsWith('ms
 # Install Microsoft.DesktopAppInstaller Package
 Add-AppxPackage -Path $latestRelease.browser_download_url
 '@ > $ENV:TEMP\winget.ps1
-      Start-Process -FilePath "PowerShell" -ArgumentList $ENV:TEMP\winget.ps1 -Verb RunAs -Wait
-      Remove-Item -Path $ENV:TEMP\winget.ps1 -Force
-    } else {
-      Write-Verbose "Winget already installed!!!"
-    }
+    Start-Process -FilePath "PowerShell" -ArgumentList $ENV:TEMP\winget.ps1 -Verb RunAs -Wait
+    Remove-Item -Path $ENV:TEMP\winget.ps1 -Force
+  }
+} else {
+  Write-Verbose "Winget already installed!!!"
 }
