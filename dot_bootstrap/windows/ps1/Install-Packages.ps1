@@ -17,7 +17,26 @@ begin {
   Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
 
   $Packages = @(
-    "Git.Git"
+    "FiloSottile.age",
+    "sharkdp.bat",
+    "aristocratos.btop4win",
+    "cURL.cURL",
+    "waterlan.dos2unix",
+    "eza-community.eza",
+    "junegunn.fzf",
+    "Git.Git",
+    "charmbracelet.glow",
+    "GoLang.Go",
+    "GnuPG.GnuPG",
+    "jftuga.less",
+    "gokcehan.lf",
+    "Microsoft.VisualStudioCode",
+    "MinIO.Client",
+    "ArtifexSoftware.mutool",
+    "GNU.Nano",
+    "Neovim.Neovim",
+    "BurntSushi.ripgrep.MSVC",
+    "Starship.Starship"
   )
 }
 
