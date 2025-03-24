@@ -10,4 +10,5 @@ PowerShell -Command "Start-Process PowerShell -ArgumentList '-NoProfile -Executi
 
 REM refreshenv
 
+PowerShell -File "%UserProfile%\.bootstrap\windows\ps1\Install-Packages.ps1"
 PowerShell -File "%UserProfile%\.bootstrap\windows\ps1\Install-NerdFonts.ps1" -Name "Hack"
