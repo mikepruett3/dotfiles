@@ -8,6 +8,6 @@ PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\wi
 REM Install Sudo package
 PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Sudo.ps1" -Verbose
 
-refreshenv
+REM refreshenv
 
 PowerShell -File "%UserProfile%\.bootstrap\windows\ps1\Install-NerdFonts.ps1" -Name "Hack" -Verbose
