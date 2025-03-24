@@ -1,7 +1,8 @@
 @ECHO OFF
 
 REM Install package managers
-PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-WinGet.ps1" -Verb RunAs
+REM PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-WinGet.ps1" -Verb RunAs
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process PowerShell -NoProfile -ExecutionPolicy Bypass -File `"%UserProfile%\.bootstrap\windows\ps1\Install-WinGet.ps1"` -Verb RunAs"
 PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Scoop.ps1" -Verb RunAs
 PowerShell -NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Choco.ps1" -Verb RunAs
 
