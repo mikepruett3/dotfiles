@@ -15,10 +15,16 @@ param ()
 
 begin {
   Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
+
+  $Packages = @(
+    "Git.Git"
+  )
 }
 
 process {
-  Install-WinGetPackage -PackageID "Git.Git"
+  foreach ($Package in $Packages) {
+    Install-WinGetPackage -PackageID $Package
+  }
 }
 
 end {
