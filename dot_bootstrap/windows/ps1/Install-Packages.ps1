@@ -13,7 +13,7 @@
 [CmdletBinding()]
 param ()
 
-#$VerbosePreference = "True"
+$VerbosePreference = "Continue"
 
 begin {
   Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
