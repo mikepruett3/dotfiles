@@ -10,6 +10,8 @@
   > Install-Packages
 #>
 
+$VerbosePreference = $True
+
 [CmdletBinding()]
 param ()
 
