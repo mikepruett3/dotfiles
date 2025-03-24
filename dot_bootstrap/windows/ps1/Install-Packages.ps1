@@ -15,7 +15,6 @@ param ()
 
 $VerbosePreference = "Continue"
 
-
 Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
 
 $Packages = @(
@@ -42,7 +41,7 @@ $Packages = @(
 )
 
 foreach ($Package in $Packages) {
-  Install-WinGetPackage -PackageID $Package
+  Install-WinGetPackage -PackageID $Package -Sudo
 }
 
 Remove-Module -Name Install-WinGetPackage -ErrorAction SilentlyContinue
