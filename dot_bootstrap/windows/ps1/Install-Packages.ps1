@@ -13,8 +13,14 @@
 [CmdletBinding()]
 param ()
 
-Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
+begin {
+  Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
+}
 
-Install-WinGetPackage -PackageID "Git.Git"
+process {
+  Install-WinGetPackage -PackageID "Git.Git"
+}
 
-Remove-Module -Name Install-WinGetPackage -ErrorAction SilentlyContinue
+end {
+  Remove-Module -Name Install-WinGetPackage -ErrorAction SilentlyContinue
+}
