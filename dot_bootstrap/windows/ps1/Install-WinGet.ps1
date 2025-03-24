@@ -47,3 +47,5 @@ Add-AppxPackage -Path $latestRelease.browser_download_url
 } else {
   Write-Verbose "Winget already installed!!!"
 }
+
+pause
