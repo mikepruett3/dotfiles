@@ -10,10 +10,10 @@
   > Install-Packages
 #>
 
-$VerbosePreference = $True
-
 [CmdletBinding()]
 param ()
+
+$VerbosePreference = "True"
 
 begin {
   Import-Module -Name $ENV:USERPROFILE\.bootstrap\windows\ps-functions\Install-WinGetPackage.ps1
