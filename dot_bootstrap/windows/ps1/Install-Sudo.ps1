@@ -13,6 +13,8 @@
 [CmdletBinding()]
 param ()
 
+$VerbosePreference = "Continue"
+
 Write-Verbose "Checking to see if sudo is already installed..."
 if (!(Get-Command -Name "sudo" -CommandType Application)) {
   Write-Verbose "Installing sudo package manager..."

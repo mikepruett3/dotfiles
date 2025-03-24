@@ -13,6 +13,8 @@
 [CmdletBinding()]
 param ()
 
+$VerbosePreference = "Continue"
+
 Write-Verbose "Checking to see if scoop is already installed..."
 if (!(Get-Command -Name "scoop" -CommandType Application)) {
     Write-Verbose "Installing scoop package manager..."

@@ -13,6 +13,8 @@
 [CmdletBinding()]
 param ()
 
+$VerbosePreference = "Continue"
+
 Write-Verbose "Checking to see if choco is already installed..."
 if (!(Get-Command -Name "choco" -CommandType Application)) {
   Write-Verbose "Installing choco package manager..."

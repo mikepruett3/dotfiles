@@ -13,6 +13,8 @@
 [CmdletBinding()]
 param ()
 
+$VerbosePreference = "Continue"
+
 Write-Verbose "Checking to see if winget is already installed..."
 if (!(Get-Command -Name "winget" -CommandType Application)) {
   Write-Verbose "Installing winget package manager..."

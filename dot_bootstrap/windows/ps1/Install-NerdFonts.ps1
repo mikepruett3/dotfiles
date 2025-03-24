@@ -23,6 +23,7 @@ param (
 
 # Suppress Progress bar for Invoke-WebRequest tasks
 $ProgressPreference = "SilentlyContinue"
+$VerbosePreference = "Continue"
 
 # Link to Github API for ryanoasis's nerd fronts repository
 $url ="https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest"
