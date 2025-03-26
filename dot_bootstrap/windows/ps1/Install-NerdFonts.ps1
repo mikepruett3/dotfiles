@@ -38,6 +38,9 @@ $link = $content |
   Where-Object name -match "$Name" |
   Select-Object -ExpandProperty browser_download_url
 
+# Creating Fonts directory, if it does not exist
+New-Item -ItemType "Directory" -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts -Force
+
 if (!(Test-Path -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\*$Name*)) {
   Write-Verbose "Downloading the selected Nerd Fonts zip file to %TEMP%..."
   if ($link) {
