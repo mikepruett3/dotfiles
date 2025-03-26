@@ -29,15 +29,15 @@ function Install-WinGetPackage {
       if ($Sudo) {
         Write-Verbose -Message "Install $PackageID..."
         sudo winget install --silent `
-          --id $PackageID `
-          --accept-source-agreements `
-          --accept-package-agreements
+          --id $PackageID
+          #--accept-source-agreements `
+          #--accept-package-agreements
       } else {
         Write-Verbose -Message "Install $PackageID..."
         winget install --silent `
-          --id $PackageID `
-          --accept-source-agreements `
-          --accept-package-agreements
+          --id $PackageID
+          #--accept-source-agreements `
+          #--accept-package-agreements
       }
     } else {
       Write-Verbose -Message "$PackageID already installed!"
