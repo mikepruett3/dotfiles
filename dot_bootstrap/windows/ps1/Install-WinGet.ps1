@@ -16,7 +16,7 @@ param ()
 $VerbosePreference = "Continue"
 
 Write-Verbose "Checking to see if winget is already installed..."
-if (!(Get-Command -Name "winget" -CommandType Application)) {
+if (!(Get-Command -Name "winget" -CommandType Application -ErrorAction SilentlyContinue)) {
   Write-Verbose "Installing winget package manager..."
   # From crutkas's gist - https://gist.github.com/crutkas/6c2096eae387e544bd05cde246f23901
   #$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"

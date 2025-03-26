@@ -16,7 +16,7 @@ param ()
 $VerbosePreference = "Continue"
 
 Write-Verbose "Checking to see if choco is already installed..."
-if (!(Get-Command -Name "choco" -CommandType Application)) {
+if (!(Get-Command -Name "choco" -CommandType Application -ErrorAction SilentlyContinue)) {
   Write-Verbose "Installing choco package manager..."
   winget install --id chocolatey.chocolatey --source winget
 } else {
