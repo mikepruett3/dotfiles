@@ -67,13 +67,15 @@ if (!(Test-Path -Path $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\*$Name*)) {
       Write-Verbose "Installing font - $BaseName"
       Copy-Item -Path $Font -Destination $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\
 
-      Write-Verbose "Register font $BaseName for all users"
-      #Write-Output $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName
-      New-ItemProperty -Name $BaseName `
-        -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" `
-        -PropertyType string `
-        -Value $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName |
-        Out-Null
+      if (!(Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -Name $BaseName -ErrorAction SilentlyContinue | Out-Null)) {
+        Write-Verbose "Register font $BaseName for current users"
+
+        New-ItemProperty -Name $BaseName `
+          -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" `
+          -PropertyType string `
+          -Value $ENV:LOCALAPPDATA\Microsoft\Windows\Fonts\$FontName |
+          Out-Null
+      }
     }
   }
 
