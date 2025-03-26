@@ -25,7 +25,7 @@ function Install-WinGetPackage {
         $Sudo
     )
 
-    if (!(winget list --id $PackageID)) {
+    if (winget list --id $PackageID -eq $False) {
       if ($Sudo) {
         Write-Verbose -Message "Install $PackageID..."
         sudo winget install --silent `
