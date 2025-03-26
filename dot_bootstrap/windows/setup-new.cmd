@@ -10,5 +10,5 @@ PowerShell -Command "Start-Process PowerShell -ArgumentList '-NoProfile -Executi
 
 REM refreshenv
 
-PowerShell -Command "Start-Process PowerShell -ArgumentList '-ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Packages.ps1"' -Verb RunAs" -Wait
+PowerShell -Command "Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Packages.ps1"' -Verb RunAs" -Wait
 PowerShell -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-NerdFonts.ps1" -Name "Hack"
