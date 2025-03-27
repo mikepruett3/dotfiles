@@ -14,6 +14,9 @@ PowerShell -Command "Start-Process PowerShell -ArgumentList '-NoProfile -Executi
 REM Installing Nerd Fonts, if missing
 PowerShell -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-NerdFonts.ps1" -Name "Hack"
 
+REM Installing dotposh, if missing
+PowerShell -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-dotposh.ps1"
+
 REM Set the Execution Policy
 PowerShell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
 
