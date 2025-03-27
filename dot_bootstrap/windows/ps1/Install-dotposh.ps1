@@ -34,9 +34,9 @@ if (!(Test-Path -Path $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.Pow
     Start-Process -FilePath PowerShell `
     -Verb RunAs `
     -ArgumentList `
-    "New-Item -ItemType SymbolicLink", `
-    "-Path $ENV:USERPROFILE\dotposh\profile.ps1", `
-    "-Target $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+    "mklink", `
+    "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1", `
+    "%USERPROFILE%\dotposh\profile.ps1"
 } else {
     Write-Verbose "Microsoft.PowerShell_profile.ps1 already exists!!!"
 }
