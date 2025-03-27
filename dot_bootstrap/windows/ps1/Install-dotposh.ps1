@@ -31,10 +31,12 @@ if (!(Test-Path -Path $ENV:USERPROFILE\Documents\WindowsPowerShell -PathType Con
 
 Write-Verbose "Checking to see if Microsoft.PowerShell_profile.ps1 directory exists, in $ENV:USERPROFILE\Documents\WindowsPowerShell..."
 if (!(Test-Path -Path $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -PathType Leaf)) {
-    Start-Process PowerShell -Verb RunAs -Command `
-    "New-Item -ItemType SymbolicLink `
-    -Path $ENV:USERPROFILE\dotposh\profile.ps1 `
-    -Target $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+    Start-Process -FilePath PowerShell `
+    -Verb RunAs `
+    -ArgumentList `
+    "New-Item -ItemType SymbolicLink", `
+    "-Path $ENV:USERPROFILE\dotposh\profile.ps1", `
+    "-Target $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 } else {
     Write-Verbose "Microsoft.PowerShell_profile.ps1 already exists!!!"
 }
