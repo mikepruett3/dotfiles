@@ -10,6 +10,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply mikepruett3
 
 ## Install for Windows
 
+> **NOTE FOR WINDOWS 11**:
+>
+> Enable `sudo` from the `For developers` page... (procedure on [Microsoft Docs](https://learn.microsoft.com/en-us/windows/sudo/#prerequisites))
+
 - Copy and run the following bootstrap script first!
 
 ```powershell
