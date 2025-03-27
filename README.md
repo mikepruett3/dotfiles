@@ -17,7 +17,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply mikepruett3
 
 PowerShell -NoProfile `
 -ExecutionPolicy Bypass `
--Command "`
+-Command "`[scriptblock]::Create`
 ((Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/mikepruett3/dotfiles/refs/heads/main/dot_bootstrap/windows/ps1/Windows-Bootstrap.ps1').Content).Invoke();"
 ```
 
