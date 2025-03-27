@@ -50,13 +50,19 @@ Add-AppxPackage -Path $latestRelease.browser_download_url
     Write-Verbose "Winget already installed!!!"
 }
 
-$PackageID = "GnuPG.GnuPG"
-if (winget list --id $PackageID -eq $False) {
-    Write-Verbose -Message "Install $PackageID..."
+$Packages = @(
+  "GnuPG.GnuPG",
+  "twpayne.chezmoi"
+)
+
+foreach ($Package in $Packages) {
+  if (winget list --id $Package -eq $False) {
+    Write-Verbose -Message "Install $Package..."
     winget install --silent `
-      --id $PackageID `
+      --id $Package `
       --accept-source-agreements `
       --accept-package-agreements
-} else {
-  Write-Verbose -Message "$PackageID already installed!"
+  } else {
+    Write-Verbose -Message "$Package already installed!"
+  }
 }
