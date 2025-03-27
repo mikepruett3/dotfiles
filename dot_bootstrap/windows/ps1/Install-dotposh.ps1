@@ -31,9 +31,10 @@ if (!(Test-Path -Path $ENV:USERPROFILE\Documents\WindowsPowerShell -PathType Con
 
 Write-Verbose "Checking to see if Microsoft.PowerShell_profile.ps1 directory exists, in $ENV:USERPROFILE\Documents\WindowsPowerShell..."
 if (!(Test-Path -Path $ENV:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 -PathType Leaf)) {
-    Start-Process -FilePath PowerShell `
+    Start-Process -FilePath "$Env:ComSpec" `
     -Verb RunAs `
     -ArgumentList `
+    "/c", `
     "mklink", `
     "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1", `
     "%USERPROFILE%\dotposh\profile.ps1"
