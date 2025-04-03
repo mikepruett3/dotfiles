@@ -1,5 +1,5 @@
 #Dot source the files
-Write-Output "$PSScriptRoot\Public\"
+Write-Verbose "$PSScriptRoot\Public\"
 
 Foreach ($Import in @( Get-ChildItem -Path $PSScriptRoot\Public\ -Filter *.ps1 -ErrorAction SilentlyContinue )) {
     Try {
