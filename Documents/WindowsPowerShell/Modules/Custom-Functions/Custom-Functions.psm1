@@ -1,9 +1,5 @@
-#Get public and private function definition files. Thanks RamblingCookieMonster
-$Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\ -Filter *.ps1 -ErrorAction SilentlyContinue )
-$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\ -Filter *.ps1 -ErrorAction SilentlyContinue )
-
 #Dot source the files
-Foreach ($Import in @($Public + $Private)) {
+Foreach ($Import in @( Get-ChildItem -Path $PSScriptRoot\Public\ -Filter *.ps1 -ErrorAction SilentlyContinue )) {
     Try {
         Import-Module $Import.FullName
     }
@@ -12,4 +8,4 @@ Foreach ($Import in @($Public + $Private)) {
     }
 }
 
-Export-ModuleMember -Function $Public.BaseName -Verbose
+Export-ModuleMember -Function $Public.BaseName
