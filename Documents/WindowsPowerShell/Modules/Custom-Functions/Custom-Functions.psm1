@@ -1,6 +1,7 @@
 #Dot source the files
 Foreach ($Import in @( Get-ChildItem -Path $PSScriptRoot\Public\ -Filter *.ps1 -ErrorAction SilentlyContinue )) {
     Try {
+        Write-Verbose $PSScriptRoot\Public\
         Import-Module $Import.FullName
     }
     Catch {
