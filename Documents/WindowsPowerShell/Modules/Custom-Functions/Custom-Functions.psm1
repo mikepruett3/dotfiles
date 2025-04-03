@@ -2,7 +2,13 @@
 $Functions = @( Get-ChildItem -Path $PSScriptRoot\Public\ -Filter *.ps1 -ErrorAction SilentlyContinue )
 
 foreach ($Function in @($Functions)) {
-    Import-Module $Function.FullName -Verbose
+    try {
+        Import-Module $Function.FullName -Verbose
+    }
+    catch {
+        Write-Error -Message "Failed to import function $($Import.FullName): $_"
+    }
+
 }
 
-Export-ModuleMember -Function $Public.BaseName
+Export-ModuleMember -Function $Functions.BaseName
