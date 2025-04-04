@@ -60,14 +60,14 @@ function Copy-SSHKey {
             }
         }
 
-        Write-Verbose "Load contents of SSH Public Key into variable..."
-        try {
-            $SSHKey = Get-Content -Path $Key
-        }
-        catch {
-            Write-Error "Key not found!!!"
-            Break
-        }
+        #Write-Verbose "Load contents of SSH Public Key into variable..."
+        #try {
+        #    $SSHKey = Get-Content -Path $Key
+        #}
+        #catch {
+        #    Write-Error "Key not found!!!"
+        #    Break
+        #}
 
         # Use BetterCredentials cmdlet to make this easier!
         Write-Verbose "Load Credentials into variable..."
@@ -120,7 +120,8 @@ function Copy-SSHKey {
     }
 
     process {
-        & echo y | plink.exe -ssh "$Server" -l "$UserName" -pw "$Password" "stat ~/.ssh"
+        $command = "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys"
+        Get-Content $Key | plink -ssh -batch "-l" $UserName "-pw" "$Password" $Server "-m" - #| Out-Null
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
@@ -137,7 +138,7 @@ function Copy-SSHKey {
         Remove-Variable -Name Credentials -ErrorAction SilentlyContinue
         Remove-Variable -Name Key -ErrorAction SilentlyContinue
         Remove-Variable -Name KeysFound -ErrorAction SilentlyContinue
-        Remove-Variable -Name SSHKey -ErrorAction SilentlyContinue
+        #Remove-Variable -Name SSHKey -ErrorAction SilentlyContinue
         Remove-Variable -Name Creds -ErrorAction SilentlyContinue
         Remove-Variable -Name UserName -ErrorAction SilentlyContinue
         Remove-Variable -Name Password -ErrorAction SilentlyContinue
