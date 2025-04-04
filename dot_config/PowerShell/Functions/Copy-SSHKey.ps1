@@ -60,14 +60,14 @@ function Copy-SSHKey {
             }
         }
 
-        #Write-Verbose "Load contents of SSH Public Key into variable..."
-        #try {
-        #    $SSHKey = Get-Content -Path $Key
-        #}
-        #catch {
-        #    Write-Error "Key not found!!!"
-        #    Break
-        #}
+        Write-Verbose "Load contents of SSH Public Key into variable..."
+        try {
+            $SSHKey = Get-Content -Path $Key
+        }
+        catch {
+            Write-Error "Key not found!!!"
+            Break
+        }
 
         # Use BetterCredentials cmdlet to make this easier!
         Write-Verbose "Load Credentials into variable..."
@@ -120,9 +120,12 @@ function Copy-SSHKey {
     }
 
     process {
-        $Command = "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys"
-        #Get-Content $Key | plink -ssh -batch "-l" $UserName "-pw" "$Password" $Server "-m" - | Out-Null
-        Get-Content $Key | plink.exe -ssh -l $UserName -pw "$Password" $Server $Command -
+        #$Command = "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys"
+        #Get-Content $Key |
+        Write-Output $SSHKey |
+        plink.exe -ssh -l $UserName -pw "$Password" $Server `
+        "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys" -
+        #$Command -
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
