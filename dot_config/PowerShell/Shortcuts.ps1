@@ -1,5 +1,6 @@
-# Setup AutoHotKey environment auto-start on login
 $Shell = New-Object -ComObject WScript.Shell
+
+# Setup AutoHotKey environment auto-start on login
 $Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("startup")) -ChildPath "My AHK.lnk"
 if (-not (Test-Path -Path $Shortcut)) {
     Create-Shortcut -Link $Shortcut `
@@ -32,10 +33,14 @@ if (-not (Test-Path -Path $Shortcut)) {
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
 # Windows Credential Backup Utility Shortcut
-#Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Credential Backup Utility.lnk" `
-#                -App "$Env:SystemRoot\System32\credwiz.exe" `
-#                -Icon "%SystemRoot%\System32\credwiz.exe" `
-#                -Description "Windows Credential Backup Utility" `
+$Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "Credential Backup Utility.lnk"
+if (-not (Test-Path -Path $Shortcut)) {
+    Create-Shortcut -Link $Shortcut `
+    -App "$ENV:SystemRoot\System32\credwiz.exe" `
+    -Icon "$ENV:SystemRoot\System32\credwiz.exe" `
+    -Description "Windows Credential Backup Utility" `
+}
+Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
 # Administrative Tools Shortcut
 #Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Administrative Tools.lnk" `
@@ -58,13 +63,17 @@ Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 #                -Icon "%SystemRoot%\system32\dsadmin.dll, 0" `
 #                -Description "Active Directory Users & Computers" `
 
-# Environment Variables Shortcut
-#Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Environment Variables.lnk" `
-#                -App "$Env:SystemRoot\System32\rundll32.exe" `
-#                -Arguments "sysdm.cpl,EditEnvironmentVariables" `
-#                -Icon "%SystemRoot%\System32\shell32.dll, 189" `
-#                -Description "Environment Variables" `
-#                #-HotKey "CTRL+SHIFT+F"
+# Create Environment Variables Shortcut
+$Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "Environment Variables.lnk"
+if (-not (Test-Path -Path $Shortcut)) {
+    Create-Shortcut -Link $Shortcut ``
+    -App "$ENV:SystemRoot\System32\rundll32.exe" `
+    -Arguments "sysdm.cpl,EditEnvironmentVariables" `
+    -Icon "$ENV:SystemRoot\System32\shell32.dll, 189" `
+    -Description "Environment Variables"
+    #-HotKey "CTRL+SHIFT+F"
+}
+Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
 # Create Hosts File Shortcut
 $Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "Hosts File.lnk"
@@ -78,12 +87,16 @@ if (-not (Test-Path -Path $Shortcut)) {
 }
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
-## System Restore Shortcut
-#Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\System Restore.lnk" `
-#                -App "$Env:SystemRoot\System32\rstrui.exe" `
-#                -Icon "%SystemRoot%\System32\rstrui.exe" `
-#                -Description "Recover your system, using System Restore Point" `
-#                -Admin
+# Create System Restore Shortcut
+$Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "System Restore.lnk"
+if (-not (Test-Path -Path $Shortcut)) {
+    Create-Shortcut -Link $Shortcut `
+    -App "$ENV:SystemRoot\System32\rstrui.exe" `
+    -Icon "$ENV:SystemRoot\System32\rstrui.exe" `
+    -Description "Recover your system, using System Restore Point" `
+    -Admin
+}
+Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
 ## Create System Restore Point Shortcut
 #Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Create Instant System Restore Point.lnk" `
