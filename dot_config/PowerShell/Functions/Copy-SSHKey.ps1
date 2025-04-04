@@ -99,7 +99,7 @@ function Copy-SSHKey {
 
         Write-Verbose "Testing communication with the $Server server..."
         try {
-            Test-Connection -ComputerName $Server -Count 1 -ErrorAction SilentlyContinue
+            Test-Connection -ComputerName $Server -Count 1 -ErrorAction SilentlyContinue | Out-Null
         }
         catch {
             Write-Error "Count not communicate with $Server!!!"
@@ -120,7 +120,7 @@ function Copy-SSHKey {
     }
 
     process {
-        & plink.exe "$Server" -l "$UserName" -pw "$Password" "stat ~/.ssh"
+        & plink.exe -ssh "$Server" -l "$UserName" -pw "$Password" "stat ~/.ssh"
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
