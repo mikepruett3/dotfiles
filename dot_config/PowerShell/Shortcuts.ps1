@@ -66,12 +66,11 @@ Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 # Create Environment Variables Shortcut
 $Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "Environment Variables.lnk"
 if (-not (Test-Path -Path $Shortcut)) {
-    Create-Shortcut -Link $Shortcut ``
+    Create-Shortcut -Link $Shortcut `
     -App "$ENV:SystemRoot\System32\rundll32.exe" `
     -Arguments "sysdm.cpl,EditEnvironmentVariables" `
     -Icon "$ENV:SystemRoot\System32\shell32.dll, 189" `
     -Description "Environment Variables"
-    #-HotKey "CTRL+SHIFT+F"
 }
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
