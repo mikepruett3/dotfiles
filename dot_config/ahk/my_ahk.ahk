@@ -1,12 +1,12 @@
-#NoEnv                     ; Reccomended for performace and compatability with future AutoHotKey releases.
+#NoEnv                     ; Recommended for performance and compatibility with future AutoHotKey releases.
 #SingleInstance Force      ; Starts all Included AutoHotKey Scripts as one - https://stackoverflow.com/questions/4565321/autohotkey-calling-one-script-from-another-script
 ;#Warn                     ; Enable warnings to assist with detecting common errors.
-SendMode, Input            ; Reccomended for new scripts due to its superior speed and reliability.
+SendMode, Input            ; Recommended for new scripts due to its superior speed and reliability.
 
 ;========== Include Custom AutoHotKey Script ==========
 #Include, %A_WorkingDir%\Custom\Custom.ahk
 
-;========== Globally Avaliable Hotkeys ==========
+;========== Globally Available Hotkeys ==========
 ; Reload AutoHotkey Hotkey (CTRL + R)
 ^R::
 SplashTextOn,100,50,AutoHotKeySystem,`nReloading...
