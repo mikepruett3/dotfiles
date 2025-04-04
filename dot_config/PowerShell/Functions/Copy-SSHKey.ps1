@@ -123,7 +123,7 @@ function Copy-SSHKey {
         #$Command = "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys"
         #Get-Content $Key |
         Write-Output $SSHKey |
-        plink.exe -ssh -l $UserName -pw "$Password" $Server `
+        plink.exe -ssh -no-antispoof -l $UserName -pw "$Password" $Server `
         "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys" -
         #$Command -
         #try {
