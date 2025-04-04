@@ -120,7 +120,7 @@ function Copy-SSHKey {
     }
 
     process {
-        & plink.exe -ssh "$Server" -l "$UserName" -pw "$Password" -batch "stat ~/.ssh"
+        & echo y | plink.exe -ssh "$Server" -l "$UserName" -pw "$Password" -batch "stat ~/.ssh"
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
