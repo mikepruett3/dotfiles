@@ -107,7 +107,8 @@ function Copy-SSHKey {
     process {
         Get-Content $Key |
         plink.exe -ssh -l $UserName -pw "$Password" $Server `
-        "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys && chmod 0600 .ssh/authorized_keys" -
+        "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys && chmod 0600 .ssh/authorized_keys"
+        # -
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
