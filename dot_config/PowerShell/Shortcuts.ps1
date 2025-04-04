@@ -69,7 +69,7 @@ if (-not (Test-Path -Path $Shortcut)) {
     Create-Shortcut -Link $Shortcut `
     -App "$ENV:SystemRoot\System32\rundll32.exe" `
     -Arguments "sysdm.cpl,EditEnvironmentVariables" `
-    -Icon "$ENV:SystemRoot\System32\shell32.dll, 189" `
+    -Icon "$ENV:SystemRoot\System32\shell32.dll, 167" `
     -Description "Environment Variables"
 }
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
@@ -97,11 +97,15 @@ if (-not (Test-Path -Path $Shortcut)) {
 }
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
-## Create System Restore Point Shortcut
-#Create-Shortcut -Link "$Env:AppData\Microsoft\Windows\Start Menu\Programs\Create Instant System Restore Point.lnk" `
-#                -App "$Env:UserProfile\dotposh\tools\Instant_Restore_Point.vbs" `
-#                -Icon "%SystemRoot%\System32\bootux.dll, 20" `
-#                -Description "Create Instant System Restore Point" `
-#                -Admin
+# Create System Restore Point Shortcut
+$Shortcut = Join-Path -Path (Resolve-Path $Shell.SpecialFolders("programs")) -ChildPath "Create Instant System Restore Point.lnk"
+if (-not (Test-Path -Path $Shortcut)) {
+    Create-Shortcut -Link $Shortcut `
+    -App "$ENV:UserProfile\.config\vbs\Instant_Restore_Point.vbs" `
+    -Icon "%SystemRoot%\System32\bootux.dll, 20" `
+    -Description "Create Instant System Restore Point" `
+    -Admin
+}
+Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
 
 Remove-Variable -Name Shell -ErrorAction SilentlyContinue
