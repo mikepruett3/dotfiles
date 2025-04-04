@@ -60,15 +60,6 @@ function Copy-SSHKey {
             }
         }
 
-        Write-Verbose "Load contents of SSH Public Key into variable..."
-        try {
-            $SSHKey = Get-Content -Path $Key
-        }
-        catch {
-            Write-Error "Key not found!!!"
-            Break
-        }
-
         # Use BetterCredentials cmdlet to make this easier!
         Write-Verbose "Load Credentials into variable..."
         try {
@@ -111,21 +102,12 @@ function Copy-SSHKey {
             Write-Error "plink.exe either not installed, or not in system path!!!"
             Break
         }
-
-        Write-Verbose "Checking for ssh in system path"
-        if (-not (Get-Command -Name ssh.exe -ErrorAction SilentlyContinue)) {
-            Write-Error "ssh.exe either not installed, or not in system path!!!"
-            Break
-        }
     }
 
     process {
-        #$Command = "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys"
-        #Get-Content $Key |
-        Write-Output $SSHKey |
-        plink.exe -ssh -no-antispoof -l $UserName -pw "$Password" $Server `
-        "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys" -
-        #$Command -
+        Get-Content $Key |
+        plink.exe -ssh -l $UserName -pw "$Password" $Server `
+        "mkdir --mode=0700 -p .ssh && cat >> .ssh/authorized_keys; chmod 0600 .ssh/authorized_keys" -
         #try {
         #    Write-Output "$SSHKey" | plink.exe "$Server" -l "$UserName" -pw "$Password" "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
         #}
@@ -142,7 +124,6 @@ function Copy-SSHKey {
         Remove-Variable -Name Credentials -ErrorAction SilentlyContinue
         Remove-Variable -Name Key -ErrorAction SilentlyContinue
         Remove-Variable -Name KeysFound -ErrorAction SilentlyContinue
-        #Remove-Variable -Name SSHKey -ErrorAction SilentlyContinue
         Remove-Variable -Name Creds -ErrorAction SilentlyContinue
         Remove-Variable -Name UserName -ErrorAction SilentlyContinue
         Remove-Variable -Name Password -ErrorAction SilentlyContinue
