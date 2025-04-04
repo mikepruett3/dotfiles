@@ -69,7 +69,7 @@ if (-not (Test-Path -Path $Shortcut)) {
     Create-Shortcut -Link $Shortcut `
     -App "$ENV:SystemRoot\System32\rundll32.exe" `
     -Arguments "sysdm.cpl,EditEnvironmentVariables" `
-    -Icon "$ENV:SystemRoot\System32\shell32.dll, 167" `
+    -Icon "$ENV:SystemRoot\System32\shell32.dll, 189" `
     -Description "Environment Variables"
 }
 Remove-Variable -Name Shortcut -ErrorAction SilentlyContinue
