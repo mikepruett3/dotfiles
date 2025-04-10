@@ -40,7 +40,7 @@ Return
 ; Empty Recycle Bin Hotkey (WIN + Delete)
 ; https://www.maketecheasier.com/favorite-autohotkey-scripts/
 #Del::
-SplashTextOn,200,50,AutoHotKeySystem,`nEmpting Trash...
+SplashTextOn,200,50,AutoHotKeySystem,`nEmptying Trash...
 Sleep, 500
 FileRecycleEmpty
 SplashTextOff
@@ -124,6 +124,12 @@ Return
     SendInput, ``````html
     SendInput, {Enter}
     Return
+
+    :*:dte::
+    Send %A_MM%/%A_DD%/%A_YYYY%
+    SendInput, {Enter}
+    Return
+
 #IfWinActive
 
 ; ========== Hotkeys that only work in explorer.exe ==========
