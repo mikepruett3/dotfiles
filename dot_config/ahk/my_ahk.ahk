@@ -19,6 +19,10 @@ GetIP(URL){
     return http.ResponseText
 }
 
+RemoveToolTip:
+ToolTip
+Return
+
 ;========== Globally Available Hotkeys ==========
 ; Reload AutoHotkey Hotkey (CTRL + R)
 ^R::
@@ -41,9 +45,6 @@ clipboard:="Your Public IP Address is: " GetIP("http://www.netikus.net/show_ip.h
 MsgBox 64, IP Address, % Clipboard
 Return
 
-;RemoveToolTip:
-;ToolTip
-;Return
 
 ; Temporarily Suspend AutoHotkey Hotkey (WIN + ScrollLock)
 ; https://www.maketecheasier.com/favorite-autohotkey-scripts/
