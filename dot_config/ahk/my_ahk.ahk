@@ -10,7 +10,7 @@ SendMode, Input            ; Recommended for new scripts due to its superior spe
 ; Reload AutoHotkey Hotkey (CTRL + R)
 ^R::
 SplashTextOn,100,50,AutoHotKeySystem,`nReloading...
-Run, powershell.exe updp
+Run, cmd.exe chezmoi update
 Sleep, 500
 Reload
 SplashTextOff
