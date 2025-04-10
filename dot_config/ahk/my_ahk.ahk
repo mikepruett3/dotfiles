@@ -126,7 +126,7 @@ Return
     Return
 
     :*:dte::
-    Send %A_MM%/%A_DD%/%A_YYYY%
+    SendInput, ## %A_MM%/%A_DD%/%A_YYYY%
     SendInput, {Enter}
     Return
 
