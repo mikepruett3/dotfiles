@@ -126,7 +126,7 @@ Return
     Return
 
     :*:dte::
-    SendInput, ## %A_MM%/%A_DD%/%A_YYYY%
+    SendInput, ## FormatTime(A_Now, "MM/dd/yy")
     SendInput, {Enter}
     Return
 
