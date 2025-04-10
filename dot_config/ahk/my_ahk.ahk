@@ -87,7 +87,7 @@ Return
     Return
 
     :*:tst::
-    FormatTime, TimeStamp,, dd-MMM-yyyy_HH-mm-ss
+    FormatTime, TimeStamp,, dd-MMM-yyyy-HH-mm-ss
     SendInput, %TimeStamp%
     SendInput, {Space}
     Return
