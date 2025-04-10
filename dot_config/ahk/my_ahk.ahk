@@ -76,17 +76,17 @@ Return
 
     :*:ttt::
     FormatTime, Time,, Time
-    SendInput, %Time%
+    SendInput, %Time%{Space}
     Return
 
     :*:ddd::
     FormatTime, Date,, ShortDate
-    SendInput, %Date%
+    SendInput, %Date%{Space}
     Return
 
     :*:tst::
     FormatTime, TimeStamp,, dd-MMM-yyyy_HH-mm-ss
-    SendInput, %TimeStamp%
+    SendInput, %TimeStamp%{Space}
     Return
 
     ::asshole::
