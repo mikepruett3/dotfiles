@@ -100,10 +100,10 @@ Return
     ;SendInput, {Enter}
     ;Return
 
-    :*:cmd::
-    SendInput, ``````cmd
-    SendInput, {Enter}
-    Return
+    ;:*:cmd::
+    ;SendInput, ``````cmd
+    ;SendInput, {Enter}
+    ;Return
 
     ;:*:yml::
     ;SendInput, ``````yaml
@@ -120,10 +120,10 @@ Return
     ;SendInput, {Enter}
     ;Return
 
-    :*:hml::
-    SendInput, ``````html
-    SendInput, {Enter}
-    Return
+    ;:*:hml::
+    ;SendInput, ``````html
+    ;SendInput, {Enter}
+    ;Return
 
     :*:dte::
     FormatTime, CurrentDay,, MM/dd/yy
