@@ -74,19 +74,22 @@ Return
     SendInput, {Space}
     Return
 
-    :*:ttt::
+    :*:tt::
     FormatTime, Time,, Time
-    SendInput, %Time%{Space}
+    SendInput, %Time%
+    SendInput, {Space}
     Return
 
-    :*:ddd::
+    :*:dd::
     FormatTime, Date,, ShortDate
-    SendInput, %Date%{Space}
+    SendInput, %Date%
+    SendInput, {Space}
     Return
 
     :*:tst::
     FormatTime, TimeStamp,, dd-MMM-yyyy_HH-mm-ss
-    SendInput, %TimeStamp%{Space}
+    SendInput, %TimeStamp%
+    SendInput, {Space}
     Return
 
     ::asshole::
@@ -100,47 +103,11 @@ Return
 
 ; ========== Hotkeys that only work in Obsidian.exe ==========
 #IfWinActive, ahk_exe Obsidian.exe
-    ;:*:ps::
-    ;SendInput, ``````PowerShell
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:bsh::
-    ;SendInput, ``````bash
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:cmd::
-    ;SendInput, ``````cmd
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:yml::
-    ;SendInput, ``````yaml
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:jsn::
-    ;SendInput, ``````json
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:jas::
-    ;SendInput, ``````javascript
-    ;SendInput, {Enter}
-    ;Return
-
-    ;:*:hml::
-    ;SendInput, ``````html
-    ;SendInput, {Enter}
-    ;Return
-
     :*:dte::
     FormatTime, CurrentDay,, MM/dd/yy
     SendInput, {#}{#} %CurrentDay%
     SendInput, {Enter}
     Return
-
 #IfWinActive
 
 ; ========== Hotkeys that only work in explorer.exe ==========
@@ -161,8 +128,8 @@ Return
     FileAppend, ,%Path%\NewTextFile%NoFile%.txt
     Return
 
-    ; Show and Hide Hidden Files Hotkey (CTRL + F2)
-    ^F2::
+    ; Show and Hide Hidden Files Hotkey (.)
+    .::
     ToggleHiddenFilesDisplay()
     Return
 
