@@ -126,7 +126,7 @@ Return
     Return
 
     :*:dte::
-    CurrentDay := FormatTime(A_Now, "MM/dd/yy")
+    FormatTime, CurrentDay, "MM/dd/yy"
     SendInput, ## %CurrentDay%
     SendInput, {Enter}
     Return
