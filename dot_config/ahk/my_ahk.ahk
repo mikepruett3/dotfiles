@@ -90,35 +90,35 @@ Return
 
 ; ========== Hotkeys that only work in Obsidian.exe ==========
 #IfWinActive, ahk_exe Obsidian.exe
-    :*:ps::
-    SendInput, ``````PowerShell
-    SendInput, {Enter}
-    Return
+    ;:*:ps::
+    ;SendInput, ``````PowerShell
+    ;SendInput, {Enter}
+    ;Return
 
-    :*:bsh::
-    SendInput, ``````bash
-    SendInput, {Enter}
-    Return
+    ;:*:bsh::
+    ;SendInput, ``````bash
+    ;SendInput, {Enter}
+    ;Return
 
     :*:cmd::
     SendInput, ``````cmd
     SendInput, {Enter}
     Return
 
-    :*:yml::
-    SendInput, ``````yaml
-    SendInput, {Enter}
-    Return
+    ;:*:yml::
+    ;SendInput, ``````yaml
+    ;SendInput, {Enter}
+    ;Return
 
-    :*:jsn::
-    SendInput, ``````json
-    SendInput, {Enter}
-    Return
+    ;:*:jsn::
+    ;SendInput, ``````json
+    ;SendInput, {Enter}
+    ;Return
 
-    :*:jas::
-    SendInput, ``````javascript
-    SendInput, {Enter}
-    Return
+    ;:*:jas::
+    ;SendInput, ``````javascript
+    ;SendInput, {Enter}
+    ;Return
 
     :*:hml::
     SendInput, ``````html
