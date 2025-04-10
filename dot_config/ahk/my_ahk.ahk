@@ -127,7 +127,7 @@ Return
 
     :*:dte::
     FormatTime, CurrentDay,, MM/dd/yy
-    Send, ## %CurrentDay%
+    SendInput, {#}{#} %CurrentDay%
     SendInput, {Enter}
     Return
 
