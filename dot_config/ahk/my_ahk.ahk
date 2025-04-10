@@ -35,7 +35,7 @@ Return
 
 ; Show Public IP Address Hotkey (CTRL + SHIFT + I)
 ^+I::
-clipboard := GetIP("ifconfig.co/")
+clipboard := GetIP("http://ifconfig.co/")
 MsgBox 64, IP Address, Your Public IP Address is: %Clipboard%
 Return
 
