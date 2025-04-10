@@ -35,13 +35,7 @@ Return
 
 ; Show Public IP Address Hotkey (CTRL + SHIFT + I)
 ^+I::
-;Run PowerShell /c "(Get-NetIPAddress -AddressFamily IPv4 -AddressState Preferred | Where-Object { $_.InterfaceAlias -match 'Ethernet' }).IPAddress"
-;SplashTextOn,150,50,IPAddress,Your IP Address:`n%A_IPAddress1%
-;Sleep, 1000
-;SplashTextOff
-;ToolTip, Your IP Address:`n%A_IPAddress1%...
-;SetTimer, RemoveToolTip, -2000
-clipboard := GetIP("http://www.netikus.net/show_ip.html")
+clipboard := GetIP("ifconfig.co/")
 MsgBox 64, IP Address, Your Public IP Address is: %Clipboard%
 Return
 
