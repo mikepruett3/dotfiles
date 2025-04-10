@@ -104,8 +104,8 @@ Return
 ; ========== Hotkeys that only work in Obsidian.exe ==========
 #IfWinActive, ahk_exe Obsidian.exe
     :*:dte::
-    FormatTime, CurrentDay,, MM/dd/yy
-    SendInput, {#}{#} %CurrentDay%
+    FormatTime, Date,, ShortDate
+    SendInput, {#}{#} %Date%
     SendInput, {Enter}
     Return
 #IfWinActive
