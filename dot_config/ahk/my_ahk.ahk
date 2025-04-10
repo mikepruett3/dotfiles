@@ -75,8 +75,19 @@ Return
     Return
 
     :*:ttt::
-    FormatTime, Time
+    FormatTime, Time,, Time
     SendRaw, %Time%
+    Return
+
+    :*:ddd::
+    FormatTime, Date,, ShortDate
+    SendInput, {#}{#} %Date%
+    SendInput, {Enter}
+    Return
+
+    :*:ttt::
+    FormatTime, TimeStamp,, dd-MMM-yyyy_HH-mm-ss
+    SendRaw, %TimeStamp%
     Return
 
     ::asshole::
@@ -89,7 +100,7 @@ Return
 #IfWinNotActive
 
 ; ========== Hotkeys that only work in Obsidian.exe ==========
-#IfWinActive, ahk_exe Obsidian.exe
+;#IfWinActive, ahk_exe Obsidian.exe
     ;:*:ps::
     ;SendInput, ``````PowerShell
     ;SendInput, {Enter}
@@ -125,13 +136,13 @@ Return
     ;SendInput, {Enter}
     ;Return
 
-    :*:dte::
-    FormatTime, CurrentDay,, MM/dd/yy
-    SendInput, {#}{#} %CurrentDay%
-    SendInput, {Enter}
-    Return
+    ;:*:dte::
+    ;FormatTime, CurrentDay,, MM/dd/yy
+    ;SendInput, {#}{#} %CurrentDay%
+    ;SendInput, {Enter}
+    ;Return
 
-#IfWinActive
+;#IfWinActive
 
 ; ========== Hotkeys that only work in explorer.exe ==========
 #IfWinActive, ahk_exe explorer.exe
