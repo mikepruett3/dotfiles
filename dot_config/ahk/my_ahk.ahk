@@ -6,6 +6,19 @@ SendMode, Input            ; Recommended for new scripts due to its superior spe
 ;========== Include Custom AutoHotKey Script ==========
 #Include, %A_WorkingDir%\Custom\Custom.ahk
 
+;========== Globally Available Functions ==========
+GetIP(URL){
+    http:=ComObjCreate("WinHttp.WinHttpRequest.5.1")
+    http.Open("GET",URL,1)
+    http.Send()
+    http.WaitForResponse
+    If (http.ResponseText="Error"){
+        MsgBox 16, IP Address, Sorry, your public IP address could not be detected
+        Return
+    }
+    return http.ResponseText
+}
+
 ;========== Globally Available Hotkeys ==========
 ; Reload AutoHotkey Hotkey (CTRL + R)
 ^R::
@@ -16,18 +29,21 @@ Reload
 SplashTextOff
 Return
 
-; Show IP Address Hotkey (CTRL + SHIFT + I)
+; Show Public IP Address Hotkey (CTRL + SHIFT + I)
 ^+I::
-SplashTextOn,150,50,IPAddress,Your IP Address:`n%A_IPAddress1%
-Sleep, 1000
-SplashTextOff
-ToolTip, Your IP Address:`n%A_IPAddress1%...
-SetTimer, RemoveToolTip, -2000
+;Run PowerShell /c "(Get-NetIPAddress -AddressFamily IPv4 -AddressState Preferred | Where-Object { $_.InterfaceAlias -match 'Ethernet' }).IPAddress"
+;SplashTextOn,150,50,IPAddress,Your IP Address:`n%A_IPAddress1%
+;Sleep, 1000
+;SplashTextOff
+;ToolTip, Your IP Address:`n%A_IPAddress1%...
+;SetTimer, RemoveToolTip, -2000
+clipboard:="Your Public IP Address is: " GetIP("http://www.netikus.net/show_ip.html") "`n
+MsgBox 64, IP Address, % Clipboard
 Return
 
-RemoveToolTip:
-ToolTip
-Return
+;RemoveToolTip:
+;ToolTip
+;Return
 
 ; Temporarily Suspend AutoHotkey Hotkey (WIN + ScrollLock)
 ; https://www.maketecheasier.com/favorite-autohotkey-scripts/
