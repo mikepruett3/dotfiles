@@ -9,8 +9,8 @@ SendMode, Input            ; Recommended for new scripts due to its superior spe
 ;========== Globally Available Hotkeys ==========
 ; Reload AutoHotkey Hotkey (CTRL + R)
 ^R::
-SplashTextOn,100,50,AutoHotKeySystem,`nReloading...
 Run %ComSpec% /c ""chezmoi.exe" "update",, Hide
+SplashTextOn,100,50,AutoHotKeySystem,`nReloading...
 Sleep, 500
 Reload
 SplashTextOff
@@ -69,6 +69,11 @@ Return
     ;SendInput, No Problem
     ;SendInput, {Space}
     ;Return
+
+    :*:hk::
+    SendInput, Hotkey
+    SendInput, {Space}
+    Return
 
     :*:kk::
     SendInput, ok
