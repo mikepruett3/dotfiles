@@ -41,8 +41,8 @@ Return
 ;SplashTextOff
 ;ToolTip, Your IP Address:`n%A_IPAddress1%...
 ;SetTimer, RemoveToolTip, -2000
-clipboard := "Your Public IP Address is: " GetIP("http://www.netikus.net/show_ip.html")
-MsgBox 64, IP Address, % Clipboard
+Clipboard := GetIP("http://www.netikus.net/show_ip.html")
+MsgBox 64, IP Address, "Your Public IP Address is: " % Clipboard
 Return
 
 
