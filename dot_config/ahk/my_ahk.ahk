@@ -64,7 +64,7 @@ GroupAdd, ShellExes, ahk_exe explorer.exe
 GroupAdd, ShellExes, ahk_exe WindowsTerminal.exe
 
 ;#IfWinNotActive, ahk_group ShellExes
-#IfWinNotActive, ahk_exe explorer.exe || ahk_exe WindowsTerminal.exe
+#IfWinNotActive, ahk_exe explorer.exe || ahk_exe WindowsTerminal.exe || ahk_class CabinetWClass
     ; Text Replacement Hotkeys
     :*:omw::
     SendInput, On My Way{!}
