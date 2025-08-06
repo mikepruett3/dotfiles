@@ -1,4 +1,4 @@
-#NoEnv                     ; Recommended for performance and compatibility with future AutoHotKey releases.
+;#NoEnv                     ; Recommended for performance and compatibility with future AutoHotKey releases.
 #SingleInstance Force      ; Starts all Included AutoHotKey Scripts as one - https://stackoverflow.com/questions/4565321/autohotkey-calling-one-script-from-another-script
 ;#Warn                     ; Enable warnings to assist with detecting common errors.
 SendMode, Input            ; Recommended for new scripts due to its superior speed and reliability.
