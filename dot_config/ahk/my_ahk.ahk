@@ -63,7 +63,7 @@ Return
 GroupAdd, ShellExes, ahk_exe explorer.exe
 GroupAdd, ShellExes, ahk_exe WindowsTerminal.exe
 
-#IfWinNotActive, ahk_group hellExes
+#IfWinNotActive, ahk_group ShellExes
     ; Text Replacement Hotkeys
     :*:omw::
     SendInput, On My Way{!}
