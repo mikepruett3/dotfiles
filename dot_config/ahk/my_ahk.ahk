@@ -59,7 +59,7 @@ SplashTextOff
 Return
 
 ; ========== Hotkeys that work in everything except explorer.exe ==========
-#If WinNotActive("ahk_exe explorer.exe") || WinNotActive("ahk_exe WindowsTerminal.exe")
+#If WinNotActive("ahk_exe explorer.exe") OR WinNotActive("ahk_exe WindowsTerminal.exe")
     ; Text Replacement Hotkeys
     :*:omw::
     SendInput, On My Way{!}
