@@ -38,7 +38,6 @@
       - gamemode
       - hypridle
       - hyprlock
-      - hyprpaper
       - kanshi
       - kitty
       - lib32-gamemode
@@ -89,7 +88,7 @@
     - sddm-theme-tokyo-night-git
     - streamdeck-ui
     #- ttf-hack-nerd
-    - waypaper
+    - wpaperd
   become: yes
   become_user: '{{ regular_user }}'
   when:

@@ -34,7 +34,7 @@
       - kitty
       - wofi
       - waybar
-      - hyprpaper
+      #- hyprpaper
       #- hyprshot
       #- hypridle
       - xdg-desktop-portal-hyprland
