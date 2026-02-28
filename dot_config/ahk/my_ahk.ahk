@@ -58,6 +58,11 @@ FileRecycleEmpty
 SplashTextOff
 Return
 
+; Paste Clipboard as Plain Text Hotkey (CTRL + ALT + V)
+^!v::
+SendRaw %clipboard%
+Return
+
 ; ========== Hotkeys that work in everything except explorer.exe ==========
 ;#If WinNotActive("ahk_exe explorer.exe") OR WinNotActive("ahk_exe WindowsTerminal.exe")
 GroupAdd, ShellExes, ahk_exe explorer.exe
@@ -96,23 +101,23 @@ GroupAdd, ShellExes, ahk_exe WindowsTerminal.exe
     SendInput, {Space}
     Return
 
-    :*:tt::
-    FormatTime, Time,, Time
-    SendInput, %Time%
-    SendInput, {Space}
-    Return
+    ; :*:tt::
+    ; FormatTime, Time,, Time
+    ; SendInput, %Time%
+    ; SendInput, {Space}
+    ; Return
 
-    :*:dd::
-    FormatTime, Date,, ShortDate
-    SendInput, %Date%
-    SendInput, {Space}
-    Return
+    ; :*:dd::
+    ; FormatTime, Date,, ShortDate
+    ; SendInput, %Date%
+    ; SendInput, {Space}
+    ; Return
 
-    :*:tst::
-    FormatTime, TimeStamp,, dd-MMM-yyyy-HH-mm-ss
-    SendInput, %TimeStamp%
-    SendInput, {Space}
-    Return
+    ; :*:tst::
+    ; FormatTime, TimeStamp,, dd-MMM-yyyy-HH-mm-ss
+    ; SendInput, %TimeStamp%
+    ; SendInput, {Space}
+    ; Return
 
     ::asshole::
     asshole()
@@ -124,13 +129,13 @@ GroupAdd, ShellExes, ahk_exe WindowsTerminal.exe
 #IfWinNotActive
 
 ; ========== Hotkeys that only work in Obsidian.exe ==========
-#IfWinActive, ahk_exe Obsidian.exe
-    :*:dte::
-    FormatTime, Date,, ShortDate
-    SendInput, {#}{#} %Date%
-    SendInput, {Enter}
-    Return
-#IfWinActive
+; #IfWinActive, ahk_exe Obsidian.exe
+;     :*:dte::
+;     FormatTime, Date,, ShortDate
+;     SendInput, {#}{#} %Date%
+;     SendInput, {Enter}
+;     Return
+; #IfWinActive
 
 ; ========== Hotkeys that only work in explorer.exe ==========
 #IfWinActive, ahk_exe explorer.exe
@@ -151,9 +156,9 @@ GroupAdd, ShellExes, ahk_exe WindowsTerminal.exe
     Return
 
     ; Show and Hide Hidden Files Hotkey (.)
-    .::
-    ToggleHiddenFilesDisplay()
-    Return
+    ; .::
+    ; ToggleHiddenFilesDisplay()
+    ; Return
 
 ;    ; Move Up a Folder in File Explorer Hotkey (BackSpace)
 ;    ; https://www.maketecheasier.com/favorite-autohotkey-scripts/
