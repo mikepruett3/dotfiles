@@ -82,7 +82,7 @@
   with_items:
     - cdw
     - git-credential-manager
-    - ludusavi
+    #- ludusavi
     - hyprshot
     - pwvucontrol
     - sddm-theme-tokyo-night-git
