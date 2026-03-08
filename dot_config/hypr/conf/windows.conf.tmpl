@@ -5,4 +5,8 @@
 
 source = ~/.config/hypr/conf/windows/{{- .chezmoi.hostname -}}.conf
 
-windowrulev2 = suppressevent maximize, class:.* # You'll probably like this.
+windowrule {
+    name = no_maximize
+    suppress_event = maximize
+    match:class = .*
+}
