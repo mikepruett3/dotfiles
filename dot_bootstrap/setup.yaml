@@ -93,7 +93,6 @@
       when:
         - result.rc != 0
 
-
     #- name: "Check if Starship Cross-Shell Prompt is installed and in the path"
     #  ansible.builtin.shell:
     #    cmd: command -v starship
