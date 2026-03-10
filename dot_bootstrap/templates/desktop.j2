@@ -2,8 +2,14 @@
 Name={{ name }}
 Comment={{ comment }}
 GenericName={{ name }}
+{% if path is defined %}
 Path={{ path }}
+{% endif %}
+{% if options is defined %}
 Exec={{ exec }} {{ options }} %U
+{% else %}
+Exec={{ exec }} %U
+{% endif %}
 Icon={{ icon }}
 Terminal={{ terminal }}
 Type={{ type }}
