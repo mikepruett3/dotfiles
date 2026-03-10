@@ -1,27 +1,19 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 
-OS="$(uname -s)"
-case "${OS}" in
-    Linux*)
-        if [ -f /etc/redhat-release ]; then
-            sudo dnf install -y ansible
-        elif [ -f /etc/lsb-release ]; then
-            sudo apt-get update
-	        sudo apt-get install -y ansible
-        elif [ -f /etc/debian_version ]; then
-            sudo apt-get update
-	        sudo apt-get install -y ansible
-        elif [ -f /etc/manjaro-release ]; then
-            sudo pamac update
-            sudo pamac install ansible
-        elif [ -f /etc/arch-release ]; then
-            #sudo pacman -Syu
-            sudo pacman -S ansible
-        else
-            echo "Unsupported Linux distribution"
-            exit 1
-        fi
+source /etc/os-release
+
+case "$ID" in
+    cachyos | arch)
+        #sudo pacman -Syu
+        sudo pacman -S ansible
+        ;;
+    redhat)
+        sudo dnf install -y ansible
+        ;;
+    ubuntu | debian)
+        sudo apt-get update
+	    sudo apt-get install -y ansible
         ;;
     *)
         echo "Unsupported operating system: ${OS}"
