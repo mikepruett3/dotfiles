@@ -68,11 +68,11 @@
       ansible.builtin.include_tasks:
         file: "{{ ansible_facts['pkg_mgr'] }}.yaml"
 
-    - name: "Import Bluetooth Playbook"
-      ansible.builtin.include_tasks:
-        file: bluetooth.yaml
-      when:
-        - desktop is defined
+    #- name: "Import Bluetooth Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: bluetooth.yaml
+    #  when:
+    #    - desktop is defined
 
     - name: "Import Tailscale Playbook"
       ansible.builtin.include_tasks:
@@ -93,61 +93,61 @@
       when:
         - not result.stat.exists
 
-    - name: "Check if kurzit has been installed"
-      ansible.builtin.stat:
-        path: ~/.kurzit
-      become: true
-      become_user: '{{ regular_user }}'
-      register: result
+    #- name: "Check if kurzit has been installed"
+    #  ansible.builtin.stat:
+    #    path: ~/.kurzit
+    #  become: true
+    #  become_user: '{{ regular_user }}'
+    #  register: result
 
-    - name: "Import kurzit Playbook"
-      ansible.builtin.include_tasks:
-        file: kurzit.yaml
-      when:
-        - not result.stat.exists
+    #- name: "Import kurzit Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: kurzit.yaml
+    #  when:
+    #    - not result.stat.exists
 
-    - name: "Check if Visual Studio Code is installed and in the path"
-      ansible.builtin.shell:
-        cmd: command -v code
-      register: result
-      failed_when: result.rc >= 2
+    #- name: "Check if Visual Studio Code is installed and in the path"
+    #  ansible.builtin.shell:
+    #    cmd: command -v code
+    #  register: result
+    #  failed_when: result.rc >= 2
 
-    - name: "Import Visual Studio Code Playbook"
-      ansible.builtin.include_tasks:
-        file: vscode.yaml
-      when:
-        - result.rc != 0
+    #- name: "Import Visual Studio Code Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: vscode.yaml
+    #  when:
+    #    - result.rc != 0
 
-    - name: "Check if Starship Cross-Shell Prompt is installed and in the path"
-      ansible.builtin.shell:
-        cmd: command -v starship
-      register: result
-      failed_when: result.rc >= 2
+    #- name: "Check if Starship Cross-Shell Prompt is installed and in the path"
+    #  ansible.builtin.shell:
+    #    cmd: command -v starship
+    #  register: result
+    #  failed_when: result.rc >= 2
 
-    - name: "Install Starship Cross-Shell Prompt"
-      ansible.builtin.include_role:
-        name: andrewrothstein.starship
-      when:
-        - result.rc != 0
+    #- name: "Install Starship Cross-Shell Prompt"
+    #  ansible.builtin.include_role:
+    #    name: andrewrothstein.starship
+    #  when:
+    #    - result.rc != 0
 
     - name: "Import Go Applications Playbook"
       ansible.builtin.include_tasks:
         file: goapps.yaml
 
-    - name: "Check if Vesktop is installed"
-      ansible.builtin.shell:
-        cmd: command -v vesktop
-      register: result
-      failed_when: result.rc >= 2
-      when:
-        - desktop is defined
-        #- desktop == 'hyprland'
+    #- name: "Check if Vesktop is installed"
+    #  ansible.builtin.shell:
+    #    cmd: command -v vesktop
+    #  register: result
+    #  failed_when: result.rc >= 2
+    #  when:
+    #    - desktop is defined
+    #    #- desktop == 'hyprland'
 
-    - name: "Import Vesktop Playbook"
-      ansible.builtin.include_tasks:
-        file: vesktop.yaml
-      when:
-        - result.rc != 0
+    #- name: "Import Vesktop Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: vesktop.yaml
+    #  when:
+    #    - result.rc != 0
 
     - name: "Check if YouTube-Desktop is installed"
       ansible.builtin.stat:
@@ -194,20 +194,20 @@
       when:
         - not result.stat.exists
 
-    - name: "Check if Plexamp is installed"
-      ansible.builtin.stat:
-        path: ~/Apps/Plexamp.AppImage
-      become: true
-      become_user: '{{ regular_user }}'
-      register: result
-      when:
-        - desktop is defined
+    #- name: "Check if Plexamp is installed"
+    #  ansible.builtin.stat:
+    #    path: ~/Apps/Plexamp.AppImage
+    #  become: true
+    #  become_user: '{{ regular_user }}'
+    #  register: result
+    #  when:
+    #    - desktop is defined
 
-    - name: "Import Plexamp Playbook"
-      ansible.builtin.include_tasks:
-        file: plexamp.yaml
-      when:
-        - not result.stat.exists
+    #- name: "Import Plexamp Playbook"
+    #  ansible.builtin.include_tasks:
+    #    file: plexamp.yaml
+    #  when:
+    #    - not result.stat.exists
 
     #- name: "Check if Private internet Access VPN client is installed"
     #  ansible.builtin.stat:
@@ -224,23 +224,23 @@
     #  when:
     #    - not result.stat.exists
 
-    - name: "Check if minio client is installed and in the path"
-      ansible.builtin.shell:
-        cmd: command -v mc
-      register: result
-      failed_when: result.rc >= 2
-      become: true
-      become_user: '{{ regular_user }}'
+    #- name: "Check if minio client is installed and in the path"
+    #  ansible.builtin.shell:
+    #    cmd: command -v mc
+    #  register: result
+    #  failed_when: result.rc >= 2
+    #  become: true
+    #  become_user: '{{ regular_user }}'
 
-    - name: "Download and Install the minio client"
-      ansible.builtin.get_url:
-        url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
-        dest: ~/bin/
-        mode: '0750'
-      become: true
-      become_user: '{{ regular_user }}'
-      when:
-        - result.rc != 0
+    #- name: "Download and Install the minio client"
+    #  ansible.builtin.get_url:
+    #    url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
+    #    dest: ~/bin/
+    #    mode: '0750'
+    #  become: true
+    #  become_user: '{{ regular_user }}'
+    #  when:
+    #    - result.rc != 0
 
     - name: "Force an update to the xdg-desktop-menu"
       ansible.builtin.shell:

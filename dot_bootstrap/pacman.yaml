@@ -67,6 +67,9 @@
   become_user: '{{ regular_user }}'
   register: result
   failed_when: result.rc >= 2
+  when:
+    - desktop is defined
+    - desktop == 'hyprland'
 
 - name: "Install Yay Package Manager"
   ansible.builtin.include_role:
@@ -75,6 +78,8 @@
     install: true
   when:
     - result.rc != 0
+    - desktop is defined
+    - desktop == 'hyprland'
 
 - name: "Install Desktop packages (yay)"
   ansible.builtin.shell:
