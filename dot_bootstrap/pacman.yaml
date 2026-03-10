@@ -27,6 +27,17 @@
       - unzip
     state: present
 
+- name: "Install packages from AUR (paru)"
+  ansible.builtin.shell:
+    cmd: paru -S --needed --noconfirm --noprogressbar {{ item }}
+  with_items:
+    - fuse2
+  become: yes
+  become_user: '{{ regular_user }}'
+  when:
+    - desktop is defined
+    - aur_helper == 'paru'
+
 - name: "Install Desktop packages (pacman - hyprland)"
   community.general.pacman:
     name:
