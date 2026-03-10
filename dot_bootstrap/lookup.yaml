@@ -26,7 +26,7 @@
   ansible.builtin.shell:
     cmd: command -v yay
   become: yes
-  become_user: ansible_facts['user_id']
+  become_user: "{{ ansible_facts['user_id'] }}"
   register: result_yay
   failed_when: result_yay.rc >= 2
   when: ansible_facts['pkg_mgr'] == 'pacman'
@@ -35,7 +35,7 @@
   ansible.builtin.shell:
     cmd: command -v paru
   become: yes
-  become_user: ansible_facts['user_id']
+  become_user: "{{ ansible_facts['user_id'] }}"
   register: result_paru
   failed_when: result_paru.rc >= 2
   when: ansible_facts['pkg_mgr'] == 'pacman'

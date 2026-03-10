@@ -68,6 +68,7 @@
       when:
         - not result.stat.exists
 
+
     #- name: "Check if kurzit has been installed"
     #  ansible.builtin.stat:
     #    path: ~/.kurzit
