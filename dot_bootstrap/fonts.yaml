@@ -1,12 +1,16 @@
 ---
 
+- name: "Make local font directory"
+  ansible.builtin.file:
+    path: ~/.local/share/fonts/
+    state: directory
+  become: true
+  become_user: '{{ regular_user }}'
+
 - name: "Get Download link of the latest Hack Nerd Font"
   ansible.builtin.shell:
     cmd: curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq --raw-output '.assets[] | select(.name | endswith("Hack.zip")) | .browser_download_url'
   register: url
-  #when:
-  #  - desktop is defined
-  #  - desktop == 'hyprland'
 
 - name: "Download the latest Hack Nerd Font"
   ansible.builtin.get_url:
@@ -15,9 +19,6 @@
     mode: '0755'
   become: yes
   become_user: '{{ regular_user }}'
-  #when:
-  #  - desktop is defined
-  #  - desktop == 'hyprland'
 
 - name: "Unzip the latest Hack Nerd Font"
   ansible.builtin.shell:
@@ -25,9 +26,6 @@
     chdir: ~/.local/share/fonts/
   become: yes
   become_user: '{{ regular_user }}'
-  #when:
-  #  - desktop is defined
-  #  - desktop == 'hyprland'
 
 - name: "Update the font information cache files (user)"
   ansible.builtin.shell:

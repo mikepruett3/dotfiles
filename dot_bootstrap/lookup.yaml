@@ -1,0 +1,47 @@
+---
+# Lookup tasks for dot_bootstrap
+
+- name: "Get the Running User"
+  ansible.builtin.set_fact:
+    regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
+
+- name: "Set fact for architecture (x86_64)"
+  ansible.builtin.set_fact:
+    architecture: "amd64"
+  when:
+    - ansible_facts['architecture'] == "x86_64"
+
+- name: "Set fact for architecture (i386)"
+  ansible.builtin.set_fact:
+    architecture: "i386"
+  when:
+    - ansible_facts['architecture'] == "i386"
+
+- name: "Set fact for Session Information"
+  ansible.builtin.set_fact:
+    desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default=undef()) }}"
+    #wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME', default=undef()) }}"
+
+- name: "Check if Yay is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v yay
+  become: yes
+  become_user: '{{ regular_user }}'
+  register: result_yay
+  failed_when: result_yay.rc >= 2
+  when: ansible_facts['pkg_mgr'] == 'pacman'
+
+- name: "Check if Paru is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v paru
+  become: yes
+  become_user: '{{ regular_user }}'
+  register: result_paru
+  failed_when: result_paru.rc >= 2
+  when: ansible_facts['pkg_mgr'] == 'pacman'
+
+- name: "Set AUR helper variable"
+  ansible.builtin.set_fact:
+    aur_helper: "{{ 'paru' if result_paru.rc == 0 else 'yay' }}"
+  when:
+    - result_paru is defined and result_paru.rc == 0
