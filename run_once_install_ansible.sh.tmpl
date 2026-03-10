@@ -6,7 +6,7 @@ source /etc/os-release
 case "$ID" in
     cachyos | arch)
         #sudo pacman -Syu
-        sudo pacman -S ansible
+        sudo pacman --noconfirm -S ansible
         ;;
     redhat)
         sudo dnf install -y ansible
