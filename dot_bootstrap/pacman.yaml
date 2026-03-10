@@ -71,6 +71,23 @@
     - desktop is defined
     - desktop == 'hyprland'
 
+- name: "Check if Paru is installed and in the path"
+  ansible.builtin.shell:
+    cmd: command -v paru
+  become: yes
+  become_user: '{{ regular_user }}'
+  register: result_paru
+  failed_when: result_paru.rc >= 2
+  when:
+    - desktop is defined
+    - desktop == 'hyprland'
+
+- name: "Set AUR helper variable"
+  ansible.builtin.set_fact:
+    aur_helper: "{{ 'paru' if result_paru.rc == 0 else 'yay' }}"
+  when:
+    - result_paru is defined and result_paru.rc == 0
+
 - name: "Install Yay Package Manager"
   ansible.builtin.include_role:
     name: jahrik.yay
@@ -79,7 +96,7 @@
   when:
     - desktop is defined
     - desktop == 'hyprland'
-    - result is defined and result.rc == 0
+    - aur_helper == 'yay'
 
 - name: "Install Desktop packages (yay)"
   ansible.builtin.shell:
@@ -99,3 +116,4 @@
   when:
     - desktop is defined
     - desktop == 'hyprland'
+    - aur_helper == 'yay'

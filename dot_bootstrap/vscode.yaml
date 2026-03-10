@@ -1,9 +1,13 @@
 ---
 
-- name: "Install Visual Studio Code (pacman)"
-  community.general.pacman:
-    name: "code"
-    state: present
+- name: "Install Visual Studio Code (paru)"
+  ansible.builtin.shell:
+    cmd: paru -S --needed --noconfirm --noprogressbar visual-studio-code-bin
+  become: yes
+  become_user: '{{ regular_user }}'
+  when:
+    - desktop is defined
+    - aur_helper == 'paru'
 
 #- name: "Install Visual Studio Code"
 #  ansible.builtin.include_role:
