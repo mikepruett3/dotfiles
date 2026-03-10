@@ -125,6 +125,7 @@
     #  when:
     #    - result.rc != 0
 
+
     - name: "Check if YouTube-Desktop is installed"
       ansible.builtin.stat:
         path: ~/Apps/YouTube.Desktop.AppImage
