@@ -170,7 +170,6 @@
       when:
         - not result.stat.exists
 
-
     #- name: "Check if Plexamp is installed"
     #  ansible.builtin.stat:
     #    path: ~/Apps/Plexamp.AppImage
