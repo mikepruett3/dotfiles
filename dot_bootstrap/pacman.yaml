@@ -71,15 +71,25 @@
     - desktop is defined
     - desktop == 'hyprland'
 
+- name: "Set fact for Yay, if installed"
+  ansible.builtin.set_fact:
+    yay: true
+  when: result.rc == 0
+
+- name: "Set fact for Yay, if not installed"
+  ansible.builtin.set_fact:
+    yay: false
+  when: result.rc != 0
+
 - name: "Install Yay Package Manager"
   ansible.builtin.include_role:
     name: jahrik.yay
   vars:
     install: true
   when:
-    - result.rc != 0
     - desktop is defined
     - desktop == 'hyprland'
+    - not yay | bool
 
 - name: "Install Desktop packages (yay)"
   ansible.builtin.shell:
