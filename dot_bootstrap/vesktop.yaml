@@ -18,14 +18,14 @@
   ansible.builtin.shell:
     cmd: yay -S --needed --noconfirm --noprogressbar vesktop-bin
   become: yes
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"
   when:
     - ansible_facts['pkg_mgr'] == 'pacman'
 
 - name: "Create the Desktop file for Vesktop client"
   ansible.builtin.template:
     src: desktop.j2
-    dest: "/home/{{ regular_user }}/.local/share/applications/vesktop.desktop"
+    dest: "/home/{{ ansible_facts['user_id'] }}/.local/share/applications/vesktop.desktop"
     mode: '0640'
   vars:
     name: "Vesktop"
@@ -38,4 +38,4 @@
     type: "Application"
     startupnotification: true
   become: yes
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"

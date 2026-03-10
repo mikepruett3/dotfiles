@@ -24,4 +24,4 @@
       - unzip
     state: present
   become: yes
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"

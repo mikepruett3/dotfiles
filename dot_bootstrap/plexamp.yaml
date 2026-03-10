@@ -6,7 +6,7 @@
     dest: ~/Apps/Plexamp.AppImage
     mode: '0755'
   become: true
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"
 
 - name: "Create the Desktop file for Plexamp"
   ansible.builtin.template:
@@ -16,7 +16,7 @@
   vars:
     name: "Plexamp"
     comment: "Plexamp"
-    path: "/home/{{ regular_user }}/Apps/"
+    path: "/home/{{ ansible_facts['user_id'] }}/Apps/"
     exec: "Plexamp.AppImage"
     options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
     icon: "plexamp"
@@ -24,5 +24,5 @@
     type: "Application"
     startupnotification: true
   become: true
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"
 

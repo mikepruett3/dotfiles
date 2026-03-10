@@ -33,7 +33,7 @@
   with_items:
     - fuse2
   become: yes
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"
   when:
     - desktop is defined
     - aur_helper == 'paru'
@@ -94,7 +94,7 @@
     #- ttf-hack-nerd
     - wpaperd
   become: yes
-  become_user: '{{ regular_user }}'
+  become_user: "{{ ansible_facts['user_id'] }}"
   when:
     - desktop is defined
     - desktop == 'hyprland'

@@ -8,10 +8,6 @@
 
 
   tasks:
-    - name: "Get the Running User"
-      ansible.builtin.set_fact:
-        regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
-
     - name: "Set fact for architecture (x86_64)"
       ansible.builtin.set_fact:
         architecture: "amd64"
@@ -28,7 +24,7 @@
       ansible.builtin.shell:
         cmd: killall --regexp vesktop
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
       ignore_errors: true
 
     - name: "Get Download link of the latest Vesktop client Debian package"
@@ -49,7 +45,7 @@
       ansible.builtin.shell:
         cmd: killall --regexp youtube-desktop
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
       ignore_errors: true
 
     - name: "Get Download link of the latest YouTube-Desktop AppImage client"
@@ -63,13 +59,13 @@
         dest: ~/Apps/YouTube.Desktop.AppImage
         mode: '0755'
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
 
     - name: "Kill running HomeAssistant-Desktop client"
       ansible.builtin.shell:
         cmd: killall --regexp homeassistant-desktop
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
       ignore_errors: true
 
     - name: "Get Download link of the latest HomeAssistant-Desktop AppImage client"
@@ -83,13 +79,13 @@
         dest: ~/Apps/Home.Assistant.Desktop.AppImage
         mode: '0755'
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
 
     - name: "Kill running Obsidian client"
       ansible.builtin.shell:
         cmd: killall --regexp obsidian
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
       ignore_errors: true
 
     - name: "Get Download link of the latest Obsidian client"
@@ -103,13 +99,13 @@
         dest: ~/Apps/Obsidian.AppImage
         mode: '0755'
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
 
     - name: "Kill running Plexamp client"
       ansible.builtin.shell:
         cmd: killall --regexp plexamp
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
       ignore_errors: true
 
     - name: "Download and Install the Plexamp client"
@@ -118,7 +114,7 @@
         dest: ~/Apps/Plexamp.AppImage
         mode: '0755'
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
 
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
@@ -126,10 +122,10 @@
         dest: ~/bin/
         mode: '0750'
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
 
     - name: "Force an update to the xdg-desktop-menu"
       ansible.builtin.shell:
         cmd: xdg-desktop-menu forceupdate
       become: true
-      become_user: '{{ regular_user }}'
+      become_user: "{{ ansible_facts['user_id'] }}"
