@@ -21,9 +21,7 @@
   vars:
     name: "Obsidian"
     comment: "Obsidian"
-    path: "/home/{{ regular_user }}/Apps/"
-    exec: "Obsidian.AppImage"
-    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    exec: "/home/{{ regular_user }}/Apps/Obsidian.AppImage"
     icon: "obsidian"
     terminal: false
     type: "Application"

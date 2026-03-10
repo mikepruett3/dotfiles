@@ -21,9 +21,7 @@
   vars:
     name: "HomeAssistant Desktop"
     comment: "A simple Home Assistant Desktop application, built using Electron.js"
-    path: "/home/{{ regular_user }}/Apps/"
-    exec: "Home.Assistant.Desktop.AppImage"
-    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    exec: "/home/{{ regular_user }}/Apps/Home.Assistant.Desktop.AppImage"
     icon: "homeassistant-desktop"
     terminal: false
     type: "Application"
