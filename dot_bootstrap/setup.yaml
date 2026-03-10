@@ -106,17 +106,17 @@
     #  when:
     #    - not result.stat.exists
 
-    #- name: "Check if Visual Studio Code is installed and in the path"
-    #  ansible.builtin.shell:
-    #    cmd: command -v code
-    #  register: result
-    #  failed_when: result.rc >= 2
+    - name: "Check if Visual Studio Code is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v code
+      register: result
+      failed_when: result.rc >= 2
 
-    #- name: "Import Visual Studio Code Playbook"
-    #  ansible.builtin.include_tasks:
-    #    file: vscode.yaml
-    #  when:
-    #    - result.rc != 0
+    - name: "Import Visual Studio Code Playbook"
+      ansible.builtin.include_tasks:
+        file: vscode.yaml
+      when:
+        - result.rc != 0
 
     #- name: "Check if Starship Cross-Shell Prompt is installed and in the path"
     #  ansible.builtin.shell:
