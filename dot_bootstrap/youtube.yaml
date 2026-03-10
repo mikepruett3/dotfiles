@@ -21,9 +21,7 @@
   vars:
     name: "YouTube Desktop"
     comment: "A simple YouTube Desktop application, built using Electron.js"
-    path: "/home/{{ regular_user }}/Apps/"
-    exec: "YouTube.Desktop.AppImage"
-    options: "--enable-features=WaylandWindowDecorations,UseOzonePlatform --ozone-platform=wayland"
+    exec: "/home/{{ regular_user }}/Apps/YouTube.Desktop.AppImage"
     icon: "youtube-desktop"
     terminal: false
     type: "Application"
