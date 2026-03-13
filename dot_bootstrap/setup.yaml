@@ -109,8 +109,6 @@
     - name: "Import Go Applications Playbook"
       ansible.builtin.include_tasks:
         file: goapps.yaml
-      become: true
-      become_user: "{{ regular_user }}"
 
     #- name: "Check if Vesktop is installed"
     #  ansible.builtin.shell:
