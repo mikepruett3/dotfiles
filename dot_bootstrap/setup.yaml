@@ -17,21 +17,21 @@
         path: ~/.ssh/
         state: directory
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
 
     - name: "Make local Apps directory"
       ansible.builtin.file:
         path: ~/Apps/
         state: directory
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
 
     - name: "Make local Applications desktop directory"
       ansible.builtin.file:
         path: ~/.local/share/applications/
         state: directory
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
 
     - name: "Import keyring-apt Playbook"
       ansible.builtin.include_tasks:
@@ -59,7 +59,7 @@
       ansible.builtin.stat:
         path: ~/.local/share/fonts/HackNerdFont-Regular.ttf
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
       register: result
 
     - name: "Import fonts Playbook"
@@ -109,6 +109,8 @@
     - name: "Import Go Applications Playbook"
       ansible.builtin.include_tasks:
         file: goapps.yaml
+      become: true
+      become_user: "{{ regular_user }}"
 
     #- name: "Check if Vesktop is installed"
     #  ansible.builtin.shell:
@@ -130,7 +132,7 @@
       ansible.builtin.stat:
         path: ~/Apps/YouTube.Desktop.AppImage
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
       register: result
       when:
         - desktop is defined
@@ -145,7 +147,7 @@
       ansible.builtin.stat:
         path: ~/Apps/Home.Assistant.Desktop.AppImage
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
       register: result
       when:
         - desktop is defined
@@ -160,7 +162,7 @@
       ansible.builtin.stat:
         path: ~/Apps/Obsidian.AppImage
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
       register: result
       when:
         - desktop is defined
@@ -175,7 +177,7 @@
     #  ansible.builtin.stat:
     #    path: ~/Apps/Plexamp.AppImage
     #  become: true
-    #  become_user: "{{ ansible_facts['user_id'] }}"
+    #  become_user: "{{ regular_user }}"
     #  register: result
     #  when:
     #    - desktop is defined
@@ -190,7 +192,7 @@
     #  ansible.builtin.stat:
     #    path: ~/Apps/Plexamp.AppImage
     #  become: true
-    #  become_user: "{{ ansible_facts['user_id'] }}"
+    #  become_user: "{{ regular_user }}"
     #  register: result
     #  when:
     #    - desktop is defined
@@ -207,7 +209,7 @@
     #  register: result
     #  failed_when: result.rc >= 2
     #  become: true
-    #  become_user: "{{ ansible_facts['user_id'] }}"
+    #  become_user: "{{ regular_user }}"
 
     #- name: "Download and Install the minio client"
     #  ansible.builtin.get_url:
@@ -215,7 +217,7 @@
     #    dest: ~/bin/
     #    mode: '0750'
     #  become: true
-    #  become_user: "{{ ansible_facts['user_id'] }}"
+    #  become_user: "{{ regular_user }}"
     #  when:
     #    - result.rc != 0
 
@@ -223,7 +225,7 @@
       ansible.builtin.shell:
         cmd: xdg-desktop-menu forceupdate
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
 
     - name: "Check if connected to Tailnet"
       ansible.builtin.shell:
@@ -236,13 +238,13 @@
         path: ~/Images
       register: result
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
 
     - name: "Sync minio storage to ~/Images"
       ansible.builtin.shell:
         cmd: ~/bin/mc cp --recursive minio ~/Images/
       become: true
-      become_user: "{{ ansible_facts['user_id'] }}"
+      become_user: "{{ regular_user }}"
       when:
         - not result.stat.exists
         - tailnet is defined
