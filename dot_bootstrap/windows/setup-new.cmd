@@ -27,3 +27,6 @@ REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\add-vscode-context-menu.reg
 REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\cmdhere.reg
 
 REFRESHENV
+
+IF NOT EXIST .\Images\ MKDIR .\Images\
+IF NOT EXIST .\Images\wallpapers\ mc cp --recursive wasabi/images-mp .\Images\

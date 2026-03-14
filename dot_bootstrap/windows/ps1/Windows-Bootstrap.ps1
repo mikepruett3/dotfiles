@@ -52,7 +52,8 @@ Add-AppxPackage -Path $latestRelease.browser_download_url
 
 $Packages = @(
   "GnuPG.GnuPG",
-  "twpayne.chezmoi"
+  "twpayne.chezmoi",
+  "MinIO.Client"
 )
 
 foreach ($Package in $Packages) {
