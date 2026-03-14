@@ -201,23 +201,23 @@
     #  when:
     #    - not result.stat.exists
 
-    #- name: "Check if minio client is installed and in the path"
-    #  ansible.builtin.shell:
-    #    cmd: command -v mc
-    #  register: result
-    #  failed_when: result.rc >= 2
-    #  become: true
-    #  become_user: "{{ regular_user }}"
+    - name: "Check if minio client is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v mc
+      register: result
+      failed_when: result.rc >= 2
+      become: true
+      become_user: "{{ regular_user }}"
 
-    #- name: "Download and Install the minio client"
-    #  ansible.builtin.get_url:
-    #    url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
-    #    dest: ~/bin/
-    #    mode: '0750'
-    #  become: true
-    #  become_user: "{{ regular_user }}"
-    #  when:
-    #    - result.rc != 0
+    - name: "Download and Install the minio client"
+      ansible.builtin.get_url:
+        url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
+        dest: ~/bin/
+        mode: '0750'
+      become: true
+      become_user: "{{ regular_user }}"
+      when:
+        - result.rc != 0
 
     - name: "Force an update to the xdg-desktop-menu"
       ansible.builtin.shell:
