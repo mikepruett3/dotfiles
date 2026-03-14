@@ -225,11 +225,11 @@
       become: true
       become_user: "{{ regular_user }}"
 
-    - name: "Check if connected to Tailnet"
-      ansible.builtin.shell:
-        cmd: tailscale status
-      register: tailnet
-      failed_when: tailnet.rc >= 2
+    #- name: "Check if connected to Tailnet"
+    #  ansible.builtin.shell:
+    #    cmd: tailscale status
+    #  register: tailnet
+    #  failed_when: tailnet.rc >= 2
 
     - name: "Check if ~/Images has been created"
       ansible.builtin.stat:
@@ -238,12 +238,10 @@
       become: true
       become_user: "{{ regular_user }}"
 
-    #- name: "Sync minio storage to ~/Images"
-    #  ansible.builtin.shell:
-    #    cmd: ~/bin/mc cp --recursive minio ~/Images/
-    #  become: true
-    #  become_user: "{{ regular_user }}"
-    #  when:
-    #    - not result.stat.exists
-    #    - tailnet is defined
-    #    - tailnet.rc == 0
+    - name: "Sync minio storage to ~/Images"
+      ansible.builtin.shell:
+        cmd: ~/bin/mc cp --recursive wasabi/images-mp ~/Images/
+      become: true
+      become_user: "{{ regular_user }}"
+      when:
+        - not result.stat.exists
