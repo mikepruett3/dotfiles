@@ -32,6 +32,7 @@ $Packages = @(
   "jftuga.less",
   "gokcehan.lf",
   "Microsoft.VisualStudioCode",
+  "MediaArea.MediaInfo",
   "MinIO.Client",
   "ArtifexSoftware.mutool",
   "GNU.Nano",

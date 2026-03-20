@@ -42,3 +42,4 @@ REFRESHENV
 
 IF NOT EXIST .\Images\ MKDIR .\Images\
 IF NOT EXIST .\Images\wallpapers\ mc cp --recursive wasabi/images-mp .\Images\
+
