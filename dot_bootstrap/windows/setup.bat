@@ -35,6 +35,9 @@ GOTO :IsElevated
 
 :IsElevated
 
+REM Install Sudo package, if missing
+PowerShell -Command "Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-Sudo.ps1"' -Verb RunAs" -Wait
+
 WHERE /Q "winget"
 IF ERRORLEVEL 0 (
     WHERE /Q "age"
@@ -190,9 +193,20 @@ IF ERRORLEVEL 0 (
     )
 )
 
+REM Installing Nerd Fonts, if missing
+PowerShell -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-NerdFonts.ps1" -Name "Hack"
+
+REM Installing dotposh, if missing
+PowerShell -ExecutionPolicy Bypass -File "%UserProfile%\.bootstrap\windows\ps1\Install-dotposh.ps1"
+
+REM Set the Execution Policy
+PowerShell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser"
+
+REM Copy Images from MinIO, if missing
 IF NOT EXIST .\Images\ MKDIR .\Images\
 IF NOT EXIST .\Images\wallpapers\ mc cp --recursive minio .\Images\
 
+REM Import Registry entries
 REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\add-vscode-context-menu.reg
 REG IMPORT %USERPROFILE%\.bootstrap\windows\registry\cmdhere.reg
 
