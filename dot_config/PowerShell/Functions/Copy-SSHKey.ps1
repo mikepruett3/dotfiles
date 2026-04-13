@@ -25,14 +25,21 @@ function Copy-SSHKey {
         [Parameter(Mandatory=$True,ValueFromPipeline=$True)]
         [string]
         $Server,
-
-        [Parameter(Mandatory=$True,ValueFromPipeline=$True)]
-        [string]
-        $Credentials,
-
         [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
         [string]
-        $Key
+        $Credentials,
+        [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+        [string]
+        $Username,
+        [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+        [string]
+        $Password,
+        [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+        [string]
+        $Key,
+        [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+        [bool]
+        $PS
     )
 
     begin {
@@ -62,30 +69,32 @@ function Copy-SSHKey {
 
         # Use BetterCredentials cmdlet to make this easier!
         Write-Verbose "Load Credentials into variable..."
-        try {
+        if ($PS) {
+            try {
             $Creds = Get-Credential("$Credentials")
-        }
-        catch {
-            Write-Error "Could not retrieve the Credentials!!!"
-            Break
-        }
+            }
+            catch {
+                Write-Error "Could not retrieve the Credentials!!!"
+                Break
+            }
 
-        Write-Verbose "Setting UserName variable..."
-        try {
-            $UserName = $Creds.GetNetworkCredential().UserName
-        }
-        catch {
-            Write-Error "Unable to set the UserName variable!!!"
-            Break
-        }
+            Write-Verbose "Setting UserName variable..."
+            try {
+                $UserName = $Creds.GetNetworkCredential().UserName
+            }
+            catch {
+                Write-Error "Unable to set the UserName variable!!!"
+                Break
+            }
 
-        Write-Verbose "Setting Password variable..."
-        try {
-            $Password = $Creds.GetNetworkCredential().Password
-        }
-        catch {
-            Write-Error "Unable to set the Password variable!!!"
-            Break
+            Write-Verbose "Setting Password variable..."
+            try {
+                $Password = $Creds.GetNetworkCredential().Password
+            }
+            catch {
+                Write-Error "Unable to set the Password variable!!!"
+                Break
+            }
         }
 
         Write-Verbose "Testing communication with the $Server server..."
