@@ -44,4 +44,5 @@
   ansible.builtin.set_fact:
     aur_helper: "{{ 'paru' if result_paru.rc == 0 else 'yay' }}"
   when:
+    - ansible_facts['pkg_mgr'] == 'pacman'
     - result_paru is defined and result_paru.rc == 0
