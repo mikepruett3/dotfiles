@@ -4,7 +4,8 @@
   ansible.builtin.shell:
     cmd: command -v ansiart2utf8
   register: result
-  failed_when: result.rc >= 2
+  #failed_when: result.rc >= 2
+  ignore_errors: true
 
 - name: "Install ansiart2utf8 go package"
   ansible.builtin.shell:
@@ -18,7 +19,8 @@
   ansible.builtin.shell:
     cmd: command -v ascii-image-converter
   register: result
-  failed_when: result.rc >= 2
+  #failed_when: result.rc >= 2
+  ignore_errors: true
 
 - name: "Install ascii-image-converter go package"
   ansible.builtin.shell:
@@ -46,7 +48,8 @@
   ansible.builtin.shell:
     cmd: command -v imgconv
   register: result
-  failed_when: result.rc >= 2
+  #failed_when: result.rc >= 2
+  ignore_errors: true
 
 - name: "Install imgconv go package"
   ansible.builtin.shell:
