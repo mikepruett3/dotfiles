@@ -206,9 +206,10 @@
       ansible.builtin.shell:
         cmd: command -v mc
       register: result
-      failed_when: result.rc >= 2
+      #failed_when: result.rc >= 2
       become: true
       become_user: "{{ regular_user }}"
+      ignore_errors: true
 
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
