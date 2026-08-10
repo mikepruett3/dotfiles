@@ -1,5 +1,15 @@
 ---
 
+
+
+- name: "Install Visual Studio Code"
+  ansible.builtin.include_role:
+    #name: gantsign.visual-studio-code
+    name: ansible-role-visual-studio-code
+  when:
+    - desktop is defined
+    - ansible_facts['pkg_mgr'] != 'pacman'
+
 - name: "Install Visual Studio Code (paru)"
   ansible.builtin.shell:
     cmd: paru -S --needed --noconfirm --noprogressbar visual-studio-code-bin
@@ -7,25 +17,15 @@
   become_user: "{{ regular_user }}"
   when:
     - desktop is defined
+    - ansible_facts['pkg_mgr'] == 'pacman'
     - aur_helper == 'paru'
 
-#- name: "Install Visual Studio Code"
-#  ansible.builtin.include_role:
-#    #name: gantsign.visual-studio-code
-#    name: ansible-role-visual-studio-code
-#  when:
-#    #- result.rc != 0
-#    - desktop is defined
-#    #- desktop == 'hyprland'
-#    - ansible_facts['pkg_mgr'] != 'pacman'
-
-#- name: "Install Visual Studio Code (yay)"
-#  ansible.builtin.shell:
-#    cmd: yay -S --needed --noconfirm --noprogressbar visual-studio-code-bin
-#  become: yes
-#  become_user: "{{ regular_user }}"
-#  when:
-#    #- result.rc != 0
-#    - desktop is defined
-#    #- desktop == 'hyprland'
-#    - ansible_facts['pkg_mgr'] == 'pacman'
+- name: "Install Visual Studio Code (yay)"
+  ansible.builtin.shell:
+    cmd: yay -S --needed --noconfirm --noprogressbar visual-studio-code-bin
+  become: yes
+  become_user: "{{ regular_user }}"
+  when:
+    - desktop is defined
+    - ansible_facts['pkg_mgr'] == 'pacman'
+    - aur_helper == 'yay'
