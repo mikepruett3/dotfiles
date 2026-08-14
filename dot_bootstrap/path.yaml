@@ -21,7 +21,7 @@
 
 - name: "Check if {{ path_to_add | replace('$HOME', '~') }} is already in PATH"
   ansible.builtin.shell:
-    cmd: grep '^export PATH=' {{ startup_file }} | grep -q '{{ path_to_add | replace('$', '\\$') }}'
+    cmd: grep '^export PATH=' {{ startup_file }} | grep -q '{{ path_to_add }}'
   register: bin_in_path
   failed_when: false
   changed_when: false
@@ -48,6 +48,7 @@
   become_user: "{{ regular_user }}"
   when:
     - path_exists.rc != 0
+
 
 
 
