@@ -7,11 +7,17 @@ bind -r '\C-r'
 # Bind Ctrl-F for file picker
 bind -x '"\C-f": "fzf-file-widget"'
 
-# Create wrapper for history search and bind to Ctrl-H
+# Bind Ctrl-H for history search
 fzf-history-search() {
   local cmd
   cmd=$( (history -p ''; history) | fzf --reverse --height 40% --tac -n2..,..,.. +m)
   eval "$cmd"
 }
 bind -x '"\C-h": "fzf-history-search"'
+
+# Bind Alt-D for change directory (was Alt-C)
+bind -x '"\M-d": "fzf-cd-widget"'
+
+# Customize options
+export FZF_ALT_D_OPTS="--preview 'ls -la {}'"
 
