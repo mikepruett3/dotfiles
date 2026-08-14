@@ -67,9 +67,15 @@ ansible-galaxy install -r "${BOOTSTRAP_DIR}/requirements.yaml"
 echo "Running setup playbook..."
 ansible-playbook -v "${BOOTSTRAP_DIR}/setup.yaml"
 
-# Step 4: Run sudo playbook (for sudoers configuration)
-echo "Running sudo configuration playbook..."
-ansible-playbook -v "${BOOTSTRAP_DIR}/sudo.yaml" --ask-become-pass
+# Step 4: Check if current user is in sudoers group before running sudo playbook
+echo "Checking sudoers group membership..."
+CURRENT_USER="${SUDO_USER:-$(whoami)}"
+if id -nG "${CURRENT_USER}" | grep -q sudo; then
+    echo "✓ User ${CURRENT_USER} is already in sudoers group, skipping sudo configuration"
+else
+    echo "User ${CURRENT_USER} is not in sudoers group, running sudo configuration playbook..."
+    ansible-playbook -v "${BOOTSTRAP_DIR}/sudo.yaml" --ask-become-pass
+fi
 
-echo "=== Bootstrap complete ==="
+echo "=== Bootstrap complete ===" 
 {{- end }}
