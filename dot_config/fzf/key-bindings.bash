@@ -16,8 +16,10 @@ fzf-history-search() {
 bind -x '"\C-h": "fzf-history-search"'
 
 # Bind Ctrl-G for change directory
-bind -x '"\C-g": "fzf-cd-widget"'
-
-# Customize options
-export FZF_CTRL_G_OPTS="--preview 'ls -la {}'"
+fzf-cd-search() {
+  local dir
+  dir=$(find ${1:-.} -maxdepth 3 -type d 2>/dev/null | fzf --preview 'ls -la {}' --reverse)
+  [ -n "$dir" ] && cd "$dir"
+}
+bind -x '"\C-g": "fzf-cd-search"'
 
