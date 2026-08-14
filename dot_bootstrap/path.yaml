@@ -1,0 +1,53 @@
+---
+# This playbook adds a directory to the PATH in a shell startup file
+# Usage: include_tasks with vars:
+#   path_to_add: "$HOME/bin"
+#   startup_file: "~/.bashrc"  (optional, defaults to ~/.bashrc)
+
+- name: "Set default startup file"
+  ansible.builtin.set_fact:
+    startup_file: "~/.bashrc"
+  when:
+    - startup_file is not defined
+
+- name: "Check if PATH is already set in {{ startup_file }}"
+  ansible.builtin.shell:
+    cmd: grep -q '^export PATH=' {{ startup_file }}
+  register: path_exists
+  failed_when: false
+  changed_when: false
+  become: true
+  become_user: "{{ regular_user }}"
+
+- name: "Check if {{ path_to_add | replace('$HOME', '~') }} is already in PATH"
+  ansible.builtin.shell:
+    cmd: grep '^export PATH=' {{ startup_file }} | grep -q '{{ path_to_add | replace('$', '\\$') }}'
+  register: bin_in_path
+  failed_when: false
+  changed_when: false
+  become: true
+  become_user: "{{ regular_user }}"
+  when:
+    - path_exists.rc == 0
+
+- name: "Add {{ path_to_add | replace('$HOME', '~') }} to existing PATH line"
+  ansible.builtin.shell:
+    cmd: sed -i '/^export PATH=/s|export PATH="|export PATH="{{ path_to_add }}:|' {{ startup_file }}
+  become: true
+  become_user: "{{ regular_user }}"
+  when:
+    - path_exists.rc == 0
+    - bin_in_path.rc != 0
+
+- name: "Add PATH line to {{ startup_file }} (no existing PATH found)"
+  ansible.builtin.lineinfile:
+    path: "{{ startup_file }}"
+    line: 'export PATH="{{ path_to_add }}:$PATH"'
+    state: present
+  become: true
+  become_user: "{{ regular_user }}"
+  when:
+    - path_exists.rc != 0
+
+
+

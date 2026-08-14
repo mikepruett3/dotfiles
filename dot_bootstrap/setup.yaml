@@ -12,6 +12,12 @@
       ansible.builtin.include_tasks:
         file: lookup.yaml
 
+    - name: "Import PATH setup"
+      ansible.builtin.include_tasks:
+        file: path.yaml
+      vars:
+        path_to_add: "$HOME/bin"
+
     - name: "Make local .ssh directory"
       ansible.builtin.file:
         path: ~/.ssh/

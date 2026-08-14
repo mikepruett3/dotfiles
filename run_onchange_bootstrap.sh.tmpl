@@ -15,6 +15,7 @@
 # .bootstrap/kurzit.yaml hash:       {{ include "dot_bootstrap/kurzit.yaml" | sha256sum }}
 # .bootstrap/lookup.yaml hash:       {{ include "dot_bootstrap/lookup.yaml" | sha256sum }}
 # .bootstrap/obsidian.yaml hash:     {{ include "dot_bootstrap/obsidian.yaml" | sha256sum }}
+# .bootstrap/path.yaml hash:         {{ include "dot_bootstrap/path.yaml" | sha256sum }}
 # .bootstrap/pacman.yaml hash:       {{ include "dot_bootstrap/pacman.yaml" | sha256sum }}
 # .bootstrap/pia.yaml hash:          {{ include "dot_bootstrap/pia.yaml" | sha256sum }}
 # .bootstrap/plexamp.yaml hash:      {{ include "dot_bootstrap/plexamp.yaml" | sha256sum }}
@@ -34,7 +35,7 @@ echo "=== Bootstrapping dotfiles ==="
 # Step 1: Ensure Ansible is installed
 if ! command -v ansible-playbook &> /dev/null; then
     echo "Installing Ansible..."
-    
+
     {{ if eq .chezmoi.os "linux" -}}
     source /etc/os-release
     case "$ID" in
