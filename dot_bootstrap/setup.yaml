@@ -96,9 +96,6 @@
       register: result
       ignore_errors: true
       #failed_when: result.rc >= 2
-      when:
-        - desktop is defined
-        - not is_wsl
 
     - name: "Import Visual Studio Code Playbook"
       ansible.builtin.include_tasks:
@@ -144,15 +141,14 @@
       become: true
       become_user: "{{ regular_user }}"
       register: result
-      when:
-        - desktop is defined
-        - not is_wsl
 
     - name: "Import YouTube-Desktop Playbook"
       ansible.builtin.include_tasks:
         file: youtube.yaml
       when:
         - not result.stat.exists
+        - desktop is defined
+        - not is_wsl
 
     - name: "Check if HomeAssistant-Desktop is installed"
       ansible.builtin.stat:
