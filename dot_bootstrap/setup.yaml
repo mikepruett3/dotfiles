@@ -68,7 +68,6 @@
       register: result
       when:
         - desktop is defined
-        - not is_wsl
 
     - name: "Import fonts Playbook"
       ansible.builtin.include_tasks:
