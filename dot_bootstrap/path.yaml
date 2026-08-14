@@ -17,13 +17,17 @@
   become: true
   become_user: "{{ regular_user }}"
 
+- name: "Decode file content"
+  ansible.builtin.set_fact:
+    file_content: "{{ startup_file_content['content'] | b64decode }}"
+
 - name: "Check if {{ path_to_add | replace('$HOME', '~') }} is already in PATH"
   ansible.builtin.set_fact:
-    path_already_present: "{{ path_to_add in startup_file_content['content'] | b64decode }}"
+    path_already_present: "{{ path_to_add in file_content }}"
 
 - name: "Check if PATH line exists"
   ansible.builtin.set_fact:
-    path_line_exists: "{{ '^export PATH=' in startup_file_content['content'] | b64decode }}"
+    path_line_exists: "{{ file_content is search('export PATH=') }}"
 
 - name: "Add {{ path_to_add | replace('$HOME', '~') }} to existing PATH line"
   ansible.builtin.shell:

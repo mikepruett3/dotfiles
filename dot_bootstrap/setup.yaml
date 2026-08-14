@@ -237,6 +237,25 @@
       when:
         - result.rc != 0
 
+    - name: "Check if mcfly is installed and in the path"
+      ansible.builtin.shell:
+        cmd: command -v mcfly
+      register: mcfly_check
+      failed_when: false
+      changed_when: false
+      become: true
+      become_user: "{{ regular_user }}"
+
+    - name: "Download and Install mcfly"
+      ansible.builtin.get_url:
+        url: "https://github.com/cantino/mcfly/releases/download/v0.8.1/mcfly-v0.8.1.{{ ansible_facts['system'] | lower }}-{{ 'x86_64' if architecture == 'x86_64' else 'aarch64' }}"
+        dest: ~/bin/mcfly
+        mode: '0750'
+      become: true
+      become_user: "{{ regular_user }}"
+      when:
+        - mcfly_check.rc != 0
+
     - name: "Force an update to the xdg-desktop-menu"
       ansible.builtin.shell:
         cmd: xdg-desktop-menu forceupdate
