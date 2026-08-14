@@ -8,6 +8,14 @@
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply mikepruett3
 ```
 
+- The reccomended way
+
+```bash
+grep -q "^GITHUB_USERNAME=" ~/.bashrc || echo 'export GITHUB_USERNAME=mikepruett3' >> ~/.bashrc
+source ~/.bashrc
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
+```
+
 ## Install for Windows
 
 > **NOTE FOR WINDOWS 11**:
