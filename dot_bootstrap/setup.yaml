@@ -180,7 +180,7 @@
       when:
         - not result.stat.exists
         - desktop is defined
-        - not is_ws
+        - not is_wsl
 
     #- name: "Check if Plexamp is installed"
     #  ansible.builtin.stat:
