@@ -1,10 +1,74 @@
-{{ if ne .chezmoi.os "windows" -}}
+{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
 
-# .bootstrap/setup.yml hash:        {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
+# .bootstrap playbook hashes - any change triggers re-run
+# .bootstrap/setup.yaml hash:        {{ include "dot_bootstrap/setup.yaml" | sha256sum }}
+# .bootstrap/sudo.yaml hash:         {{ include "dot_bootstrap/sudo.yaml" | sha256sum }}
+# .bootstrap/apt.yaml hash:          {{ include "dot_bootstrap/apt.yaml" | sha256sum }}
+# .bootstrap/bluetooth.yaml hash:    {{ include "dot_bootstrap/bluetooth.yaml" | sha256sum }}
+# .bootstrap/dnf.yaml hash:          {{ include "dot_bootstrap/dnf.yaml" | sha256sum }}
+# .bootstrap/fonts.yaml hash:        {{ include "dot_bootstrap/fonts.yaml" | sha256sum }}
+# .bootstrap/goapps.yaml hash:       {{ include "dot_bootstrap/goapps.yaml" | sha256sum }}
+# .bootstrap/hass.yaml hash:         {{ include "dot_bootstrap/hass.yaml" | sha256sum }}
+# .bootstrap/homebrew.yaml hash:     {{ include "dot_bootstrap/homebrew.yaml" | sha256sum }}
+# .bootstrap/keyring-apt.yaml hash:  {{ include "dot_bootstrap/keyring-apt.yaml" | sha256sum }}
+# .bootstrap/kurzit.yaml hash:       {{ include "dot_bootstrap/kurzit.yaml" | sha256sum }}
+# .bootstrap/lookup.yaml hash:       {{ include "dot_bootstrap/lookup.yaml" | sha256sum }}
+# .bootstrap/obsidian.yaml hash:     {{ include "dot_bootstrap/obsidian.yaml" | sha256sum }}
+# .bootstrap/pacman.yaml hash:       {{ include "dot_bootstrap/pacman.yaml" | sha256sum }}
+# .bootstrap/pia.yaml hash:          {{ include "dot_bootstrap/pia.yaml" | sha256sum }}
+# .bootstrap/plexamp.yaml hash:      {{ include "dot_bootstrap/plexamp.yaml" | sha256sum }}
+# .bootstrap/requirements.yaml hash: {{ include "dot_bootstrap/requirements.yaml" | sha256sum }}
+# .bootstrap/tailscale.yaml hash:    {{ include "dot_bootstrap/tailscale.yaml" | sha256sum }}
+# .bootstrap/update.yaml hash:       {{ include "dot_bootstrap/update.yaml" | sha256sum }}
+# .bootstrap/vesktop.yaml hash:      {{ include "dot_bootstrap/vesktop.yaml" | sha256sum }}
+# .bootstrap/vscode.yaml hash:       {{ include "dot_bootstrap/vscode.yaml" | sha256sum }}
+# .bootstrap/youtube.yaml hash:      {{ include "dot_bootstrap/youtube.yaml" | sha256sum }}
 
-if command -v ansible-playbook &> /dev/null; then
-    ansible-galaxy install -r {{ joinPath .chezmoi.sourceDir "dot_bootstrap/requirements.yaml" | quote }}
-    ansible-playbook -v {{ joinPath .chezmoi.sourceDir "dot_bootstrap/setup.yaml" | quote }}
+set -e
+
+BOOTSTRAP_DIR="{{ joinPath .chezmoi.sourceDir "dot_bootstrap" }}"
+
+echo "=== Bootstrapping dotfiles ==="
+
+# Step 1: Ensure Ansible is installed
+if ! command -v ansible-playbook &> /dev/null; then
+    echo "Installing Ansible..."
+    
+    {{ if eq .chezmoi.os "linux" -}}
+    source /etc/os-release
+    case "$ID" in
+        cachyos | arch)
+            sudo pacman --noconfirm -S ansible
+            ;;
+        redhat)
+            sudo dnf install -y ansible
+            ;;
+        ubuntu | debian)
+            sudo apt-get update
+            sudo apt-get install -y ansible
+            ;;
+        *)
+            echo "Unsupported Linux distribution: ${ID}"
+            exit 1
+            ;;
+    esac
+    {{- else if eq .chezmoi.os "darwin" -}}
+    brew install ansible
+    {{- end }}
 fi
+
+# Step 2: Install Ansible roles and collections
+echo "Installing Ansible dependencies..."
+ansible-galaxy install -r "${BOOTSTRAP_DIR}/requirements.yaml"
+
+# Step 3: Run setup playbook
+echo "Running setup playbook..."
+ansible-playbook -v "${BOOTSTRAP_DIR}/setup.yaml"
+
+# Step 4: Run sudo playbook (for sudoers configuration)
+echo "Running sudo configuration playbook..."
+ansible-playbook -v "${BOOTSTRAP_DIR}/sudo.yaml" --ask-become-pass
+
+echo "=== Bootstrap complete ==="
 {{- end }}
