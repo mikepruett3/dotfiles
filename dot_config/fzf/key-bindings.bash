@@ -23,3 +23,15 @@ fzf-cd-search() {
 }
 bind -x '"\C-g": "fzf-cd-search"'
 
+# Display custom keybinds
+show-keybinds() {
+  echo ""
+  echo "=== Custom Keybindings ==="
+  echo "  Ctrl-F   - fzf file picker"
+  echo "  Ctrl-H   - fzf history search"
+  echo "  Ctrl-G   - fzf change directory"
+  echo "  Ctrl-K   - mcfly history search"
+  echo ""
+}
+bind -x '"\C-_": "show-keybinds"'
+
