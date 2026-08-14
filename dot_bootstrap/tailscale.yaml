@@ -6,6 +6,7 @@
     state: present
   when:
     - ansible_facts['pkg_mgr'] == 'pacman'
+    - not is_wsl
 
 - name: "Download Tailscale Keyring"
   ansible.builtin.get_url:
@@ -14,6 +15,7 @@
     force: true
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
+    - not is_wsl
 
 - name: "Add the Tailscale Repository"
   ansible.builtin.get_url:
@@ -22,6 +24,7 @@
     force: true
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
+    - not is_wsl
 
 - name: "Install Tailscale packages (apt)"
   ansible.builtin.apt:
@@ -29,9 +32,12 @@
     state: present
   when:
     - ansible_facts['pkg_mgr'] == 'apt'
+    - not is_wsl
 
 - name: "Start Tailscale service, if not started"
   ansible.builtin.service:
     name: tailscaled
     enabled: true
     state: started
+  when:
+    - not is_wsl
