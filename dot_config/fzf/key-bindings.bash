@@ -10,8 +10,8 @@ bind -x '"\C-f": "fzf-file-widget"'
 # Bind Ctrl-H for history search
 fzf-history-search() {
   local cmd
-  cmd=$( (history -p ''; history) | fzf --reverse --height 40% --tac -n2..,..,.. +m)
-  eval "$cmd"
+  cmd=$( (history -p ''; history) | sed 's/^[[:space:]]*[0-9]*[[:space:]]//' | fzf --reverse --height 40% --tac -n2..,..,.. +m)
+  [ -n "$cmd" ] && eval "$cmd"
 }
 bind -x '"\C-h": "fzf-history-search"'
 
