@@ -1,7 +1,4 @@
-# Custom fzf keybindings
-
-# Source system fzf keybindings first
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+# Custom fzf keybindings (applied after eval "$(fzf --bash)")
 
 # Unbind Ctrl-T (file picker) and Ctrl-R (history)
 bind -r '\C-t'
