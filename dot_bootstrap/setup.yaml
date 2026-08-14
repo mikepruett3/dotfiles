@@ -222,15 +222,15 @@
       ansible.builtin.shell:
         cmd: command -v mc
       register: result
-      #failed_when: result.rc >= 2
+      failed_when: false
+      changed_when: false
       become: true
       become_user: "{{ regular_user }}"
-      ignore_errors: true
 
     - name: "Download and Install the minio client"
       ansible.builtin.get_url:
         url: "https://dl.minio.io/client/mc/release/{{ ansible_facts['system'] | lower }}-{{ architecture | lower }}/mc"
-        dest: ~/bin/
+        dest: ~/bin/mc
         mode: '0750'
       become: true
       become_user: "{{ regular_user }}"
