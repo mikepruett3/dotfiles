@@ -247,10 +247,14 @@
       become_user: "{{ regular_user }}"
 
     - name: "Download and Install mcfly"
-      ansible.builtin.get_url:
-        url: "https://github.com/cantino/mcfly/releases/download/v0.8.1/mcfly-v0.8.1.{{ ansible_facts['system'] | lower }}-{{ 'x86_64' if architecture == 'x86_64' else 'aarch64' }}"
-        dest: ~/bin/mcfly
-        mode: '0750'
+      ansible.builtin.shell:
+        cmd: |
+          set -e
+          ARCH="{{ 'x86_64' if architecture == 'x86_64' else 'aarch64' }}"
+          TARBALL="/tmp/mcfly.tar.gz"
+          curl -L "https://github.com/cantino/mcfly/releases/download/v0.9.4/mcfly-v0.9.4-${ARCH}-unknown-linux-gnu.tar.gz" -o "$TARBALL"
+          tar -xzf "$TARBALL" -C ~/bin/
+          rm "$TARBALL"
       become: true
       become_user: "{{ regular_user }}"
       when:
