@@ -20,7 +20,15 @@
 - name: "Set fact for Session Information"
   ansible.builtin.set_fact:
     desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default='') }}"
-    is_wsl: "{{ ansible_env.get('WSL_DISTRO_NAME', false) != false }}"
+
+- name: "Check if running in WSL"
+  ansible.builtin.stat:
+    path: /proc/version
+  register: proc_version
+
+- name: "Detect WSL environment"
+  ansible.builtin.set_fact:
+    is_wsl: "{{ 'microsoft' in proc_version.stat.lnk_target | default('') | lower or 'microsoft' in lookup('ansible.builtin.file', '/proc/version', errors='ignore') | lower }}"
 
 - name: "Check if Yay is installed and in the path"
   ansible.builtin.shell:
