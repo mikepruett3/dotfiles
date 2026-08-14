@@ -15,9 +15,9 @@ fzf-history-search() {
 }
 bind -x '"\C-h": "fzf-history-search"'
 
-# Bind Alt-D for change directory (was Alt-C)
-bind -x '"\M-d": "fzf-cd-widget"'
+# Bind Ctrl-G for change directory
+bind -x '"\C-g": "fzf-cd-widget"'
 
 # Customize options
-export FZF_ALT_D_OPTS="--preview 'ls -la {}'"
+export FZF_CTRL_G_OPTS="--preview 'ls -la {}'"
 
