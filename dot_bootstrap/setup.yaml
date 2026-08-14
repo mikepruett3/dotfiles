@@ -252,7 +252,7 @@
           set -e
           ARCH="{{ ansible_facts['architecture'] }}"
           TARBALL="/tmp/mcfly.tar.gz"
-          curl -L "https://github.com/cantino/mcfly/releases/download/v0.9.4/mcfly-v0.9.4-${ARCH}-unknown-linux-gnu.tar.gz" -o "$TARBALL"
+          curl -L "https://github.com/cantino/mcfly/releases/download/v0.9.4/mcfly-v0.9.4-${ARCH}-unknown-linux-musl.tar.gz" -o "$TARBALL"
           tar -xzf "$TARBALL" -C ~/bin/
           rm "$TARBALL"
       become: true
