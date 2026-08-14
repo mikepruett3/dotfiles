@@ -1,5 +1,10 @@
 # Custom mcfly keybindings (applied after eval "$(mcfly init bash)")
 
-# Unbind Ctrl-R and rebind to Alt-R for mcfly history search
+# Unbind Ctrl-R
 bind -r '\C-r'
-bind -x '"\M-r": "mcfly-history-search"'
+
+# Create wrapper for mcfly history search and bind to Ctrl-K
+mcfly-search() {
+  mcfly search
+}
+bind -x '"\C-k": "mcfly-search"'
