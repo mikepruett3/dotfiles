@@ -7,10 +7,10 @@ bind -r '\C-r'
 # Bind Ctrl-F for file picker
 bind -x '"\C-f": "fzf-file-widget"'
 
-# Bind Ctrl-H for history search using bash built-in
+# Bind Ctrl-H for history search
 fzf-history-search() {
   local cmd
-  cmd=$(fc -ln -0 | fzf --reverse --height 40% --tac +m)
+  cmd=$(fc -ln -100 | fzf --reverse --height 40% --tac +m)
   [ -n "$cmd" ] && eval "$cmd"
 }
 bind -x '"\C-h": "fzf-history-search"'
