@@ -62,6 +62,7 @@
   when:
     - desktop is defined
     - desktop == 'hyprland'
+    - not is_wsl
 
 #- name: "Install waypaper (apt)"
 #  ansible.builtin.shell:

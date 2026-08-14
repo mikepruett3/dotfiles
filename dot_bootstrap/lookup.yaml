@@ -20,7 +20,7 @@
 - name: "Set fact for Session Information"
   ansible.builtin.set_fact:
     desktop: "{{ lookup('ansible.builtin.env', 'DESKTOP_SESSION', default=undef()) }}"
-    #wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME', default=undef()) }}"
+    is_wsl: "{{ 'WSL_DISTRO_NAME' in ansible_env }}"
 
 - name: "Check if Yay is installed and in the path"
   ansible.builtin.shell:

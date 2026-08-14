@@ -25,6 +25,8 @@
         state: directory
       become: true
       become_user: "{{ regular_user }}"
+      when:
+        - not is_wsl
 
     - name: "Make local Applications desktop directory"
       ansible.builtin.file:
@@ -32,6 +34,8 @@
         state: directory
       become: true
       become_user: "{{ regular_user }}"
+      when:
+        - not is_wsl
 
     - name: "Import keyring-apt Playbook"
       ansible.builtin.include_tasks:
@@ -54,6 +58,7 @@
         file: tailscale.yaml
       when:
         - desktop is defined
+        - not is_wsl
 
     - name: "Check if Hack fonts have been installed"
       ansible.builtin.stat:
@@ -61,13 +66,17 @@
       become: true
       become_user: "{{ regular_user }}"
       register: result
+      when:
+        - desktop is defined
+        - not is_wsl
 
     - name: "Import fonts Playbook"
       ansible.builtin.include_tasks:
         file: fonts.yaml
       when:
         - not result.stat.exists
-
+        - desktop is defined
+        - not is_wsl
 
     #- name: "Check if kurzit has been installed"
     #  ansible.builtin.stat:
@@ -88,6 +97,9 @@
       register: result
       ignore_errors: true
       #failed_when: result.rc >= 2
+      when:
+        - desktop is defined
+        - not is_wsl
 
     - name: "Import Visual Studio Code Playbook"
       ansible.builtin.include_tasks:
@@ -135,6 +147,7 @@
       register: result
       when:
         - desktop is defined
+        - not is_wsl
 
     - name: "Import YouTube-Desktop Playbook"
       ansible.builtin.include_tasks:
@@ -150,6 +163,7 @@
       register: result
       when:
         - desktop is defined
+        - not is_wsl
 
     - name: "Import HomeAssistant-Desktop Playbook"
       ansible.builtin.include_tasks:
@@ -165,6 +179,7 @@
       register: result
       when:
         - desktop is defined
+        - not is_wsl
 
     - name: "Import Obsidian Playbook"
       ansible.builtin.include_tasks:
@@ -226,6 +241,9 @@
         cmd: xdg-desktop-menu forceupdate
       become: true
       become_user: "{{ regular_user }}"
+      when:
+        - desktop is defined
+        - not is_wsl
 
     #- name: "Check if connected to Tailnet"
     #  ansible.builtin.shell:
@@ -247,3 +265,5 @@
       become_user: "{{ regular_user }}"
       when:
         - not result.stat.exists
+        - desktop is defined
+        - not is_wsl
