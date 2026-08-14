@@ -102,6 +102,8 @@
         file: vscode.yaml
       when:
         - result.rc != 0
+        - desktop is defined
+        - not is_wsl
 
     #- name: "Check if Starship Cross-Shell Prompt is installed and in the path"
     #  ansible.builtin.shell:
@@ -156,15 +158,14 @@
       become: true
       become_user: "{{ regular_user }}"
       register: result
-      when:
-        - desktop is defined
-        - not is_wsl
 
     - name: "Import HomeAssistant-Desktop Playbook"
       ansible.builtin.include_tasks:
         file: hass.yaml
       when:
         - not result.stat.exists
+        - desktop is defined
+        - not is_wsl
 
     - name: "Check if Obsidian is installed"
       ansible.builtin.stat:
@@ -172,15 +173,14 @@
       become: true
       become_user: "{{ regular_user }}"
       register: result
-      when:
-        - desktop is defined
-        - not is_wsl
 
     - name: "Import Obsidian Playbook"
       ansible.builtin.include_tasks:
         file: obsidian.yaml
       when:
         - not result.stat.exists
+        - desktop is defined
+        - not is_ws
 
     #- name: "Check if Plexamp is installed"
     #  ansible.builtin.stat:
