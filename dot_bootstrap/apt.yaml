@@ -26,6 +26,9 @@
       - 7zip
       - unrar-free
       - unzip
+      - starship
+      - tmux
+      - tree
     state: present
 
 - name: "Install Desktop packages (apt - hyprland)"
