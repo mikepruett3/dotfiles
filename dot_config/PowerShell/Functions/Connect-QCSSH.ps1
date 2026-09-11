@@ -4,11 +4,17 @@ function Connect-QCSSH {
         Connects to an ivcon AtriskCloud server via SSH.
     .DESCRIPTION
         Establishes an SSH connection to ic<QC>.ivcon.atriskcloud.net using the
-        supplied credentials. If sshpass is available, it will be used to pass
-        the password non-interactively. Falls back to plain ssh if sshpass is
-        not found or no password is provided.
+        supplied credentials. If sshpass is available AND a -Command was given
+        (a non-interactive run), sshpass is used to pass the password without
+        prompting. A bare interactive session (no -Command) always uses plain
+        ssh instead, even when sshpass/a password is available -- sshpass's
+        pty handoff is unreliable for a live interactive terminal on Windows
+        (it can leave the whole PowerShell session unresponsive after auth,
+        particularly against hosts whose SSH banner/negotiation timing differs
+        slightly, e.g. a recently rebuilt QC). You'll be prompted for the
+        password once by ssh itself instead.
 
-        Password resolution order:
+        Password resolution order (non-interactive -Command runs only):
           1. -Password parameter supplied at runtime (sshpass -p)
           2. $ENV:SSHPASS environment variable (sshpass -e)
           3. Plain ssh (no password automation)
@@ -43,6 +49,8 @@ function Connect-QCSSH {
         Requires sshpass to be installed and in $PATH for password automation.
         sshpass can typically be installed via your package manager (e.g. apt, brew).
         Without sshpass, the function falls back to plain ssh (password prompt or key auth).
+        sshpass is only ever used for non-interactive -Command runs; a bare interactive
+        session always uses plain ssh, regardless of sshpass/password availability.
     #>
 
     [CmdletBinding()]
@@ -69,27 +77,29 @@ function Connect-QCSSH {
     }
 
     process {
-        if ($sshpass -and $PSBoundParameters.ContainsKey('Password')) {
+        # sshpass's pty handoff for a live, no-command interactive session is unreliable
+        # on Windows (native ConPTY vs. sshpass's own Unix-style pty emulation) -- it can
+        # leave the whole PowerShell session unresponsive after auth succeeds. Restricting
+        # sshpass to non-interactive -Command runs (which hand off cleanly and exit) avoids
+        # that entirely; an interactive session always falls through to plain ssh below,
+        # even when sshpass/a password is available, and just prompts for the password once.
+        $isInteractive = [string]::IsNullOrWhiteSpace($Command)
+
+        if (-not $isInteractive -and $sshpass -and $PSBoundParameters.ContainsKey('Password')) {
             Write-Verbose "Using sshpass with runtime-supplied password (-p)"
-            if ([string]::IsNullOrWhiteSpace($Command)) {
-                & $sshpass.Source -p $Password ssh $target
-            } else {
-                & $sshpass.Source -p $Password ssh $target $Command
-            }
-        } elseif ($sshpass -and -not [string]::IsNullOrWhiteSpace($env:SSHPASS)) {
+            & $sshpass.Source -p $Password ssh $target $Command
+        } elseif (-not $isInteractive -and $sshpass -and -not [string]::IsNullOrWhiteSpace($env:SSHPASS)) {
             Write-Verbose "Using sshpass with `$ENV:SSHPASS (-e)"
-            if ([string]::IsNullOrWhiteSpace($Command)) {
-                & $sshpass.Source -e ssh $target
-            } else {
-                & $sshpass.Source -e ssh $target $Command
-            }
+            & $sshpass.Source -e ssh $target $Command
         } else {
-            if (-not $sshpass) {
+            if ($isInteractive -and $sshpass -and ($PSBoundParameters.ContainsKey('Password') -or -not [string]::IsNullOrWhiteSpace($env:SSHPASS))) {
+                Write-Verbose "Interactive session -- using plain ssh even though a password is available (see NOTES); you'll be prompted once."
+            } elseif (-not $sshpass) {
                 Write-Verbose "sshpass not found — falling back to plain ssh"
             } else {
                 Write-Verbose "No password provided — using plain ssh"
             }
-            if ([string]::IsNullOrWhiteSpace($Command)) {
+            if ($isInteractive) {
                 ssh $target
             } else {
                 ssh $target $Command
