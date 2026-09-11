@@ -4,19 +4,19 @@ function Connect-QCSSH {
         Connects to an ivcon AtriskCloud server via SSH.
     .DESCRIPTION
         Establishes an SSH connection to ic<QC>.ivcon.atriskcloud.net using the
-        supplied credentials. If sshpass is available AND a -Command was given
-        (a non-interactive run), sshpass is used to pass the password without
-        prompting. A bare interactive session (no -Command) always uses plain
-        ssh instead, even when sshpass/a password is available -- sshpass's
-        pty handoff is unreliable for a live interactive terminal on Windows
-        (it can leave the whole PowerShell session unresponsive after auth,
-        particularly against hosts whose SSH banner/negotiation timing differs
-        slightly, e.g. a recently rebuilt QC). You'll be prompted for the
-        password once by ssh itself instead.
+        supplied credentials. When a password is available (see resolution
+        order below), it's supplied via SSH_ASKPASS with SSH_ASKPASS_REQUIRE=force
+        rather than sshpass. ssh.exe then manages its own terminal end-to-end,
+        for both interactive and non-interactive runs, with no second process
+        ever touching the pty -- sshpass's own Unix-style pty emulation was the
+        actual cause of a bug where a bare interactive session (no -Command)
+        could leave the whole PowerShell session unresponsive after a
+        successful auth. Falls back to plain ssh (password prompt or key auth)
+        when no password is available.
 
-        Password resolution order (non-interactive -Command runs only):
-          1. -Password parameter supplied at runtime (sshpass -p)
-          2. $ENV:SSHPASS environment variable (sshpass -e)
+        Password resolution order:
+          1. -Password parameter supplied at runtime
+          2. $ENV:SSHPASS environment variable
           3. Plain ssh (no password automation)
 
         Username resolution order:
@@ -28,8 +28,8 @@ function Connect-QCSSH {
     .PARAMETER Username
         The SSH username. Defaults to $ENV:SSI_USER, or 'ydadmin' if unset.
     .PARAMETER Password
-        The SSH password. If provided, sshpass -p is used. If omitted and
-        $ENV:SSHPASS is set, sshpass -e is used instead.
+        The SSH password. If provided (or found in $ENV:SSHPASS), it's supplied
+        to ssh via SSH_ASKPASS instead of a manual prompt.
     .PARAMETER Command
         An optional command to run non-interactively on the remote host.
         If omitted, an interactive SSH session is opened.
@@ -38,19 +38,18 @@ function Connect-QCSSH {
         Opens an interactive SSH session to ic123.ivcon.atriskcloud.net as ydadmin.
     .EXAMPLE
         > Connect-QCSSH 123 -Username admin -Password s3cr3t
-        Connects to ic123.ivcon.atriskcloud.net as admin using sshpass -p.
+        Connects to ic123.ivcon.atriskcloud.net as admin, password supplied via SSH_ASKPASS.
     .EXAMPLE
         > $ENV:SSHPASS = 's3cr3t'; Connect-QCSSH 123
-        Connects using the password stored in $ENV:SSHPASS via sshpass -e.
+        Connects using the password stored in $ENV:SSHPASS, supplied via SSH_ASKPASS.
     .EXAMPLE
         > Connect-QCSSH 123 "uptime"
         Runs the 'uptime' command non-interactively on ic123.ivcon.atriskcloud.net.
     .NOTES
-        Requires sshpass to be installed and in $PATH for password automation.
-        sshpass can typically be installed via your package manager (e.g. apt, brew).
-        Without sshpass, the function falls back to plain ssh (password prompt or key auth).
-        sshpass is only ever used for non-interactive -Command runs; a bare interactive
-        session always uses plain ssh, regardless of sshpass/password availability.
+        Relies on the askpass helper ssh-askpass.cmd alongside this function, which just
+        echoes $ENV:SSHPASS to stdout for ssh to read internally -- it's never shown in
+        the terminal. Requires Windows' native OpenSSH client (SSH_ASKPASS_REQUIRE
+        support); no external sshpass dependency.
     #>
 
     [CmdletBinding()]
@@ -66,40 +65,48 @@ function Connect-QCSSH {
     )
 
     begin {
-        $sshpass  = Get-Command sshpass -ErrorAction SilentlyContinue
-        $hostName = "ic${QC}.ivcon.atriskcloud.net"
-        $target   = "${Username}@${hostName}"
+        $hostName      = "ic${QC}.ivcon.atriskcloud.net"
+        $target        = "${Username}@${hostName}"
+        $askpassHelper = Join-Path $PSScriptRoot 'ssh-askpass.cmd'
+        $resolvedPassword = if ($PSBoundParameters.ContainsKey('Password')) { $Password } else { $env:SSHPASS }
 
         Write-Verbose "Target host  : $hostName"
         Write-Verbose "Target user  : $Username"
-        Write-Verbose "sshpass      : $(if ($sshpass) { $sshpass.Source } else { 'not found' })"
         Write-Verbose "Command      : $(if ($Command) { $Command } else { '(interactive)' })"
+        Write-Verbose "Password     : $(if ([string]::IsNullOrWhiteSpace($resolvedPassword)) { 'not provided' } else { 'available (via SSH_ASKPASS)' })"
     }
 
     process {
-        # sshpass's pty handoff for a live, no-command interactive session is unreliable
-        # on Windows (native ConPTY vs. sshpass's own Unix-style pty emulation) -- it can
-        # leave the whole PowerShell session unresponsive after auth succeeds. Restricting
-        # sshpass to non-interactive -Command runs (which hand off cleanly and exit) avoids
-        # that entirely; an interactive session always falls through to plain ssh below,
-        # even when sshpass/a password is available, and just prompts for the password once.
-        $isInteractive = [string]::IsNullOrWhiteSpace($Command)
+        $usingAskpass = -not [string]::IsNullOrWhiteSpace($resolvedPassword) -and (Test-Path -LiteralPath $askpassHelper)
 
-        if (-not $isInteractive -and $sshpass -and $PSBoundParameters.ContainsKey('Password')) {
-            Write-Verbose "Using sshpass with runtime-supplied password (-p)"
-            & $sshpass.Source -p $Password ssh $target $Command
-        } elseif (-not $isInteractive -and $sshpass -and -not [string]::IsNullOrWhiteSpace($env:SSHPASS)) {
-            Write-Verbose "Using sshpass with `$ENV:SSHPASS (-e)"
-            & $sshpass.Source -e ssh $target $Command
-        } else {
-            if ($isInteractive -and $sshpass -and ($PSBoundParameters.ContainsKey('Password') -or -not [string]::IsNullOrWhiteSpace($env:SSHPASS))) {
-                Write-Verbose "Interactive session -- using plain ssh even though a password is available (see NOTES); you'll be prompted once."
-            } elseif (-not $sshpass) {
-                Write-Verbose "sshpass not found — falling back to plain ssh"
-            } else {
-                Write-Verbose "No password provided — using plain ssh"
+        if (-not [string]::IsNullOrWhiteSpace($resolvedPassword) -and -not (Test-Path -LiteralPath $askpassHelper)) {
+            Write-Verbose "Password available but askpass helper not found at $askpassHelper — falling back to plain ssh"
+        }
+
+        if ($usingAskpass) {
+            Write-Verbose "Using SSH_ASKPASS ($askpassHelper)"
+            # Save/restore rather than mutate the caller's session: these three vars are
+            # only meaningful for the duration of this one ssh invocation.
+            $previousSshpass        = $env:SSHPASS
+            $previousAskpass        = $env:SSH_ASKPASS
+            $previousAskpassRequire = $env:SSH_ASKPASS_REQUIRE
+            try {
+                $env:SSHPASS             = $resolvedPassword
+                $env:SSH_ASKPASS         = $askpassHelper
+                $env:SSH_ASKPASS_REQUIRE = 'force'
+                if ([string]::IsNullOrWhiteSpace($Command)) {
+                    ssh $target
+                } else {
+                    ssh $target $Command
+                }
+            } finally {
+                $env:SSHPASS             = $previousSshpass
+                $env:SSH_ASKPASS         = $previousAskpass
+                $env:SSH_ASKPASS_REQUIRE = $previousAskpassRequire
             }
-            if ($isInteractive) {
+        } else {
+            Write-Verbose "No password available — using plain ssh"
+            if ([string]::IsNullOrWhiteSpace($Command)) {
                 ssh $target
             } else {
                 ssh $target $Command
@@ -113,6 +120,6 @@ function Connect-QCSSH {
 
     end {
         Write-Verbose "Cleaning up variables"
-        Remove-Variable -Name sshpass, hostName, target -ErrorAction SilentlyContinue
+        Remove-Variable -Name hostName, target, askpassHelper, resolvedPassword, usingAskpass -ErrorAction SilentlyContinue
     }
 }
