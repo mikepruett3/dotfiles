@@ -123,7 +123,13 @@ function Connect-QCSSH {
             }
         }
 
-        if ($LASTEXITCODE -ne 0) {
+        # ssh's own exit-code convention: 255 means ssh itself couldn't establish/complete
+        # the connection (DNS, auth, network, etc). Any other nonzero code just came from
+        # whatever ran on the far end (the remote shell or -Command) -- e.g. typing a typo'd
+        # command and then a bare `exit` in an interactive session propagates that command's
+        # exit code to the whole ssh process, which is completely normal and not a
+        # connection failure. Only 255 is actually worth reporting here.
+        if ($LASTEXITCODE -eq 255) {
             Write-Error "SSH connection to $target failed (exit code $LASTEXITCODE)"
         }
     }
